@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    
+        
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+        
+    
+
+    <title>Configuration | Goyo</title>
+
+    
+    
+
+      <!-- SEO: Open Graph / Twitter Card -->
+      <meta property="og:title" content="Configuration | Goyo" />
+      <meta property="og:description" content="" />
+      <meta property="og:url" content="https://goyo.hahwul.com/ko/get_started/configuration/" />
+      <meta property="og:type" content="website" />
+      
+      <meta property="og:image" content="https://goyo.hahwul.com/images/default_thumbnail.jpg" />
+      
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Configuration" />
+      <meta name="twitter:description" content="" />
+      
+      <meta name="twitter:site" content="@hahwul" />
+      
+      
+      <meta name="twitter:creator" content="@hahwul" />
+      
+      
+      <meta name="twitter:image" content="https://goyo.hahwul.com/images/default_thumbnail.jpg" />
+      
+
+      <!-- CSS -->
+    <link rel="stylesheet" href="https://goyo.hahwul.com/css/main.css">
+
+    <script src="/js/mermaid.min.js"></script>
+    <script src="/js/copy_code.js"></script>
+
+    
+    
+</head>
+<body>
+    
+
+
+
+    <div class="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col pt-16">
+            
+<div class="navbar opacity-95 fixed top-0 left-0 right-0 z-50 h-16 border-b border-gray-500/15 backdrop-blur-3xl">
+    <!-- Mobile hamburger -->
+    <div class="flex-none lg:hidden">
+        <label for="my-drawer-2" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </label>
+    </div>
+    <!-- Logo -->
+    <div class="flex-1">
+        <a href="/" class="btn btn-ghost hover:animate-pulse hover:bg-transparent hover:border-transparent normal-case text-xl">
+            
+                <img src="https://goyo.hahwul.com/images/goyo.png" alt="Goyo" class="h-18 w-auto"/>
+            
+        </a>
+    </div>
+    <!-- Desktop Menu -->
+    <div class="flex-none hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 items-center">
+            
+                
+                    
+                        <li>
+                            <a class="btn btn-ghost" href="/introduction">Documents</a>
+                        </li>
+                    
+                
+                    
+                        <li>
+                            <a class="btn btn-ghost" href="https://github.com/hahwul/goyo">GitHub</a>
+                        </li>
+                    
+                
+                    
+                        <li class="dropdown dropdown-end">
+                            <div tabindex="0" role="button" class="btn btn-ghost">
+                                Links
+                                <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <ul tabindex="0" class="dropdown-content menu bg-base-100 border border-gray-500/15 rounded-box z-1 p-2 shadow-sm">
+                                
+                                    <li>
+                                        <a class="btn btn-ghost" href="https://www.hahwul.com">Creator Blog</a>
+                                    </li>
+                                
+                            </ul>
+                        </li>
+                    
+                
+            
+            
+            <li>
+                <div class="dropdown dropdown-end p-0">
+                    <div tabindex="0" role="button" class="btn btn-ghost px-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M4 5h7"></path>
+                            <path d="M7 4c0 4.846 0 7 .5 8"></path>
+                            <path d="M10 8.5c0 2.286 -2 4.5 -3.5 4.5s-2.5 -1.135 -2.5 -2c0 -2 1 -3 3 -3s5 .57 5 2.857c0 1.524 -.667 2.571 -2 3.143"></path>
+                            <path d="M12 20l4 -9l4 9"></path>
+                            <path d="M19.1 18h-6.2"></path>
+                        </svg>
+                    </div>
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 border border-gray-500/15 rounded-box z-1 p-2 shadow-lg">
+                        
+                            
+                                <li><a href="https://goyo.hahwul.com">en</a></li>
+                            
+                        
+                    </ul>
+                </div>
+            </li>
+            
+            <li>
+                <label class="swap swap-rotate btn btn-ghost">
+                  <input type="checkbox" class="theme-controller" value="night" />
+                  <svg class="swap-off h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" /></svg>
+                  <svg class="swap-on h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" /></svg>
+                </label>
+            </li>
+
+            
+        </ul>
+    </div>
+     <!-- Mobile search icon -->
+    
+</div>
+
+
+            
+            
+            <div class="p-8 w-full max-w-7xl mx-auto lg:grid lg:grid-cols-[1fr_250px] lg:gap-8">
+                <main class="prose w-full max-w-7xl mx-auto">
+            
+                    
+    <div class="mb-12 pb-4 border-b border-gray-500/15">
+        <h1>Configuration</h1>
+        <p class="text-gray-500"></p>
+    </div>
+    <p>이제 Goyo 테마의 설정을 알아봅니다. 테마를 커스텀하게 사용하기 위한 여러가지 설정을 제공합니다. <code>config.toml</code>에서 사용할 수 있습니다.</p>
+<h2 id="rogo">로고</h2>
+<p><code>logo_text</code> / <code>logo_image_path</code></p>
+<ul>
+<li><code>logo_text</code>: 로고 이미지 없을 때 표시되는 텍스트</li>
+<li><code>logo_image_path</code>: 로고 이미지 경로</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">logo_text </span><span>= &quot;</span><span style="color:#a3be8c;">Goyo</span><span>&quot;
+</span><span style="color:#bf616a;">logo_image_path </span><span>= &quot;</span><span style="color:#a3be8c;">images/goyo.png</span><span>&quot;
+</span></code></pre>
+<h2 id="puteo">푸터</h2>
+<p><code>footer_html</code></p>
+<ul>
+<li><code>footer_html</code>: 푸터에 표시되는 HTML 코드</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">footer_html </span><span>= &quot;</span><span style="color:#a3be8c;">Powered by &lt;a href=&#39;https://www.getzola.org&#39;&gt;Zola&lt;/a&gt; and &lt;a href=&#39;https://github.com/hahwul/goyo&#39;&gt;Goyo&lt;/a&gt;</span><span>&quot;
+</span></code></pre>
+<h2 id="sseomneil">썸네일</h2>
+<p><code>default_thumbnail</code></p>
+<ul>
+<li><code>default_thumbnail</code>: 기본 썸네일 이미지 경로</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">default_thumbnail </span><span>= &quot;</span><span style="color:#a3be8c;">images/default_thumbnail.jpg</span><span>&quot;
+</span></code></pre>
+<h2 id="teuwiteo">트위터</h2>
+<p><code>twitter_site</code> / <code>twitter_creator</code></p>
+<ul>
+<li><code>twitter_site</code>: 트위터 사이트 핸들</li>
+<li><code>twitter_creator</code>: 트위터 생성자 핸들</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">twitter_site </span><span>= &quot;</span><span style="color:#a3be8c;">@hahwul</span><span>&quot;
+</span><span style="color:#bf616a;">twitter_creator </span><span>= &quot;</span><span style="color:#a3be8c;">@hahwul</span><span>&quot;
+</span></code></pre>
+<h2 id="keolreoses">컬러셋</h2>
+<p><code>default_colorset</code></p>
+<ul>
+<li><code>default_colorset</code>: 기본 테마 (dark/light)</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">default_colorset </span><span>= &quot;</span><span style="color:#a3be8c;">dark</span><span>&quot;
+</span></code></pre>
+<h2 id="gugeul-taegeu">구글 태그</h2>
+<p><code>gtag</code></p>
+<ul>
+<li><code>gtag</code>: 구글 태그 ID</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">gtag </span><span>= &quot;</span><span style="color:#a3be8c;">G-XXXXXXXXXX</span><span>&quot;
+</span></code></pre>
+<h2 id="saideuba-hwagjang-gipi">사이드바 확장 깊이</h2>
+<p><code>sidebar_expand_depth</code></p>
+<ul>
+<li><code>sidebar_expand_depth</code>: 사이드바 섹션이 기본적으로 확장되어야 하는 깊이(최대 5)를 지정합니다. 예를 들어, <code>1</code> 값은 최상위 섹션만 표시하고, <code>2</code>는 첫 번째 하위 섹션 수준을 확장합니다.</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">sidebar_expand_depth </span><span>= </span><span style="color:#d08770;">2
+</span></code></pre>
+<h2 id="nebigeisyeon">네비게이션</h2>
+<p><code>nav</code></p>
+<ul>
+<li><code>nav</code>: 상단 네비게이션 메뉴</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">nav </span><span>= [
+</span><span>    { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">Documents</span><span>&quot;, </span><span style="color:#bf616a;">url </span><span>= &quot;</span><span style="color:#a3be8c;">/introduction</span><span>&quot;, </span><span style="color:#bf616a;">type </span><span>= &quot;</span><span style="color:#a3be8c;">url</span><span>&quot; },
+</span><span>    { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">GitHub</span><span>&quot;, </span><span style="color:#bf616a;">url </span><span>= &quot;</span><span style="color:#a3be8c;">https://github.com/hahwul/goyo</span><span>&quot;, </span><span style="color:#bf616a;">type </span><span>= &quot;</span><span style="color:#a3be8c;">url</span><span>&quot; },
+</span><span>    { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">Links</span><span>&quot;, </span><span style="color:#bf616a;">type </span><span>= &quot;</span><span style="color:#a3be8c;">dropdown</span><span>&quot;, </span><span style="color:#bf616a;">members </span><span>= [
+</span><span>        { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">Creator Blog</span><span>&quot;, </span><span style="color:#bf616a;">url </span><span>= &quot;</span><span style="color:#a3be8c;">https://www.hahwul.com</span><span>&quot;, </span><span style="color:#bf616a;">type </span><span>= &quot;</span><span style="color:#a3be8c;">url</span><span>&quot; },
+</span><span>    ] },
+</span><span>]
+</span></code></pre>
+<h2 id="ruteu-saideuba-sumgigi-bihwalseonghwa">루트 사이드바 숨기기 비활성화</h2>
+<p><code>disable_root_sidebar_hide</code></p>
+<ul>
+<li><code>disable_root_sidebar_hide</code>: <code>true</code>로 설정하면 루트 페이지 (<code>/</code> 또는 <code>/{lang}/</code>)에서 사이드바가 숨겨지지 않습니다. 이를 통해 메인 랜딩 페이지에서도 사이드바를 항상 볼 수 있습니다.</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra]
+</span><span style="color:#bf616a;">disable_root_sidebar_hide </span><span>= </span><span style="color:#d08770;">false
+</span></code></pre>
+<figure class="diff aspect-16/9" tabindex="0">
+  <div class="diff-item-1" role="img" tabindex="0">
+    <img alt="goyo" src="&#x2F;images&#x2F;side-home.jpg" />
+  </div>
+  <div class="diff-item-2" role="img">
+    <img alt="goyo" src="&#x2F;images&#x2F;wide-home.jpg" />
+  </div>
+  <div class="diff-resizer"></div>
+</figure>
+<h2 id="daesgeul">댓글</h2>
+<p><code>comments</code></p>
+<ul>
+<li><code>comments</code>: 댓글 기능 설정 (giscus/utterances)</li>
+</ul>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[extra.comments]
+</span><span style="color:#bf616a;">enabled </span><span>= </span><span style="color:#d08770;">true
+</span><span style="color:#bf616a;">system </span><span>= &quot;</span><span style="color:#a3be8c;">giscus</span><span>&quot;
+</span><span style="color:#bf616a;">repo </span><span>= &quot;</span><span style="color:#a3be8c;">hahwul/goyo</span><span>&quot;
+</span><span style="color:#bf616a;">repo_id </span><span>= &quot;</span><span style="color:#a3be8c;">R_kgDOPHnqwg</span><span>&quot;
+</span><span style="color:#bf616a;">category </span><span>= &quot;</span><span style="color:#a3be8c;">General</span><span>&quot;
+</span><span style="color:#bf616a;">category_id </span><span>= &quot;</span><span style="color:#a3be8c;">DIC_kwDOPHnqws4CspmC</span><span>&quot;
+</span><span style="color:#bf616a;">mapping </span><span>= &quot;</span><span style="color:#a3be8c;">pathname</span><span>&quot;
+</span><span style="color:#bf616a;">strict </span><span>= &quot;</span><span style="color:#a3be8c;">0</span><span>&quot;
+</span><span style="color:#bf616a;">reactions_enabled </span><span>= &quot;</span><span style="color:#a3be8c;">1</span><span>&quot;
+</span><span style="color:#bf616a;">emit_metadata </span><span>= &quot;</span><span style="color:#a3be8c;">0</span><span>&quot;
+</span><span style="color:#bf616a;">input_position </span><span>= &quot;</span><span style="color:#a3be8c;">bottom</span><span>&quot;
+</span><span style="color:#bf616a;">theme </span><span>= &quot;</span><span style="color:#a3be8c;">catppuccin_mocha</span><span>&quot;
+</span><span style="color:#bf616a;">lang </span><span>= &quot;</span><span style="color:#a3be8c;">en</span><span>&quot;
+</span></code></pre>
+
+
+
+                    
+
+
+
+                    <div class="flex justify-between mt-8">
+                        <div class="prev-link">
+                            
+    
+        
+        <a class="btn bg-base-100 border border-gray-500/15 shadow-lg rounded-xl transition-transform hover:scale-105 hover:shadow-2xl" href="https://goyo.hahwul.com/ko/get_started/">‹ Get Started</a>
+    
+
+                        </div>
+                        <div class="next-link">
+                            
+    
+        
+        
+        
+            
+            
+            
+        
+            
+            
+            
+                
+            
+                
+            
+                
+            
+        
+            
+            
+            
+                
+            
+        
+            
+            
+            
+                
+            
+                
+            
+        
+            
+            
+            
+        
+    
+
+                        </div>
+                    </div>
+                </main>
+
+                
+                    
+
+<div class="hidden lg:block">
+    <div class="sticky top-20 px-4 py-2 border-l border-gray-500/15">
+        <h4 class="text-lg font-bold mb-1">ON THIS PAGE</h4>
+            <ul class="menu menu-sm toc-menu">
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#rogo" class="toc-link">로고</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#puteo" class="toc-link">푸터</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#sseomneil" class="toc-link">썸네일</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#teuwiteo" class="toc-link">트위터</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#keolreoses" class="toc-link">컬러셋</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#gugeul-taegeu" class="toc-link">구글 태그</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#saideuba-hwagjang-gipi" class="toc-link">사이드바 확장 깊이</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#nebigeisyeon" class="toc-link">네비게이션</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#ruteu-saideuba-sumgigi-bihwalseonghwa" class="toc-link">루트 사이드바 숨기기 비활성화</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/get_started/configuration/#daesgeul" class="toc-link">댓글</a>
+                    
+                </li>
+            
+            </ul>
+    </div>
+</div>
+
+
+                
+                
+            </div>
+
+            <script>
+              // Determine theme: localStorage > extra.default_colorset > night
+              // Expose theme config for global use (e.g., goyo.js)
+              window.defaultColorset = "dark";
+              window.themeMap = { "dark": "night", "light": "lofi" };
+              window.fallbackTheme = window.themeMap[window.defaultColorset] || "night";
+              var currentTheme = localStorage.getItem('theme') || window.fallbackTheme;
+              var mermaidTheme = "dark";
+              if(currentTheme == "lofi") {
+                mermaidTheme = "light";
+              }
+              mermaid.initialize({ startOnLoad: false, theme: mermaidTheme });
+              document.addEventListener('DOMContentLoaded', async () => {
+                const mermaidElements = document.querySelectorAll('.mermaid');
+
+                if (mermaidElements.length > 0) {
+                    await mermaid.run({
+                        nodes: mermaidElements
+                    });
+                }
+              });
+            </script>
+
+        </div>
+
+        
+        
+        <div id="sidebar" class="drawer-side fixed top-0 pt-12 bottom-0 z-40 border-r border-gray-500/15">
+        
+            
+                
+
+<label for="my-drawer-2" class="drawer-overlay"></label>
+<div class="mt-4 w-80 h-[calc(100vh-4rem)] text-base-content flex flex-col overflow-auto">
+    <ul class="menu w-full flex-grow">
+        
+        
+        
+        
+            
+            <li>
+                <a  href="https://goyo.hahwul.com/ko//introduction">Introduction</a>
+            </li>
+        
+            
+            <li>
+                
+                    <details open>
+                        <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started">Get Started</a></summary>
+                        <ul>
+                            
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started/installation">Installation</a></li>
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started/creating-page">Creating Content</a></li>
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started/configuration">Configuration</a></li>
+                            
+                            
+                        </ul>
+                    </details>
+                
+            </li>
+        
+            
+            <li>
+                
+                    <details open>
+                        <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing">Writing</a></summary>
+                        <ul>
+                            
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/markdown-syntax">Markdown Syntax</a></li>
+                            
+                            
+                                
+                                <li>
+                                    
+                                        <details >
+                                            <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes">Shortcodes</a></summary>
+                                            <ul>
+                                                
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/alert">Alert</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/asciinema">Asciinema</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/youtube">YouTube</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/badge">Badge</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/image-diff">Image Diff</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/mermaid">Mermaid Chart</a></li>
+                                                
+                                                
+                                            </ul>
+                                        </details>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </details>
+                
+            </li>
+        
+            
+            <li>
+                
+                    <details open>
+                        <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//deployments">Deployments</a></summary>
+                        <ul>
+                            
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//deployments/github-pages">Github</a></li>
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//deployments/other">Other</a></li>
+                            
+                            
+                        </ul>
+                    </details>
+                
+            </li>
+        
+            
+            <li>
+                <a  href="https://goyo.hahwul.com/ko//references">References</a>
+            </li>
+        
+    </ul>
+
+    
+<footer class="footer text-xs pt-4 px-4 text-base-content border-t border-gray-500/15">
+    <aside>
+        <p>
+            Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>
+        </p>
+    </aside>
+</footer>
+
+</div>
+
+            
+        </div>
+    </div>
+
+    
+        
+        <script type="text/javascript" src="https://goyo.hahwul.com/goyo.js"></script>
+    
+</body>
+</html>

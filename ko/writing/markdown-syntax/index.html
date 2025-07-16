@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    
+        
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+        
+    
+
+    <title>마크다운 문법 | Goyo</title>
+
+    
+    
+
+      <!-- SEO: Open Graph / Twitter Card -->
+      <meta property="og:title" content="마크다운 문법 | Goyo" />
+      <meta property="og:description" content="" />
+      <meta property="og:url" content="https://goyo.hahwul.com/ko/writing/markdown-syntax/" />
+      <meta property="og:type" content="website" />
+      
+      <meta property="og:image" content="https://goyo.hahwul.com/images/default_thumbnail.jpg" />
+      
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="마크다운 문법" />
+      <meta name="twitter:description" content="" />
+      
+      <meta name="twitter:site" content="@hahwul" />
+      
+      
+      <meta name="twitter:creator" content="@hahwul" />
+      
+      
+      <meta name="twitter:image" content="https://goyo.hahwul.com/images/default_thumbnail.jpg" />
+      
+
+      <!-- CSS -->
+    <link rel="stylesheet" href="https://goyo.hahwul.com/css/main.css">
+
+    <script src="/js/mermaid.min.js"></script>
+    <script src="/js/copy_code.js"></script>
+
+    
+    
+</head>
+<body>
+    
+
+
+
+    <div class="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col pt-16">
+            
+<div class="navbar opacity-95 fixed top-0 left-0 right-0 z-50 h-16 border-b border-gray-500/15 backdrop-blur-3xl">
+    <!-- Mobile hamburger -->
+    <div class="flex-none lg:hidden">
+        <label for="my-drawer-2" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </label>
+    </div>
+    <!-- Logo -->
+    <div class="flex-1">
+        <a href="/" class="btn btn-ghost hover:animate-pulse hover:bg-transparent hover:border-transparent normal-case text-xl">
+            
+                <img src="https://goyo.hahwul.com/images/goyo.png" alt="Goyo" class="h-18 w-auto"/>
+            
+        </a>
+    </div>
+    <!-- Desktop Menu -->
+    <div class="flex-none hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 items-center">
+            
+                
+                    
+                        <li>
+                            <a class="btn btn-ghost" href="/introduction">Documents</a>
+                        </li>
+                    
+                
+                    
+                        <li>
+                            <a class="btn btn-ghost" href="https://github.com/hahwul/goyo">GitHub</a>
+                        </li>
+                    
+                
+                    
+                        <li class="dropdown dropdown-end">
+                            <div tabindex="0" role="button" class="btn btn-ghost">
+                                Links
+                                <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <ul tabindex="0" class="dropdown-content menu bg-base-100 border border-gray-500/15 rounded-box z-1 p-2 shadow-sm">
+                                
+                                    <li>
+                                        <a class="btn btn-ghost" href="https://www.hahwul.com">Creator Blog</a>
+                                    </li>
+                                
+                            </ul>
+                        </li>
+                    
+                
+            
+            
+            <li>
+                <div class="dropdown dropdown-end p-0">
+                    <div tabindex="0" role="button" class="btn btn-ghost px-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M4 5h7"></path>
+                            <path d="M7 4c0 4.846 0 7 .5 8"></path>
+                            <path d="M10 8.5c0 2.286 -2 4.5 -3.5 4.5s-2.5 -1.135 -2.5 -2c0 -2 1 -3 3 -3s5 .57 5 2.857c0 1.524 -.667 2.571 -2 3.143"></path>
+                            <path d="M12 20l4 -9l4 9"></path>
+                            <path d="M19.1 18h-6.2"></path>
+                        </svg>
+                    </div>
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 border border-gray-500/15 rounded-box z-1 p-2 shadow-lg">
+                        
+                            
+                                <li><a href="https://goyo.hahwul.com">en</a></li>
+                            
+                        
+                    </ul>
+                </div>
+            </li>
+            
+            <li>
+                <label class="swap swap-rotate btn btn-ghost">
+                  <input type="checkbox" class="theme-controller" value="night" />
+                  <svg class="swap-off h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" /></svg>
+                  <svg class="swap-on h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" /></svg>
+                </label>
+            </li>
+
+            
+        </ul>
+    </div>
+     <!-- Mobile search icon -->
+    
+</div>
+
+
+            
+            
+            <div class="p-8 w-full max-w-7xl mx-auto lg:grid lg:grid-cols-[1fr_250px] lg:gap-8">
+                <main class="prose w-full max-w-7xl mx-auto">
+            
+                    
+    <div class="mb-12 pb-4 border-b border-gray-500/15">
+        <h1>마크다운 문법</h1>
+        <p class="text-gray-500"></p>
+    </div>
+    <p>이 가이드는 Goyo 테마에서 렌더링되는 일반적인 마크다운 요소의 예시와 효과적인 글쓰기 팁을 제공합니다.</p>
+<h2 id="jemog-headings">제목 (Headings)</h2>
+<p>콘텐츠를 논리적으로 구조화하기 위해 <code>&lt;h2&gt;</code>부터 <code>&lt;h6&gt;</code>까지 사용합니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#8fa1b3;">## 이것은 H2 입니다
+</span><span style="color:#8fa1b3;">### 이것은 H3 입니다
+</span><span style="color:#8fa1b3;">#### 이것은 H4 입니다
+</span><span style="color:#8fa1b3;">##### 이것은 H5 입니다
+</span><span style="color:#8fa1b3;">###### 이것은 H6 입니다
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<h2 id="igeoseun-h2-ibnida">이것은 H2 입니다</h2>
+<h3 id="igeoseun-h3-ibnida">이것은 H3 입니다</h3>
+<h4 id="igeoseun-h4-ibnida">이것은 H4 입니다</h4>
+<h5 id="igeoseun-h5-ibnida">이것은 H5 입니다</h5>
+<h6 id="igeoseun-h6-ibnida">이것은 H6 입니다</h6>
+<h2 id="danrag-mic-julbaggum">단락 및 줄바꿈</h2>
+<p>새 단락은 빈 줄로 구분하며, 부드러운 줄바꿈은 줄 끝에 두 칸 이상의 공백을 둡니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span>이것은 단락입니다.
+</span><span>여러 줄로 구성될 수 있습니다.
+</span><span>
+</span><span>이것은 새 단락입니다.
+</span><span>
+</span><span>이 줄은 부드러운 줄바꿈을 가집니다.
+</span><span>이 줄은 그 아래에 있습니다.
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<p>이것은 단락입니다.
+여러 줄로 구성될 수 있습니다.</p>
+<p>이것은 새 단락입니다.</p>
+<p>이 줄은 부드러운 줄바꿈을 가집니다.
+이 줄은 그 아래에 있습니다.</p>
+<h2 id="gangjo">강조</h2>
+<p>텍스트를 <strong>굵게</strong> 또는 <em>기울임꼴</em>로 만들 수 있습니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="font-style:italic;color:#b48ead;">*기울임꼴 텍스트*</span><span> 또는 </span><span style="font-style:italic;color:#b48ead;">_기울임꼴 텍스트_
+</span><span style="font-weight:bold;color:#ebcb8b;">**굵은 텍스트**</span><span> 또는 </span><span style="font-weight:bold;color:#ebcb8b;">__굵은 텍스트__
+</span><span style="font-weight:bold;color:#ebcb8b;">**</span><span style="font-style:italic;color:#b48ead;">*굵고 기울임꼴 텍스트*</span><span style="font-weight:bold;color:#ebcb8b;">**</span><span> 또는 </span><span style="font-weight:bold;color:#ebcb8b;">__</span><span style="font-style:italic;color:#b48ead;">_굵고 기울임꼴 텍스트_</span><span style="font-weight:bold;color:#ebcb8b;">__
+</span><span>~~취소선 텍스트~~
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<p><em>기울임꼴 텍스트</em> 또는 <em>기울임꼴 텍스트</em>
+<strong>굵은 텍스트</strong> 또는 <strong>굵은 텍스트</strong>
+<em><strong>굵고 기울임꼴 텍스트</strong></em> 또는 <em><strong>굵고 기울임꼴 텍스트</strong></em>
+<del>취소선 텍스트</del></p>
+<h2 id="mogrog">목록</h2>
+<h3 id="sunseo-eobsneun-mogrog">순서 없는 목록</h3>
+<p>별표(<code>*</code>), 더하기 기호(<code>+</code>), 또는 하이픈(<code>-</code>)을 사용합니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#bf616a;">* 항목 1
+</span><span style="color:#bf616a;">* 항목 2
+</span><span style="color:#bf616a;">  * 하위 항목 2.1
+</span><span style="color:#bf616a;">  * 하위 항목 2.2
+</span><span style="color:#bf616a;">- 다른 항목
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<ul>
+<li>항목 1</li>
+<li>항목 2
+<ul>
+<li>하위 항목 2.1</li>
+<li>하위 항목 2.2</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>다른 항목</li>
+</ul>
+<h3 id="sunseo-issneun-mogrog">순서 있는 목록</h3>
+<p>숫자와 마침표를 사용합니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#bf616a;">1. 첫 번째 항목
+</span><span style="color:#bf616a;">2. 두 번째 항목
+</span><span style="color:#bf616a;">   1. 하위 항목 2.1
+</span><span style="color:#bf616a;">   2. 하위 항목 2.2
+</span><span style="color:#bf616a;">3. 세 번째 항목
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<ol>
+<li>첫 번째 항목</li>
+<li>두 번째 항목
+<ol>
+<li>하위 항목 2.1</li>
+<li>하위 항목 2.2</li>
+</ol>
+</li>
+<li>세 번째 항목</li>
+</ol>
+<h3 id="hal-il-mogrog-github-seutail-makeudaun">할 일 목록 (GitHub 스타일 마크다운)</h3>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#bf616a;">- [x] 완료된 작업
+</span><span style="color:#bf616a;">- [ ] 미완료 작업
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+완료된 작업</li>
+<li><input disabled="" type="checkbox"/>
+미완료 작업</li>
+</ul>
+<h2 id="ringkeu">링크</h2>
+<p>인라인 링크 또는 참조 스타일 링크를 만듭니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#d08770;">[이것은 Zola 웹사이트로 가는 인라인 링크입니다](https://www.getzola.org/)
+</span><span>
+</span><span style="color:#d08770;">[이것은 참조 스타일 링크입니다][zola]
+</span><span>
+</span><span style="color:#d08770;">[zola]: https://www.getzola.org/ </span><span>&quot;</span><span style="color:#bf616a;">Zola 홈페이지</span><span>&quot;
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<p><a href="https://www.getzola.org/">이것은 Zola 웹사이트로 가는 인라인 링크입니다</a></p>
+<p><a href="https://www.getzola.org/" title="Zola 홈페이지">이것은 참조 스타일 링크입니다</a></p>
+<h2 id="imiji">이미지</h2>
+<p>이미지 구문은 링크와 유사하지만 느낌표(<code>!</code>)로 시작합니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span>![이미지 대체 텍스트](https://placehold.co/600x100/png?text=Goyo+Placeholder)
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<p><img src="https://placehold.co/600x100/png?text=Goyo+Placeholder" alt="이미지 대체 텍스트" /></p>
+<h2 id="inyongmun-blockquotes">인용문 (Blockquotes)</h2>
+<p><code>&gt;</code>를 사용하여 인용문을 만듭니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#d08770;">&gt; 이것은 인용문입니다.
+</span><span style="color:#d08770;">&gt; 여러 줄에 걸쳐 작성할 수 있습니다.
+</span><span style="color:#d08770;">&gt;
+</span><span style="color:#d08770;">&gt; &gt; 중첩된 인용문입니다.
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<blockquote>
+<p>이것은 인용문입니다.
+여러 줄에 걸쳐 작성할 수 있습니다.</p>
+<blockquote>
+<p>중첩된 인용문입니다.</p>
+</blockquote>
+</blockquote>
+<h2 id="kodeu">코드</h2>
+<h3 id="inrain-kodeu">인라인 코드</h3>
+<p>단일 백틱()으로 코드를 감쌉니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#a3be8c;">`zola build`</span><span> 명령어를 사용하여 사이트를 빌드하세요.
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<p><code>zola build</code> 명령어를 사용하여 사이트를 빌드하세요.</p>
+<h3 id="kodeu-beulrog-fenced">코드 블록 (Fenced)</h3>
+<p>세 개의 백틱(```)을 사용하고 구문 강조를 위해 언어를 지정합니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span>```</span><span style="color:#d08770;">python
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">hello</span><span>():
+</span><span>  </span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">안녕하세요, Goyo!</span><span>&quot;)
+</span><span>```
+</span><span>
+</span><span>```</span><span style="color:#d08770;">javascript
+</span><span>console.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">안녕하세요, Goyo!</span><span>&quot;);
+</span><span>```
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">hello</span><span>():
+</span><span>  </span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">안녕하세요, Goyo!</span><span>&quot;)
+</span></code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">안녕하세요, Goyo!</span><span>&quot;);
+</span></code></pre>
+<h2 id="garojul-horizontal-rule">가로줄 (Horizontal Rule)</h2>
+<p>세 개 이상의 하이픈, 별표, 또는 밑줄을 한 줄에 단독으로 사용합니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="background-color:#4f5b66;color:#c0c5ce;">---
+</span><span style="background-color:#4f5b66;color:#c0c5ce;">***
+</span><span style="background-color:#4f5b66;color:#c0c5ce;">___
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<hr />
+<h2 id="pyo-tables">표 (Tables)</h2>
+<p>파이프(<code>|</code>)와 하이픈(<code>-</code>)을 사용하여 표를 만듭니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span>| 헤더 1   | 헤더 2   | 헤더 3   |
+</span><span>| :------- | :------: | -------: |
+</span><span>| 왼쪽 정렬 | 가운데 정렬 | 오른쪽 정렬 |
+</span><span>| 셀 2     | 셀 3     | 셀 4     |
+</span><span>| 셀 5     | 셀 6     | 셀 7     |
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<table><thead><tr><th style="text-align: left">헤더 1</th><th style="text-align: center">헤더 2</th><th style="text-align: right">헤더 3</th></tr></thead><tbody>
+<tr><td style="text-align: left">왼쪽 정렬</td><td style="text-align: center">가운데 정렬</td><td style="text-align: right">오른쪽 정렬</td></tr>
+<tr><td style="text-align: left">셀 2</td><td style="text-align: center">셀 3</td><td style="text-align: right">셀 4</td></tr>
+<tr><td style="text-align: left">셀 5</td><td style="text-align: center">셀 6</td><td style="text-align: right">셀 7</td></tr>
+</tbody></table>
+<h2 id="gagju-footnotes">각주 (Footnotes)</h2>
+<p><code>[^레이블]</code>과 <code>[^레이블]: 노트 내용</code>을 사용하여 각주를 만듭니다.</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span>이것은 각주가 있는 텍스트입니다.</span><span style="color:#d08770;">[^1]
+</span><span>
+</span><span>그리고 또 다른 각주입니다.</span><span style="color:#d08770;">[^another]
+</span><span>
+</span><span style="color:#d08770;">[^1]: 이것은 첫 번째 각주입니다.
+</span><span style="color:#d08770;">[^another]: 이것은 또 다른 각주입니다. </span><span style="font-weight:bold;color:#ebcb8b;">**마크다운**</span><span style="color:#d08770;">도 포함할 수 있습니다.
+</span></code></pre>
+<p><strong>렌더링 결과:</strong></p>
+<p>이것은 각주가 있는 텍스트입니다.<sup class="footnote-reference"><a href="#1">1</a></sup></p>
+<p>그리고 또 다른 각주입니다.<sup class="footnote-reference"><a href="#another">2</a></sup></p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>이것은 첫 번째 각주입니다.</p>
+</div>
+<div class="footnote-definition" id="another"><sup class="footnote-definition-label">2</sup>
+<p>이것은 또 다른 각주입니다. <strong>마크다운</strong>도 포함할 수 있습니다.</p>
+</div>
+
+
+
+                    
+
+
+
+                    <div class="flex justify-between mt-8">
+                        <div class="prev-link">
+                            
+    
+        
+        <a class="btn bg-base-100 border border-gray-500/15 shadow-lg rounded-xl transition-transform hover:scale-105 hover:shadow-2xl" href="https://goyo.hahwul.com/ko/writing/">‹ Writing</a>
+    
+
+                        </div>
+                        <div class="next-link">
+                            
+    
+        
+        
+        
+            
+            
+            
+        
+            
+            
+            
+                
+            
+                
+            
+                
+            
+        
+            
+            
+            
+                
+            
+        
+            
+            
+            
+                
+            
+                
+            
+        
+            
+            
+            
+        
+    
+
+                        </div>
+                    </div>
+                </main>
+
+                
+                    
+
+<div class="hidden lg:block">
+    <div class="sticky top-20 px-4 py-2 border-l border-gray-500/15">
+        <h4 class="text-lg font-bold mb-1">ON THIS PAGE</h4>
+            <ul class="menu menu-sm toc-menu">
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#jemog-headings" class="toc-link">제목 (Headings)</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <details class="toc-details">
+                        <summary>
+                            <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#igeoseun-h2-ibnida" class="toc-link">이것은 H2 입니다</a>
+                        </summary>
+                        <ul>
+                            
+                                <li>
+                                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#igeoseun-h3-ibnida" class="toc-link">이것은 H3 입니다</a>
+                                </li>
+                            
+                        </ul>
+                    </details>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#danrag-mic-julbaggum" class="toc-link">단락 및 줄바꿈</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#gangjo" class="toc-link">강조</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <details class="toc-details">
+                        <summary>
+                            <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#mogrog" class="toc-link">목록</a>
+                        </summary>
+                        <ul>
+                            
+                                <li>
+                                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#sunseo-eobsneun-mogrog" class="toc-link">순서 없는 목록</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#sunseo-issneun-mogrog" class="toc-link">순서 있는 목록</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#hal-il-mogrog-github-seutail-makeudaun" class="toc-link">할 일 목록 (GitHub 스타일 마크다운)</a>
+                                </li>
+                            
+                        </ul>
+                    </details>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#ringkeu" class="toc-link">링크</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#imiji" class="toc-link">이미지</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#inyongmun-blockquotes" class="toc-link">인용문 (Blockquotes)</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <details class="toc-details">
+                        <summary>
+                            <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#kodeu" class="toc-link">코드</a>
+                        </summary>
+                        <ul>
+                            
+                                <li>
+                                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#inrain-kodeu" class="toc-link">인라인 코드</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#kodeu-beulrog-fenced" class="toc-link">코드 블록 (Fenced)</a>
+                                </li>
+                            
+                        </ul>
+                    </details>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#garojul-horizontal-rule" class="toc-link">가로줄 (Horizontal Rule)</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#pyo-tables" class="toc-link">표 (Tables)</a>
+                    
+                </li>
+            
+                <li>
+                    
+                    <a href="https://goyo.hahwul.com/ko/writing/markdown-syntax/#gagju-footnotes" class="toc-link">각주 (Footnotes)</a>
+                    
+                </li>
+            
+            </ul>
+    </div>
+</div>
+
+
+                
+                
+            </div>
+
+            <script>
+              // Determine theme: localStorage > extra.default_colorset > night
+              // Expose theme config for global use (e.g., goyo.js)
+              window.defaultColorset = "dark";
+              window.themeMap = { "dark": "night", "light": "lofi" };
+              window.fallbackTheme = window.themeMap[window.defaultColorset] || "night";
+              var currentTheme = localStorage.getItem('theme') || window.fallbackTheme;
+              var mermaidTheme = "dark";
+              if(currentTheme == "lofi") {
+                mermaidTheme = "light";
+              }
+              mermaid.initialize({ startOnLoad: false, theme: mermaidTheme });
+              document.addEventListener('DOMContentLoaded', async () => {
+                const mermaidElements = document.querySelectorAll('.mermaid');
+
+                if (mermaidElements.length > 0) {
+                    await mermaid.run({
+                        nodes: mermaidElements
+                    });
+                }
+              });
+            </script>
+
+        </div>
+
+        
+        
+        <div id="sidebar" class="drawer-side fixed top-0 pt-12 bottom-0 z-40 border-r border-gray-500/15">
+        
+            
+                
+
+<label for="my-drawer-2" class="drawer-overlay"></label>
+<div class="mt-4 w-80 h-[calc(100vh-4rem)] text-base-content flex flex-col overflow-auto">
+    <ul class="menu w-full flex-grow">
+        
+        
+        
+        
+            
+            <li>
+                <a  href="https://goyo.hahwul.com/ko//introduction">Introduction</a>
+            </li>
+        
+            
+            <li>
+                
+                    <details open>
+                        <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started">Get Started</a></summary>
+                        <ul>
+                            
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started/installation">Installation</a></li>
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started/creating-page">Creating Content</a></li>
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//get_started/configuration">Configuration</a></li>
+                            
+                            
+                        </ul>
+                    </details>
+                
+            </li>
+        
+            
+            <li>
+                
+                    <details open>
+                        <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing">Writing</a></summary>
+                        <ul>
+                            
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/markdown-syntax">Markdown Syntax</a></li>
+                            
+                            
+                                
+                                <li>
+                                    
+                                        <details >
+                                            <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes">Shortcodes</a></summary>
+                                            <ul>
+                                                
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/alert">Alert</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/asciinema">Asciinema</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/youtube">YouTube</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/badge">Badge</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/image-diff">Image Diff</a></li>
+                                                
+                                                    <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//writing/shortcodes/mermaid">Mermaid Chart</a></li>
+                                                
+                                                
+                                            </ul>
+                                        </details>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </details>
+                
+            </li>
+        
+            
+            <li>
+                
+                    <details open>
+                        <summary ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//deployments">Deployments</a></summary>
+                        <ul>
+                            
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//deployments/github-pages">Github</a></li>
+                            
+                                <li ><a class="hover:no-underline" href="https://goyo.hahwul.com/ko//deployments/other">Other</a></li>
+                            
+                            
+                        </ul>
+                    </details>
+                
+            </li>
+        
+            
+            <li>
+                <a  href="https://goyo.hahwul.com/ko//references">References</a>
+            </li>
+        
+    </ul>
+
+    
+<footer class="footer text-xs pt-4 px-4 text-base-content border-t border-gray-500/15">
+    <aside>
+        <p>
+            Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>
+        </p>
+    </aside>
+</footer>
+
+</div>
+
+            
+        </div>
+    </div>
+
+    
+        
+        <script type="text/javascript" src="https://goyo.hahwul.com/goyo.js"></script>
+    
+</body>
+</html>
