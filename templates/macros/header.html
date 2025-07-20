@@ -19,8 +19,9 @@
     <!-- Desktop Menu -->
     <div class="flex-none hidden lg:flex">
         <ul class="menu menu-horizontal px-1 items-center">
-            {% if config.extra.nav %}
-                {% for item in config.extra.nav %}
+            {% set nav_items = config.languages[lang].nav | default(value=config.extra.nav) %}
+            {% if nav_items %}
+                {% for item in nav_items %}
                     {% if item.type == "dropdown" %}
                         <li class="dropdown dropdown-end">
                             <div tabindex="0" role="button" class="btn btn-ghost">
