@@ -1,5 +1,6 @@
 +++
 title = "Markdown Syntax"
+description = "A guide to Markdown syntax."
 weight = 2 # Assuming "Creating Content" is weight 1
 template = "page.html"
 +++
