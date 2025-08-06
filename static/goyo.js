@@ -194,13 +194,13 @@ function initTheme() {
   }
 
   var fallbackTheme =
-    window && window.fallbackTheme ? window.fallbackTheme : "night";
+    window && window.fallbackTheme ? window.fallbackTheme : "dark";
   var currentTheme = localStorage.getItem("theme") || fallbackTheme;
   document.documentElement.setAttribute("data-theme", currentTheme);
-  themeController.checked = currentTheme === "night";
+  themeController.checked = currentTheme === "dark";
 
   themeController.addEventListener("change", function (e) {
-    var theme = e.target.checked ? "night" : "lofi";
+    var theme = e.target.checked ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   });

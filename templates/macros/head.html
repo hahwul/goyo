@@ -97,4 +97,7 @@
 
     <script src="/js/mermaid.min.js"></script>
     <script src="/js/copy_code.js"></script>
+    <script>
+      window.fallbackTheme = "{{ config.extra.default_colorset | default(value='dark') }}";
+    </script>
 {% endmacro head %}
