@@ -75,6 +75,17 @@ nav = [
         { name = "Creator Blog", url = "https://www.hahwul.com", type = "url", icon = "fa-solid fa-fire-flame-curved" },
     ] },
 ]
+
+# For multilingual sites, configure language display names
+[languages.ko]
+generate_feeds = true
+build_search_index = false
+title = "한국어"
+
+[languages.ja]
+generate_feeds = true
+build_search_index = false
+title = "日本語"
 ```
 
 More information? [https://goyo.hahwul.com/get_started/configuration/](https://goyo.hahwul.com/get_started/configuration/)

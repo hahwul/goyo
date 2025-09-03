@@ -16,6 +16,7 @@ highlight_theme = "ayu-mirage"
 [languages.ko]
 generate_feeds = true
 build_search_index = false
+title = "한국어"
 
 [extra]
 logo_text = "Goyo"

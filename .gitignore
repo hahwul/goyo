@@ -9,3 +9,6 @@ public
 
 # Binary
 src/tailwindcss
+
+# Downloaded files
+*.tar.gz

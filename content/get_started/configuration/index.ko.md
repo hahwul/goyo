@@ -127,6 +127,30 @@ disable_root_sidebar_hide = false
     alt="goyo"
 ) }}
 
+## 다국어 설정
+`languages`
+
+- `languages`: 각 언어별 사용자 정의 표시 이름으로 다국어 지원을 구성합니다.
+
+```toml
+[languages.ko]
+generate_feeds = true
+build_search_index = false
+title = "한국어"
+
+[languages.ja]
+generate_feeds = true
+build_search_index = false
+title = "日本語"
+
+[languages.fr]
+generate_feeds = true
+build_search_index = false
+title = "Français"
+```
+
+`title` 필드는 언어 전환 드롭다운에 표시되는 표시 이름을 지정합니다. `title`이 제공되지 않으면 테마는 원시 언어 코드(예: "ko", "ja")를 표시하는 것으로 대체됩니다.
+
 ## 댓글
 `comments`
 

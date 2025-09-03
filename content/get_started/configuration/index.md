@@ -127,6 +127,30 @@ disable_root_sidebar_hide = false
     alt="goyo"
 ) }}
 
+## Multilingual Configuration
+`languages`
+
+- `languages`: Configure multilingual support with custom display names for each language.
+
+```toml
+[languages.ko]
+generate_feeds = true
+build_search_index = false
+title = "한국어"
+
+[languages.ja]
+generate_feeds = true
+build_search_index = false
+title = "日本語"
+
+[languages.fr]
+generate_feeds = true
+build_search_index = false
+title = "Français"
+```
+
+The `title` field specifies the display name that appears in the language switcher dropdown. If `title` is not provided, the theme will fall back to showing the raw language code (e.g., "ko", "ja").
+
 ## Comments
 `comments`
 
