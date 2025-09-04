@@ -62,7 +62,7 @@
                             <path d="M19.1 18h-6.2"></path>
                         </svg>
                     </div>
-                    <ul tabindex="0" class="dropdown-content menu bg-base-100 border border-gray-500/15 rounded-box z-1 p-2 shadow-lg">
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 border border-gray-500/15 rounded-box z-1 p-2 shadow-lg whitespace-nowrap min-w-max">
                         {% for lang_code, lang_config in config.languages %}
                             {% if lang_code != lang %}
                                 {% if page is defined and page.translations %}
