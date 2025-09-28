@@ -57,14 +57,14 @@
             </div>
 
             <script>
-              // Determine theme: localStorage > extra.default_colorset > night
+              // Determine theme: localStorage > extra.default_colorset > goyo-dark
               // Expose theme config for global use (e.g., goyo.js)
               window.defaultColorset = "{{ config.extra.default_colorset | default(value='dark') }}";
-              window.themeMap = { "dark": "night", "light": "lofi" };
-              window.fallbackTheme = window.themeMap[window.defaultColorset] || "night";
+              window.themeMap = { "dark": "goyo-dark", "light": "goyo-light" };
+              window.fallbackTheme = window.themeMap[window.defaultColorset] || "goyo-dark";
               var currentTheme = localStorage.getItem('theme') || window.fallbackTheme;
               var mermaidTheme = "dark";
-              if(currentTheme == "lofi") {
+              if(currentTheme == "goyo-light") {
                 mermaidTheme = "light";
               }
               mermaid.initialize({ startOnLoad: false, theme: mermaidTheme });

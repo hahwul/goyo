@@ -194,13 +194,13 @@ function initTheme() {
   }
 
   var fallbackTheme =
-    window && window.fallbackTheme ? window.fallbackTheme : "night";
+    window && window.fallbackTheme ? window.fallbackTheme : "goyo-dark";
   var currentTheme = localStorage.getItem("theme") || fallbackTheme;
   document.documentElement.setAttribute("data-theme", currentTheme);
-  themeController.checked = currentTheme === "night";
+  themeController.checked = currentTheme === "goyo-dark";
 
   themeController.addEventListener("change", function (e) {
-    var theme = e.target.checked ? "night" : "lofi";
+    var theme = e.target.checked ? "goyo-dark" : "goyo-light";
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   });
