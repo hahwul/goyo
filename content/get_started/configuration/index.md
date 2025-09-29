@@ -55,15 +55,26 @@ twitter_site = "@hahwul"
 twitter_creator = "@hahwul"
 ```
 
-## Color
-`default_colorset`
+## Colorset
+`default_colorset` / `colorset`
 
 - `default_colorset`: Default theme (dark/light).
+- `colorset`: Theme color scheme (blue/red/green/purple/amber).
 
 ```toml
 [extra]
 default_colorset = "dark"
+colorset = "blue"
 ```
+
+Available colorsets:
+- `blue` (default): Calm blue-toned colors
+- `red`: Warm red-toned colors
+- `green`: Natural green-toned colors
+- `purple`: Elegant purple-toned colors
+- `amber`: Warm amber-toned colors
+
+Each colorset supports both dark and light modes while maintaining the original foggy, serene aesthetic.
 
 ## Google Tag
 `gtag`

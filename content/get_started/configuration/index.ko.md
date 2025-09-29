@@ -56,14 +56,25 @@ twitter_creator = "@hahwul"
 ```
 
 ## 컬러셋
-`default_colorset`
+`default_colorset` / `colorset`
 
 - `default_colorset`: 기본 테마 (dark/light)
+- `colorset`: 테마 색상 (blue/red/green/purple/amber)
 
 ```toml
 [extra]
 default_colorset = "dark"
+colorset = "blue"
 ```
+
+사용 가능한 컬러셋:
+- `blue` (기본값): 푸른색 계통의 차분한 색상
+- `red`: 붉은색 계통의 따뜻한 색상  
+- `green`: 초록색 계통의 자연스러운 색상
+- `purple`: 보라색 계통의 우아한 색상
+- `amber`: 호박색 계통의 따스한 색상
+
+각 컬러셋은 dark/light 모드를 모두 지원하며, 기존의 흐린 안개 같은 느낌을 유지합니다.
 
 ## 구글 태그
 `gtag`

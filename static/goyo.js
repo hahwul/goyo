@@ -197,12 +197,19 @@ function initTheme() {
     window && window.fallbackTheme ? window.fallbackTheme : "night";
   var currentTheme = localStorage.getItem("theme") || fallbackTheme;
   document.documentElement.setAttribute("data-theme", currentTheme);
-  themeController.checked = currentTheme === "night";
+  
+  // Check if current theme is a dark variant (contains "night")
+  themeController.checked = currentTheme.includes("night");
 
   themeController.addEventListener("change", function (e) {
-    var theme = e.target.checked ? "night" : "lofi";
+    // Get the current colorset suffix from the current theme
+    var currentColorset = currentTheme.split('-').slice(1).join('-');
+    var suffix = currentColorset ? '-' + currentColorset : '';
+    
+    var theme = e.target.checked ? "night" + suffix : "lofi" + suffix;
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    currentTheme = theme;
   });
 }
 
