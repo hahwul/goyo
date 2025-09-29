@@ -785,3 +785,22 @@ h6:hover .copy-heading-link-button {
         @apply text-lg;
     }
 }
+
+/* Custom Navbar with Gradient Transparency */
+.navbar {
+    background: linear-gradient(to right, 
+        rgba(15, 23, 42, 0.95) 0%, 
+        rgba(15, 23, 42, 0.85) 50%, 
+        rgba(15, 23, 42, 0.6) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+[data-theme="lofi"] .navbar {
+    background: linear-gradient(to right, 
+        rgba(248, 250, 252, 0.95) 0%, 
+        rgba(248, 250, 252, 0.85) 50%, 
+        rgba(248, 250, 252, 0.6) 100%
+    );
+}
