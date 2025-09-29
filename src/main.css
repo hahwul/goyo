@@ -5,14 +5,8 @@
     themes:
         night --default,
         lofi,
-        "night-red",
-        "lofi-red",
-        "night-green", 
-        "lofi-green",
-        "night-purple",
-        "lofi-purple",
-        "night-amber",
-        "lofi-amber";
+        "goyo-dark",
+        "goyo-light";
 }
 
 /* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
@@ -79,196 +73,150 @@
     --error: 239 68 68;
 }
 
-/* Red Colorset - Dark Mode */
-[data-theme="night-red"] {
+/* Goyo Dark Theme - Inherits from night and supports colorsets */
+[data-theme="goyo-dark"] {
+    /* Inherit all variables from night theme */
+    --primary: 156 163 175;
+    --primary-focus: 107 114 128;
+    --primary-content: 17 24 39;
+    --secondary: 75 85 99;
+    --secondary-focus: 55 65 81;
+    --secondary-content: 248 250 252;
+    --accent: 148 163 184;
+    --accent-focus: 100 116 139;
+    --accent-content: 15 23 42;
+    --neutral: 30 41 59;
+    --neutral-focus: 15 23 42;
+    --neutral-content: 241 245 249;
+    --base-100: 15 23 42;
+    --base-200: 30 41 59;
+    --base-300: 51 65 85;
+    --base-content: 226 232 240;
+    --info: 100 116 139;
+    --success: 107 114 128;
+    --warning: 161 161 170;
+    --error: 127 29 29;
+
+    --rounded-box: 0.5rem;
+    --rounded-btn: 0.375rem;
+    --rounded-badge: 1rem;
+    --animation-btn: 0.2s;
+    --animation-input: 0.15s;
+    --btn-text-case: normal;
+    --btn-focus-scale: 0.98;
+    --border-btn: 1px;
+    --tab-border: 1px;
+    --tab-radius: 0.375rem;
+}
+
+/* Goyo Light Theme - Inherits from lofi and supports colorsets */
+[data-theme="goyo-light"] {
+    /* Inherit all variables from lofi theme */
+    --primary: 107 114 128;
+    --primary-focus: 75 85 99;
+    --primary-content: 255 255 255;
+    --secondary: 156 163 175;
+    --secondary-focus: 107 114 128;
+    --secondary-content: 15 23 42;
+    --accent: 100 116 139;
+    --accent-focus: 75 85 99;
+    --accent-content: 255 255 255;
+    --neutral: 248 250 252;
+    --neutral-focus: 241 245 249;
+    --neutral-content: 15 23 42;
+    --base-100: 255 255 255;
+    --base-200: 248 250 252;
+    --base-300: 241 245 249;
+    --base-content: 30 41 59;
+    --info: 59 130 246;
+    --success: 34 197 94;
+    --warning: 245 158 11;
+    --error: 239 68 68;
+}
+
+/* Colorset CSS Custom Properties */
+/* Blue colorset (default) - no changes needed */
+
+/* Red colorset overrides */
+[data-theme="goyo-dark"][data-colorset="red"] {
     --primary: 185 28 28;
     --primary-focus: 153 27 27;
-    --primary-content: 255 255 255;
     --secondary: 127 29 29;
     --secondary-focus: 91 33 33;
-    --secondary-content: 248 250 252;
     --accent: 220 38 38;
     --accent-focus: 185 28 28;
-    --accent-content: 255 255 255;
-    --neutral: 30 41 59;
-    --neutral-focus: 15 23 42;
-    --neutral-content: 241 245 249;
-    --base-100: 15 23 42;
-    --base-200: 30 41 59;
-    --base-300: 51 65 85;
-    --base-content: 226 232 240;
-    --info: 100 116 139;
-    --success: 107 114 128;
-    --warning: 161 161 170;
     --error: 185 28 28;
 }
 
-/* Red Colorset - Light Mode */
-[data-theme="lofi-red"] {
+[data-theme="goyo-light"][data-colorset="red"] {
     --primary: 185 28 28;
     --primary-focus: 153 27 27;
-    --primary-content: 255 255 255;
     --secondary: 220 38 38;
     --secondary-focus: 185 28 28;
-    --secondary-content: 255 255 255;
     --accent: 248 113 113;
     --accent-focus: 220 38 38;
-    --accent-content: 255 255 255;
-    --neutral: 248 250 252;
-    --neutral-focus: 241 245 249;
-    --neutral-content: 15 23 42;
-    --base-100: 255 255 255;
-    --base-200: 248 250 252;
-    --base-300: 241 245 249;
-    --base-content: 30 41 59;
-    --info: 59 130 246;
-    --success: 34 197 94;
-    --warning: 245 158 11;
     --error: 185 28 28;
 }
 
-/* Green Colorset - Dark Mode */
-[data-theme="night-green"] {
+/* Green colorset overrides */
+[data-theme="goyo-dark"][data-colorset="green"] {
     --primary: 34 197 94;
     --primary-focus: 22 163 74;
-    --primary-content: 255 255 255;
     --secondary: 22 101 52;
     --secondary-focus: 20 83 45;
-    --secondary-content: 248 250 252;
     --accent: 74 222 128;
     --accent-focus: 34 197 94;
-    --accent-content: 15 23 42;
-    --neutral: 30 41 59;
-    --neutral-focus: 15 23 42;
-    --neutral-content: 241 245 249;
-    --base-100: 15 23 42;
-    --base-200: 30 41 59;
-    --base-300: 51 65 85;
-    --base-content: 226 232 240;
-    --info: 100 116 139;
     --success: 34 197 94;
-    --warning: 161 161 170;
-    --error: 127 29 29;
 }
 
-/* Green Colorset - Light Mode */
-[data-theme="lofi-green"] {
+[data-theme="goyo-light"][data-colorset="green"] {
     --primary: 34 197 94;
     --primary-focus: 22 163 74;
-    --primary-content: 255 255 255;
     --secondary: 74 222 128;
     --secondary-focus: 34 197 94;
-    --secondary-content: 15 23 42;
     --accent: 22 101 52;
     --accent-focus: 20 83 45;
-    --accent-content: 255 255 255;
-    --neutral: 248 250 252;
-    --neutral-focus: 241 245 249;
-    --neutral-content: 15 23 42;
-    --base-100: 255 255 255;
-    --base-200: 248 250 252;
-    --base-300: 241 245 249;
-    --base-content: 30 41 59;
-    --info: 59 130 246;
     --success: 34 197 94;
-    --warning: 245 158 11;
-    --error: 239 68 68;
 }
 
-/* Purple Colorset - Dark Mode */
-[data-theme="night-purple"] {
+/* Purple colorset overrides */
+[data-theme="goyo-dark"][data-colorset="purple"] {
     --primary: 147 51 234;
     --primary-focus: 126 34 206;
-    --primary-content: 255 255 255;
     --secondary: 91 33 182;
     --secondary-focus: 76 29 149;
-    --secondary-content: 248 250 252;
     --accent: 168 85 247;
     --accent-focus: 147 51 234;
-    --accent-content: 15 23 42;
-    --neutral: 30 41 59;
-    --neutral-focus: 15 23 42;
-    --neutral-content: 241 245 249;
-    --base-100: 15 23 42;
-    --base-200: 30 41 59;
-    --base-300: 51 65 85;
-    --base-content: 226 232 240;
-    --info: 100 116 139;
-    --success: 107 114 128;
-    --warning: 161 161 170;
-    --error: 127 29 29;
 }
 
-/* Purple Colorset - Light Mode */
-[data-theme="lofi-purple"] {
+[data-theme="goyo-light"][data-colorset="purple"] {
     --primary: 147 51 234;
     --primary-focus: 126 34 206;
-    --primary-content: 255 255 255;
     --secondary: 168 85 247;
     --secondary-focus: 147 51 234;
-    --secondary-content: 15 23 42;
     --accent: 91 33 182;
     --accent-focus: 76 29 149;
-    --accent-content: 255 255 255;
-    --neutral: 248 250 252;
-    --neutral-focus: 241 245 249;
-    --neutral-content: 15 23 42;
-    --base-100: 255 255 255;
-    --base-200: 248 250 252;
-    --base-300: 241 245 249;
-    --base-content: 30 41 59;
-    --info: 59 130 246;
-    --success: 34 197 94;
-    --warning: 245 158 11;
-    --error: 239 68 68;
 }
 
-/* Amber Colorset - Dark Mode */
-[data-theme="night-amber"] {
+/* Amber colorset overrides */
+[data-theme="goyo-dark"][data-colorset="amber"] {
     --primary: 245 158 11;
     --primary-focus: 217 119 6;
-    --primary-content: 255 255 255;
     --secondary: 180 83 9;
     --secondary-focus: 146 64 14;
-    --secondary-content: 248 250 252;
     --accent: 251 191 36;
     --accent-focus: 245 158 11;
-    --accent-content: 15 23 42;
-    --neutral: 30 41 59;
-    --neutral-focus: 15 23 42;
-    --neutral-content: 241 245 249;
-    --base-100: 15 23 42;
-    --base-200: 30 41 59;
-    --base-300: 51 65 85;
-    --base-content: 226 232 240;
-    --info: 100 116 139;
-    --success: 107 114 128;
     --warning: 245 158 11;
-    --error: 127 29 29;
 }
 
-/* Amber Colorset - Light Mode */
-[data-theme="lofi-amber"] {
+[data-theme="goyo-light"][data-colorset="amber"] {
     --primary: 245 158 11;
     --primary-focus: 217 119 6;
-    --primary-content: 255 255 255;
     --secondary: 251 191 36;
     --secondary-focus: 245 158 11;
-    --secondary-content: 15 23 42;
     --accent: 180 83 9;
     --accent-focus: 146 64 14;
-    --accent-content: 255 255 255;
-    --neutral: 248 250 252;
-    --neutral-focus: 241 245 249;
-    --neutral-content: 15 23 42;
-    --base-100: 255 255 255;
-    --base-200: 248 250 252;
-    --base-300: 241 245 249;
-    --base-content: 30 41 59;
-    --info: 59 130 246;
-    --success: 34 197 94;
     --warning: 245 158 11;
-    --error: 239 68 68;
 }
 
 @layer base {
@@ -295,48 +243,50 @@
     }
 
     /* Dark theme background */
-    [data-theme="night"] body {
+    [data-theme="night"] body,
+    [data-theme="goyo-dark"] body {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     }
 
     /* Light theme background */
-    [data-theme="lofi"] body {
+    [data-theme="lofi"] body,
+    [data-theme="goyo-light"] body {
         background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     }
 
     /* Red Colorset Backgrounds */
-    [data-theme="night-red"] body {
+    [data-theme="goyo-dark"][data-colorset="red"] body {
         background: linear-gradient(135deg, #1a0b0b 0%, #2d1b1b 100%);
     }
 
-    [data-theme="lofi-red"] body {
+    [data-theme="goyo-light"][data-colorset="red"] body {
         background: linear-gradient(135deg, #fef7f7 0%, #fef2f2 100%);
     }
 
     /* Green Colorset Backgrounds */
-    [data-theme="night-green"] body {
+    [data-theme="goyo-dark"][data-colorset="green"] body {
         background: linear-gradient(135deg, #0b1a0b 0%, #1b2d1b 100%);
     }
 
-    [data-theme="lofi-green"] body {
+    [data-theme="goyo-light"][data-colorset="green"] body {
         background: linear-gradient(135deg, #f7fef7 0%, #f0fdf4 100%);
     }
 
     /* Purple Colorset Backgrounds */
-    [data-theme="night-purple"] body {
+    [data-theme="goyo-dark"][data-colorset="purple"] body {
         background: linear-gradient(135deg, #170b1a 0%, #2d1b2d 100%);
     }
 
-    [data-theme="lofi-purple"] body {
+    [data-theme="goyo-light"][data-colorset="purple"] body {
         background: linear-gradient(135deg, #fdf7fe 0%, #faf5ff 100%);
     }
 
     /* Amber Colorset Backgrounds */
-    [data-theme="night-amber"] body {
+    [data-theme="goyo-dark"][data-colorset="amber"] body {
         background: linear-gradient(135deg, #1a150b 0%, #2d261b 100%);
     }
 
-    [data-theme="lofi-amber"] body {
+    [data-theme="goyo-light"][data-colorset="amber"] body {
         background: linear-gradient(135deg, #fefbf7 0%, #fffbeb 100%);
     }
 
@@ -784,43 +734,44 @@ h6:hover .copy-heading-link-button {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
 }
 
-[data-theme="lofi"] .hero-background {
+[data-theme="lofi"] .hero-background,
+[data-theme="goyo-light"] .hero-background {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
 }
 
 /* Red Colorset Hero Backgrounds */
-[data-theme="night-red"] .hero-background {
+[data-theme="goyo-dark"][data-colorset="red"] .hero-background {
     background: linear-gradient(135deg, #1a0b0b 0%, #2d1b1b 50%, #451a1a 100%);
 }
 
-[data-theme="lofi-red"] .hero-background {
+[data-theme="goyo-light"][data-colorset="red"] .hero-background {
     background: linear-gradient(135deg, #fef7f7 0%, #fecaca 50%, #fca5a5 100%);
 }
 
 /* Green Colorset Hero Backgrounds */
-[data-theme="night-green"] .hero-background {
+[data-theme="goyo-dark"][data-colorset="green"] .hero-background {
     background: linear-gradient(135deg, #0b1a0b 0%, #1b2d1b 50%, #1a451a 100%);
 }
 
-[data-theme="lofi-green"] .hero-background {
+[data-theme="goyo-light"][data-colorset="green"] .hero-background {
     background: linear-gradient(135deg, #f7fef7 0%, #bbf7d0 50%, #86efac 100%);
 }
 
 /* Purple Colorset Hero Backgrounds */
-[data-theme="night-purple"] .hero-background {
+[data-theme="goyo-dark"][data-colorset="purple"] .hero-background {
     background: linear-gradient(135deg, #170b1a 0%, #2d1b2d 50%, #451a45 100%);
 }
 
-[data-theme="lofi-purple"] .hero-background {
+[data-theme="goyo-light"][data-colorset="purple"] .hero-background {
     background: linear-gradient(135deg, #fdf7fe 0%, #ddd6fe 50%, #c4b5fd 100%);
 }
 
 /* Amber Colorset Hero Backgrounds */
-[data-theme="night-amber"] .hero-background {
+[data-theme="goyo-dark"][data-colorset="amber"] .hero-background {
     background: linear-gradient(135deg, #1a150b 0%, #2d261b 50%, #45391a 100%);
 }
 
-[data-theme="lofi-amber"] .hero-background {
+[data-theme="goyo-light"][data-colorset="amber"] .hero-background {
     background: linear-gradient(135deg, #fefbf7 0%, #fed7aa 50%, #fdba74 100%);
 }
 

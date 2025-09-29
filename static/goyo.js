@@ -194,20 +194,21 @@ function initTheme() {
   }
 
   var fallbackTheme =
-    window && window.fallbackTheme ? window.fallbackTheme : "night";
+    window && window.fallbackTheme ? window.fallbackTheme : "goyo-dark";
   var currentTheme = localStorage.getItem("theme") || fallbackTheme;
-  document.documentElement.setAttribute("data-theme", currentTheme);
+  var colorset = window && window.colorset ? window.colorset : "blue";
   
-  // Check if current theme is a dark variant (contains "night")
-  themeController.checked = currentTheme.includes("night");
+  // Apply theme and colorset to document
+  document.documentElement.setAttribute("data-theme", currentTheme);
+  document.documentElement.setAttribute("data-colorset", colorset);
+  
+  // Check if current theme is dark (goyo-dark)
+  themeController.checked = currentTheme === "goyo-dark";
 
   themeController.addEventListener("change", function (e) {
-    // Get the current colorset suffix from the current theme
-    var currentColorset = currentTheme.split('-').slice(1).join('-');
-    var suffix = currentColorset ? '-' + currentColorset : '';
-    
-    var theme = e.target.checked ? "night" + suffix : "lofi" + suffix;
+    var theme = e.target.checked ? "goyo-dark" : "goyo-light";
     document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute("data-colorset", colorset);
     localStorage.setItem("theme", theme);
     currentTheme = theme;
   });
