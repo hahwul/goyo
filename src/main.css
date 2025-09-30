@@ -71,6 +71,82 @@
     --error: 239 68 68;
 }
 
+/* Colorset Theme Overrides - Red Colorset */
+[data-colorset="red"][data-theme="night"] {
+    --primary: 185 125 127;
+    --primary-focus: 139 92 94;
+    --primary-content: 39 17 18;
+    --accent: 184 148 150;
+    --accent-focus: 139 100 102;
+    --accent-content: 42 15 16;
+}
+
+[data-colorset="red"][data-theme="lofi"] {
+    --primary: 139 92 94;
+    --primary-focus: 113 75 77;
+    --primary-content: 255 255 255;
+    --accent: 139 100 102;
+    --accent-focus: 113 75 77;
+    --accent-content: 255 255 255;
+}
+
+/* Colorset Theme Overrides - Green Colorset */
+[data-colorset="green"][data-theme="night"] {
+    --primary: 134 185 127;
+    --primary-focus: 100 139 94;
+    --primary-content: 20 39 17;
+    --accent: 150 184 148;
+    --accent-focus: 102 139 100;
+    --accent-content: 16 42 15;
+}
+
+[data-colorset="green"][data-theme="lofi"] {
+    --primary: 100 139 94;
+    --primary-focus: 81 113 75;
+    --primary-content: 255 255 255;
+    --accent: 102 139 100;
+    --accent-focus: 81 113 75;
+    --accent-content: 255 255 255;
+}
+
+/* Colorset Theme Overrides - Purple Colorset */
+[data-colorset="purple"][data-theme="night"] {
+    --primary: 163 127 185;
+    --primary-focus: 121 94 139;
+    --primary-content: 32 17 39;
+    --accent: 171 148 184;
+    --accent-focus: 129 100 139;
+    --accent-content: 34 15 42;
+}
+
+[data-colorset="purple"][data-theme="lofi"] {
+    --primary: 121 94 139;
+    --primary-focus: 98 75 113;
+    --primary-content: 255 255 255;
+    --accent: 129 100 139;
+    --accent-focus: 98 75 113;
+    --accent-content: 255 255 255;
+}
+
+/* Colorset Theme Overrides - Orange Colorset */
+[data-colorset="orange"][data-theme="night"] {
+    --primary: 185 162 127;
+    --primary-focus: 139 121 94;
+    --primary-content: 39 32 17;
+    --accent: 184 171 148;
+    --accent-focus: 139 129 100;
+    --accent-content: 42 34 15;
+}
+
+[data-colorset="orange"][data-theme="lofi"] {
+    --primary: 139 121 94;
+    --primary-focus: 113 98 75;
+    --primary-content: 255 255 255;
+    --accent: 139 129 100;
+    --accent-focus: 113 98 75;
+    --accent-content: 255 255 255;
+}
+
 @layer base {
     html {
         scroll-padding-top: 130px;

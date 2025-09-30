@@ -208,10 +208,12 @@ function initTheme() {
   var fallbackTheme =
     window && window.fallbackTheme ? window.fallbackTheme : "goyo-dark";
   var currentUserTheme = localStorage.getItem("theme") || fallbackTheme;
+  var colorset = window && window.colorset ? window.colorset : "blue";
   
   // Map user theme to actual DaisyUI theme
   var actualTheme = themeMapping[currentUserTheme] || currentUserTheme;
   document.documentElement.setAttribute("data-theme", actualTheme);
+  document.documentElement.setAttribute("data-colorset", colorset);
   
   // Set checkbox state based on current theme
   themeController.checked = currentUserTheme === "goyo-dark";
@@ -221,6 +223,7 @@ function initTheme() {
     var actualTheme = themeMapping[userTheme];
     
     document.documentElement.setAttribute("data-theme", actualTheme);
+    document.documentElement.setAttribute("data-colorset", colorset);
     localStorage.setItem("theme", userTheme); // Store user-friendly name
   });
 }

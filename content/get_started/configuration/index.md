@@ -56,14 +56,23 @@ twitter_creator = "@hahwul"
 ```
 
 ## Color
-`default_colorset`
+`default_colorset` / `colorset`
 
 - `default_colorset`: Default theme (dark/light).
+- `colorset`: Color scheme palette (blue/red/green/purple/orange). Controls the overall color tone while maintaining the misty aesthetic.
 
 ```toml
 [extra]
 default_colorset = "dark"
+colorset = "blue"
 ```
+
+Available colorsets:
+- `blue` (default): Cool blue-gray tones
+- `red`: Warm red-gray tones  
+- `green`: Natural green-gray tones
+- `purple`: Elegant purple-gray tones
+- `orange`: Warm orange-gray tones
 
 ## Google Tag
 `gtag`

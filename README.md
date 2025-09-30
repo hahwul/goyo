@@ -64,6 +64,7 @@ default_thumbnail = "images/default_thumbnail.jpg"
 twitter_site = "@hahwul"
 twitter_creator = "@hahwul"
 default_colorset = "dark"
+colorset = "blue"
 gtag = ""
 sidebar_expand_depth = 1
 disable_root_sidebar_hide = false
