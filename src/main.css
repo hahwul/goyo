@@ -73,77 +73,77 @@
 
 /* Colorset Theme Overrides - Red Colorset */
 [data-colorset="red"][data-theme="night"] {
-    --primary: 185 125 127;
-    --primary-focus: 139 92 94;
-    --primary-content: 39 17 18;
-    --accent: 184 148 150;
-    --accent-focus: 139 100 102;
-    --accent-content: 42 15 16;
+    --primary: 220 140 145;
+    --primary-focus: 180 105 110;
+    --primary-content: 45 15 17;
+    --accent: 210 130 135;
+    --accent-focus: 170 95 100;
+    --accent-content: 45 15 17;
 }
 
 [data-colorset="red"][data-theme="lofi"] {
-    --primary: 139 92 94;
-    --primary-focus: 113 75 77;
+    --primary: 180 90 95;
+    --primary-focus: 150 70 75;
     --primary-content: 255 255 255;
-    --accent: 139 100 102;
-    --accent-focus: 113 75 77;
+    --accent: 170 80 85;
+    --accent-focus: 140 60 65;
     --accent-content: 255 255 255;
 }
 
 /* Colorset Theme Overrides - Green Colorset */
 [data-colorset="green"][data-theme="night"] {
-    --primary: 134 185 127;
-    --primary-focus: 100 139 94;
-    --primary-content: 20 39 17;
-    --accent: 150 184 148;
-    --accent-focus: 102 139 100;
-    --accent-content: 16 42 15;
+    --primary: 150 220 140;
+    --primary-focus: 110 180 105;
+    --primary-content: 15 45 13;
+    --accent: 140 210 130;
+    --accent-focus: 100 170 95;
+    --accent-content: 15 45 13;
 }
 
 [data-colorset="green"][data-theme="lofi"] {
-    --primary: 100 139 94;
-    --primary-focus: 81 113 75;
+    --primary: 100 160 95;
+    --primary-focus: 75 130 70;
     --primary-content: 255 255 255;
-    --accent: 102 139 100;
-    --accent-focus: 81 113 75;
+    --accent: 90 150 85;
+    --accent-focus: 65 120 60;
     --accent-content: 255 255 255;
 }
 
 /* Colorset Theme Overrides - Purple Colorset */
 [data-colorset="purple"][data-theme="night"] {
-    --primary: 163 127 185;
-    --primary-focus: 121 94 139;
-    --primary-content: 32 17 39;
-    --accent: 171 148 184;
-    --accent-focus: 129 100 139;
-    --accent-content: 34 15 42;
+    --primary: 190 145 220;
+    --primary-focus: 155 110 180;
+    --primary-content: 35 15 45;
+    --accent: 180 135 210;
+    --accent-focus: 145 100 170;
+    --accent-content: 35 15 45;
 }
 
 [data-colorset="purple"][data-theme="lofi"] {
-    --primary: 121 94 139;
-    --primary-focus: 98 75 113;
+    --primary: 145 95 170;
+    --primary-focus: 120 75 140;
     --primary-content: 255 255 255;
-    --accent: 129 100 139;
-    --accent-focus: 98 75 113;
+    --accent: 135 85 160;
+    --accent-focus: 110 65 130;
     --accent-content: 255 255 255;
 }
 
 /* Colorset Theme Overrides - Orange Colorset */
 [data-colorset="orange"][data-theme="night"] {
-    --primary: 185 162 127;
-    --primary-focus: 139 121 94;
-    --primary-content: 39 32 17;
-    --accent: 184 171 148;
-    --accent-focus: 139 129 100;
-    --accent-content: 42 34 15;
+    --primary: 230 180 130;
+    --primary-focus: 190 145 100;
+    --primary-content: 45 35 20;
+    --accent: 220 170 120;
+    --accent-focus: 180 135 90;
+    --accent-content: 45 35 20;
 }
 
 [data-colorset="orange"][data-theme="lofi"] {
-    --primary: 139 121 94;
-    --primary-focus: 113 98 75;
+    --primary: 180 130 85;
+    --primary-focus: 150 105 65;
     --primary-content: 255 255 255;
-    --accent: 139 129 100;
-    --accent-focus: 113 98 75;
+    --accent: 170 120 75;
+    --accent-focus: 140 95 55;
     --accent-content: 255 255 255;
 }
 
