@@ -27,6 +27,7 @@ twitter_creator = "@hahwul"
 default_colorset = "dark"
 brightness = "normal"  # Options: "darker", "normal", "lighter"
 gtag = ""
+git_repo = "https://github.com/hahwul/goyo"
 sidebar_expand_depth = 1
 disable_root_sidebar_hide = false
 
