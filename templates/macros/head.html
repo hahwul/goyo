@@ -8,6 +8,16 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    {# Browser address bar color based on brightness setting #}
+    {% set brightness = config.extra.brightness | default(value="normal") %}
+    {% if brightness == "darker" %}
+        <meta name="theme-color" content="#000000">
+    {% elif brightness == "lighter" %}
+        <meta name="theme-color" content="#ffffff">
+    {% else %}
+        <meta name="theme-color" content="#3b82f6">
+    {% endif %}
+
     <!-- Initialize theme and brightness before CSS loads to prevent FOUC -->
     <script>
         (function() {
