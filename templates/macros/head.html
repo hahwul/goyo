@@ -14,7 +14,9 @@
     {% if colorset == "dark" %}
         {# Dark theme (night) #}
         {% if brightness == "darker" %}
-            <meta name="theme-color" content="#000000">
+            <meta name="theme-color" content="#0a0a0f">
+        {% elif brightness == "normal" %}
+            <meta name="theme-color" content="#0f172a">
         {% else %}
             <meta name="theme-color" content="#3b82f6">
         {% endif %}
