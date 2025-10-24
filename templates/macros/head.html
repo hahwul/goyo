@@ -8,14 +8,23 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {# Browser address bar color based on brightness setting #}
+    {# Browser address bar color based on theme and brightness setting #}
+    {% set colorset = config.extra.default_colorset | default(value="dark") %}
     {% set brightness = config.extra.brightness | default(value="normal") %}
-    {% if brightness == "darker" %}
-        <meta name="theme-color" content="#000000">
-    {% elif brightness == "lighter" %}
-        <meta name="theme-color" content="#ffffff">
+    {% if colorset == "dark" %}
+        {# Dark theme (night) #}
+        {% if brightness == "darker" %}
+            <meta name="theme-color" content="#000000">
+        {% else %}
+            <meta name="theme-color" content="#3b82f6">
+        {% endif %}
     {% else %}
-        <meta name="theme-color" content="#3b82f6">
+        {# Light theme (lofi) #}
+        {% if brightness == "darker" %}
+            <meta name="theme-color" content="#64748b">
+        {% else %}
+            <meta name="theme-color" content="#ffffff">
+        {% endif %}
     {% endif %}
 
     <!-- Initialize theme and brightness before CSS loads to prevent FOUC -->
