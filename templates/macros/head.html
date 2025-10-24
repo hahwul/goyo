@@ -8,27 +8,6 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {# Browser address bar color based on theme and brightness setting #}
-    {% set colorset = config.extra.default_colorset | default(value="dark") %}
-    {% set brightness = config.extra.brightness | default(value="normal") %}
-    {% if colorset == "dark" %}
-        {# Dark theme (night) #}
-        {% if brightness == "darker" %}
-            <meta name="theme-color" content="#0a0a0f">
-        {% elif brightness == "normal" %}
-            <meta name="theme-color" content="#0f172a">
-        {% else %}
-            <meta name="theme-color" content="#3b82f6">
-        {% endif %}
-    {% else %}
-        {# Light theme (lofi) #}
-        {% if brightness == "darker" %}
-            <meta name="theme-color" content="#64748b">
-        {% else %}
-            <meta name="theme-color" content="#ffffff">
-        {% endif %}
-    {% endif %}
-
     <!-- Initialize theme and brightness before CSS loads to prevent FOUC -->
     <script>
         (function() {
@@ -48,6 +27,51 @@
             // Set theme and brightness attributes immediately
             document.documentElement.setAttribute("data-theme", actualTheme);
             document.documentElement.setAttribute("data-brightness", defaultBrightness);
+            
+            // Function to update theme-color meta tag dynamically
+            function updateThemeColor() {
+                var theme = document.documentElement.getAttribute("data-theme");
+                var brightness = document.documentElement.getAttribute("data-brightness") || "normal";
+                var themeColor;
+                
+                // Determine theme color based on theme and brightness
+                if (theme === "night") {
+                    // Dark theme
+                    if (brightness === "darker") {
+                        themeColor = "#0a0a0f";
+                    } else if (brightness === "normal") {
+                        themeColor = "#0f172a";
+                    } else {
+                        // lighter
+                        themeColor = "#3b82f6";
+                    }
+                } else {
+                    // Light theme (lofi)
+                    if (brightness === "darker") {
+                        themeColor = "#64748b";
+                    } else {
+                        // normal or lighter
+                        themeColor = "#ffffff";
+                    }
+                }
+                
+                // Update or create the meta tag
+                var metaTag = document.querySelector('meta[name="theme-color"]');
+                if (metaTag) {
+                    metaTag.setAttribute("content", themeColor);
+                } else {
+                    metaTag = document.createElement("meta");
+                    metaTag.setAttribute("name", "theme-color");
+                    metaTag.setAttribute("content", themeColor);
+                    document.head.appendChild(metaTag);
+                }
+            }
+            
+            // Update theme color immediately
+            updateThemeColor();
+            
+            // Make the function globally available for theme switching
+            window.updateThemeColor = updateThemeColor;
         })();
     </script>
 

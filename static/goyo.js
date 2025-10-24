@@ -327,6 +327,11 @@ function initTheme() {
 
     document.documentElement.setAttribute("data-theme", actualTheme);
     localStorage.setItem("theme", userTheme); // Store user-friendly name
+    
+    // Update theme-color meta tag when theme changes
+    if (window.updateThemeColor) {
+      window.updateThemeColor();
+    }
   });
 }
 
