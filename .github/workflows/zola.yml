@@ -31,14 +31,24 @@ jobs:
         run: tailwindcss -i src/main.css -o static/css/main.css --minify
 
       - name: Add CNAME file
+        if: github.event_name == 'push'
         run: echo "goyo.hahwul.com" > static/CNAME
 
       - name: Build and deploy
+        if: github.event_name == 'push'
         uses: shalzz/zola-deploy-action@v0.21.0
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: Check internal links
+      - name: Check internal links (PR only)
+        if: github.event_name == 'pull_request'
+        uses: shalzz/zola-deploy-action@v0.21.0
+        with:
+          BUILD_ONLY: true
+        env:
+          BUILD_FLAGS: --drafts
+
+      - name: Verify internal links
         if: github.event_name == 'pull_request'
         run: |
           zola check --skip-external-links
