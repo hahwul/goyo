@@ -1,3 +1,13 @@
+{#
+  Search Modal Macro
+  Renders a full-screen search modal with:
+  - Search input with icon
+  - Real-time search results using Fuse.js
+  - Keyboard navigation support
+  - Result excerpts with highlighted terms
+  
+  Only rendered when build_search_index is enabled in config.
+#}
 {% macro search(config) %}
 {% if config.build_search_index %}
 <!-- Search Modal -->

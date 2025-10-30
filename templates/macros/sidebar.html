@@ -1,6 +1,20 @@
 {% import "macros/footer.html" as macros_footer %}
+{#
+  Sidebar Navigation Macro
+  Renders the left sidebar with:
+  - Search functionality
+  - Hierarchical navigation (up to 5 levels deep)
+  - Active page highlighting
+  - Footer
+  
+  The sidebar supports language-aware navigation and configurable expansion depth.
+#}
 {% macro sidebar(config, lang, current_path, section) %}
-{% if config.extra.sidebar_expand_depth is defined %}{% set sidebar_expand_depth = config.extra.sidebar_expand_depth | int %}{% else %}{% set sidebar_expand_depth = 0 %}{% endif %}
+{% if config.extra.sidebar_expand_depth is defined %}
+    {% set sidebar_expand_depth = config.extra.sidebar_expand_depth | int %}
+{% else %}
+    {% set sidebar_expand_depth = 0 %}
+{% endif %}
 {# Normalize current_path for comparison by removing language prefix #}
 {% if lang != config.default_language and current_path is starting_with("/" ~ lang ~ "/") %}
     {% set normalized_current_path = current_path | replace(from="/" ~ lang, to="", count=1) %}

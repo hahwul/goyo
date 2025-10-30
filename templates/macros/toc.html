@@ -1,3 +1,13 @@
+{#
+  Table of Contents Macro
+  Renders a sticky TOC sidebar with:
+  - Nested heading hierarchy (H1 > H2 > H3 > H4)
+  - Active section highlighting via IntersectionObserver
+  - Auto-expanding details for current section
+  - Smooth scroll to anchors
+  
+  Only rendered on desktop (lg and above) when page.toc exists.
+#}
 {% macro toc(page) %}
 {% if page.toc %}
 <div class="hidden lg:block">
