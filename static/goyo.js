@@ -1,43 +1,51 @@
+/**
+ * Creates a debounced version of a function that delays execution
+ * until after wait milliseconds have elapsed since the last call.
+ * @param {Function} func - The function to debounce
+ * @param {number} wait - The debounce delay in milliseconds
+ * @returns {Function} The debounced function
+ */
 function debounce(func, wait) {
-  var timeout;
+  let timeout;
 
-  return function () {
-    var context = this;
-    var args = arguments;
+  return function (...args) {
+    const context = this;
     clearTimeout(timeout);
 
-    timeout = setTimeout(function () {
+    timeout = setTimeout(() => {
       timeout = null;
       func.apply(context, args);
     }, wait);
   };
 }
 
+/**
+ * Creates a teaser/excerpt from body text, highlighting search terms.
+ * @param {string} body - The full text to create a teaser from
+ * @param {string[]} terms - Array of search terms to highlight
+ * @returns {string} HTML string with highlighted teaser
+ */
 function makeTeaser(body, terms) {
-  var TERM_WEIGHT = 40;
-  var NORMAL_WORD_WEIGHT = 2;
-  var FIRST_WORD_WEIGHT = 8;
-  var TEASER_MAX_WORDS = 30;
+  const TERM_WEIGHT = 40;
+  const NORMAL_WORD_WEIGHT = 2;
+  const FIRST_WORD_WEIGHT = 8;
+  const TEASER_MAX_WORDS = 30;
 
-  var stemmedTerms = terms.map(function (w) {
-    return w.toLowerCase(); // Removed stemming for Fuse.js compatibility
-  });
-  var termFound = false;
-  var index = 0;
-  var weighted = []; // contains elements of ["word", weight, index_in_document]
+  const stemmedTerms = terms.map(w => w.toLowerCase());
+  let termFound = false;
+  let index = 0;
+  const weighted = []; // contains elements of ["word", weight, index_in_document]
 
-  var sentences = body.toLowerCase().split(". ");
+  const sentences = body.toLowerCase().split(". ");
 
-  for (var i in sentences) {
-    var words = sentences[i].split(" ");
-    var value = FIRST_WORD_WEIGHT;
+  for (const sentence of sentences) {
+    const words = sentence.split(" ");
+    let value = FIRST_WORD_WEIGHT;
 
-    for (var j in words) {
-      var word = words[j];
-
+    for (const word of words) {
       if (word.length > 0) {
-        for (var k in stemmedTerms) {
-          if (word.toLowerCase().startsWith(stemmedTerms[k])) {
+        for (const stemmedTerm of stemmedTerms) {
+          if (word.toLowerCase().startsWith(stemmedTerm)) {
             value = TERM_WEIGHT;
             termFound = true;
           }
@@ -57,24 +65,25 @@ function makeTeaser(body, terms) {
     return body;
   }
 
-  var windowWeights = [];
-  var windowSize = Math.min(weighted.length, TEASER_MAX_WORDS);
-  var curSum = 0;
-  for (var i = 0; i < windowSize; i++) {
+  const windowWeights = [];
+  const windowSize = Math.min(weighted.length, TEASER_MAX_WORDS);
+  let curSum = 0;
+  
+  for (let i = 0; i < windowSize; i++) {
     curSum += weighted[i][1];
   }
   windowWeights.push(curSum);
 
-  for (var i = 0; i < weighted.length - windowSize; i++) {
+  for (let i = 0; i < weighted.length - windowSize; i++) {
     curSum -= weighted[i][1];
     curSum += weighted[i + windowSize][1];
     windowWeights.push(curSum);
   }
 
-  var maxSumIndex = 0;
+  let maxSumIndex = 0;
   if (termFound) {
-    var maxFound = 0;
-    for (var i = windowWeights.length - 1; i >= 0; i--) {
+    let maxFound = 0;
+    for (let i = windowWeights.length - 1; i >= 0; i--) {
       if (windowWeights[i] > maxFound) {
         maxFound = windowWeights[i];
         maxSumIndex = i;
@@ -82,10 +91,11 @@ function makeTeaser(body, terms) {
     }
   }
 
-  var teaser = [];
-  var startIndex = weighted[maxSumIndex][2];
-  for (var i = maxSumIndex; i < maxSumIndex + windowSize; i++) {
-    var word = weighted[i];
+  const teaser = [];
+  let startIndex = weighted[maxSumIndex][2];
+  
+  for (let i = maxSumIndex; i < maxSumIndex + windowSize; i++) {
+    const word = weighted[i];
     if (startIndex < word[2]) {
       teaser.push(body.substring(startIndex, word[2]));
       startIndex = word[2];
@@ -105,8 +115,14 @@ function makeTeaser(body, terms) {
   return teaser.join("");
 }
 
+/**
+ * Formats a single search result item as a list element.
+ * @param {Object} item - The search result item from Fuse.js
+ * @param {string[]} terms - Array of search terms for highlighting
+ * @returns {HTMLElement} The formatted list item element
+ */
 function formatSearchResultItem(item, terms) {
-  var li = document.createElement("li");
+  const li = document.createElement("li");
   li.className = "search-result-item";
   li.innerHTML = `
     <a href="${item.item.id}" class="search-result-link block px-4 py-3 rounded-lg hover:bg-base-200/50 transition-colors duration-150 border-gray-500/15">
@@ -130,33 +146,41 @@ function formatSearchResultItem(item, terms) {
   `;
 
   // Add hover effect for the arrow
-  var link = li.querySelector(".search-result-link");
-  var arrow = li.querySelector(".search-result-arrow");
-  link.addEventListener("mouseenter", function () {
+  const link = li.querySelector(".search-result-link");
+  const arrow = li.querySelector(".search-result-arrow");
+  
+  link.addEventListener("mouseenter", () => {
     arrow.style.opacity = "1";
   });
-  link.addEventListener("mouseleave", function () {
+  
+  link.addEventListener("mouseleave", () => {
     arrow.style.opacity = "0";
   });
 
   return li;
 }
 
+/**
+ * Initializes the search functionality with Fuse.js.
+ * Sets up search input handling, keyboard navigation, and modal controls.
+ */
 function initSearch() {
-  var $searchInput = document.getElementById("search");
+  const MAX_ITEMS = 10;
+  const DEBOUNCE_DELAY = 150;
+  const FOCUS_DELAY = 100;
+  const FUSE_THRESHOLD = 0.4;
+  
+  const $searchInput = document.getElementById("search");
   if (!$searchInput) {
     return;
   }
 
-  var $searchResultsContainer = document.querySelector(
-    ".search-results-container",
-  );
-  var $searchResultsHeader = document.querySelector(".search-results__header");
-  var $searchResultsItems = document.querySelector(".search-results__items");
-  var MAX_ITEMS = 10;
-  var selectedIndex = -1;
+  const $searchResultsContainer = document.querySelector(".search-results-container");
+  const $searchResultsHeader = document.querySelector(".search-results__header");
+  const $searchResultsItems = document.querySelector(".search-results__items");
+  let selectedIndex = -1;
 
-  var options = {
+  const options = {
     keys: [
       { name: "title", weight: 2 },
       { name: "body", weight: 1 },
@@ -164,16 +188,17 @@ function initSearch() {
     ],
     includeScore: true,
     ignoreLocation: true,
-    threshold: 0.4, // Adjust as needed for search sensitivity
+    threshold: FUSE_THRESHOLD,
   };
-  var currentTerm = "";
-  var documents = Object.values(window.searchIndex.documentStore.docs);
-  var fuse = new Fuse(documents, options);
+  
+  let currentTerm = "";
+  const documents = Object.values(window.searchIndex.documentStore.docs);
+  const fuse = new Fuse(documents, options);
 
   function updateSelectedResult() {
-    var items = $searchResultsItems.querySelectorAll(".search-result-item");
-    items.forEach(function (item, index) {
-      var link = item.querySelector(".search-result-link");
+    const items = $searchResultsItems.querySelectorAll(".search-result-item");
+    items.forEach((item, index) => {
+      const link = item.querySelector(".search-result-link");
       if (index === selectedIndex) {
         link.classList.add("border");
       } else {
@@ -192,11 +217,12 @@ function initSearch() {
 
   $searchInput.addEventListener(
     "keyup",
-    debounce(function () {
-      var term = $searchInput.value.trim();
+    debounce(() => {
+      const term = $searchInput.value.trim();
       if (term === currentTerm || !fuse) {
         return;
       }
+      
       $searchResultsItems.innerHTML = "";
       $searchResultsHeader.innerHTML = "";
       selectedIndex = -1;
@@ -206,9 +232,7 @@ function initSearch() {
         return;
       }
 
-      var results = fuse.search(term).filter(function (r) {
-        return r.item.body !== "";
-      });
+      const results = fuse.search(term).filter(r => r.item.body !== "");
 
       if (results.length === 0) {
         $searchResultsHeader.innerHTML = `<span class="text-base-content/60">No results found for <strong class="text-base-content">"${term}"</strong></span>`;
@@ -217,7 +241,8 @@ function initSearch() {
 
       currentTerm = term;
       $searchResultsHeader.innerHTML = `<span class="text-base-content/60">${results.length} result${results.length === 1 ? "" : "s"} for <strong class="text-base-content">"${term}"</strong></span>`;
-      for (var i = 0; i < Math.min(results.length, MAX_ITEMS); i++) {
+      
+      for (let i = 0; i < Math.min(results.length, MAX_ITEMS); i++) {
         if (!results[i].item.body) {
           continue;
         }
@@ -225,19 +250,19 @@ function initSearch() {
           formatSearchResultItem(results[i], term.split(" ")),
         );
       }
-    }, 150),
+    }, DEBOUNCE_DELAY),
   );
 
   // Focus search input when modal is opened
-  var searchModal = document.getElementById("search-modal");
-  var modalBackdrop = document.querySelector(".modal");
+  const searchModal = document.getElementById("search-modal");
+  const modalBackdrop = document.querySelector(".modal");
 
   if (searchModal) {
     searchModal.addEventListener("change", function () {
       if (this.checked) {
-        setTimeout(function () {
+        setTimeout(() => {
           $searchInput.focus();
-        }, 100);
+        }, FOCUS_DELAY);
       } else {
         // Clear search when modal is closed
         $searchInput.value = "";
@@ -251,7 +276,7 @@ function initSearch() {
 
   // Handle click outside modal to close it
   if (modalBackdrop) {
-    modalBackdrop.addEventListener("click", function (e) {
+    modalBackdrop.addEventListener("click", (e) => {
       // Close modal if clicking on the backdrop (not on modal-box)
       if (e.target === modalBackdrop && searchModal.checked) {
         searchModal.checked = false;
@@ -260,8 +285,8 @@ function initSearch() {
   }
 
   // Handle keyboard navigation
-  $searchInput.addEventListener("keydown", function (e) {
-    var items = $searchResultsItems.querySelectorAll(".search-result-item");
+  $searchInput.addEventListener("keydown", (e) => {
+    const items = $searchResultsItems.querySelectorAll(".search-result-item");
 
     if (e.key === "Escape") {
       searchModal.checked = false;
@@ -282,7 +307,7 @@ function initSearch() {
       updateSelectedResult();
     } else if (e.key === "Enter" && selectedIndex >= 0) {
       e.preventDefault();
-      var link = items[selectedIndex].querySelector(".search-result-link");
+      const link = items[selectedIndex].querySelector(".search-result-link");
       if (link) {
         window.location.href = link.getAttribute("href");
       }
@@ -290,30 +315,33 @@ function initSearch() {
   });
 }
 
+/**
+ * Initializes theme switching functionality.
+ * Manages theme state in localStorage and applies theme to document.
+ */
 function initTheme() {
-  var themeController = document.querySelector(".theme-controller");
+  const themeController = document.querySelector(".theme-controller");
   if (!themeController) {
     return;
   }
 
   // Theme mapping - maps user-friendly names to actual DaisyUI theme names
-  var themeMapping = {
+  const themeMapping = {
     "goyo-dark": "night",
     "goyo-light": "lofi",
   };
 
   // Reverse mapping for checking current theme
-  var reverseThemeMapping = {
+  const reverseThemeMapping = {
     night: "goyo-dark",
     lofi: "goyo-light",
   };
 
-  var fallbackTheme =
-    window && window.fallbackTheme ? window.fallbackTheme : "goyo-dark";
-  var currentUserTheme = localStorage.getItem("theme") || fallbackTheme;
+  const fallbackTheme = window?.fallbackTheme || "goyo-dark";
+  const currentUserTheme = localStorage.getItem("theme") || fallbackTheme;
 
   // Map user theme to actual DaisyUI theme
-  var actualTheme = themeMapping[currentUserTheme] || currentUserTheme;
+  const actualTheme = themeMapping[currentUserTheme] || currentUserTheme;
   document.documentElement.setAttribute("data-theme", actualTheme);
   
   // Note: brightness attribute is already set in head.html to prevent FOUC
@@ -321,15 +349,19 @@ function initTheme() {
   // Set checkbox state based on current theme
   themeController.checked = currentUserTheme === "goyo-dark";
 
-  themeController.addEventListener("change", function (e) {
-    var userTheme = e.target.checked ? "goyo-dark" : "goyo-light";
-    var actualTheme = themeMapping[userTheme];
+  themeController.addEventListener("change", (e) => {
+    const userTheme = e.target.checked ? "goyo-dark" : "goyo-light";
+    const actualTheme = themeMapping[userTheme];
 
     document.documentElement.setAttribute("data-theme", actualTheme);
     localStorage.setItem("theme", userTheme); // Store user-friendly name
   });
 }
 
+/**
+ * Initializes Table of Contents functionality.
+ * Sets up intersection observer for active link highlighting and auto-scroll.
+ */
 function initToc() {
   const headings = document.querySelectorAll(
     ".prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6",
@@ -395,11 +427,14 @@ function initToc() {
   }
 }
 
+/**
+ * Initializes KaTeX math rendering for inline and block math elements.
+ */
 function initMath() {
   // Render all inline math elements
-  var mathElements = document.querySelectorAll(".katex-inline");
-  mathElements.forEach(function (element) {
-    var formula = element.textContent;
+  const mathElements = document.querySelectorAll(".katex-inline");
+  mathElements.forEach((element) => {
+    const formula = element.textContent;
     try {
       katex.render(formula, element, {
         throwOnError: false,
@@ -411,9 +446,9 @@ function initMath() {
   });
 
   // Render all block math elements
-  var blockMathElements = document.querySelectorAll(".katex-block");
-  blockMathElements.forEach(function (element) {
-    var formula = element.textContent;
+  const blockMathElements = document.querySelectorAll(".katex-block");
+  blockMathElements.forEach((element) => {
+    const formula = element.textContent;
     try {
       katex.render(formula, element, {
         throwOnError: false,
@@ -425,13 +460,18 @@ function initMath() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+/**
+ * Main initialization - runs when DOM is ready.
+ * Initializes all theme features: search, theme switching, TOC, and math rendering.
+ */
+document.addEventListener("DOMContentLoaded", () => {
   initSearch();
   initTheme();
   initToc();
   initMath();
 
-  document.addEventListener("keydown", function (event) {
+  // Global keyboard shortcut for search (Cmd/Ctrl + K)
+  document.addEventListener("keydown", (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key === "k") {
       event.preventDefault();
       const searchModal = document.getElementById("search-modal");
