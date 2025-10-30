@@ -11,7 +11,11 @@
 @plugin "./daisyui-theme.js" {
 }
 
-/* Ashen Monochromatic Theme Overrides */
+/* ==========================================================================
+   THEME COLORS - Ashen Monochromatic Design
+   ========================================================================== */
+
+/* Dark Theme - Night */
 :root,
 [data-theme="night"] {
     --primary: 156 163 175;
@@ -47,7 +51,7 @@
     --tab-radius: 0.375rem;
 }
 
-/* Dark theme with darker brightness variant */
+/* Dark theme - Darker brightness variant */
 [data-theme="night"][data-brightness="darker"] {
     --base-100: 0 0 0;
     --base-200: 10 10 15;
@@ -58,7 +62,7 @@
     --accent-content: 5 8 12;
 }
 
-/* Dark theme with lighter brightness variant */
+/* Dark theme - Lighter brightness variant */
 [data-theme="night"][data-brightness="lighter"] {
     --base-100: 30 41 59;
     --base-200: 45 55 72;
@@ -67,7 +71,7 @@
     --neutral-focus: 30 41 59;
 }
 
-/* Light Mode Support */
+/* Light Theme - Lofi */
 [data-theme="lofi"] {
     --primary: 107 114 128;
     --primary-focus: 75 85 99;
@@ -91,7 +95,7 @@
     --error: 239 68 68;
 }
 
-/* Light theme with darker brightness variant */
+/* Light theme - Darker brightness variant */
 [data-theme="lofi"][data-brightness="darker"] {
     --base-100: 226 232 240;
     --base-200: 203 213 225;
@@ -102,12 +106,16 @@
     --neutral-content: 10 15 30;
 }
 
-/* Light theme with lighter brightness variant */
+/* Light theme - Lighter brightness variant */
 [data-theme="lofi"][data-brightness="lighter"] {
     --base-100: 255 255 255;
     --base-200: 252 253 254;
     --base-300: 249 250 251;
 }
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
 
 @layer base {
     html {
@@ -132,17 +140,19 @@
         min-height: 100vh;
     }
 
+    /* ==========================================================================
+       BODY BACKGROUNDS
+       ========================================================================== */
+
     /* Dark theme background */
     [data-theme="night"] body {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     }
 
-    /* Dark theme background - darker variant */
     [data-theme="night"][data-brightness="darker"] body {
         background: linear-gradient(135deg, #000000 0%, #0a0a0f 100%);
     }
 
-    /* Dark theme background - lighter variant */
     [data-theme="night"][data-brightness="lighter"] body {
         background: linear-gradient(135deg, #1e293b 0%, #2d3e52 100%);
     }
@@ -152,17 +162,19 @@
         background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     }
 
-    /* Light theme background - darker variant */
     [data-theme="lofi"][data-brightness="darker"] body {
         background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
     }
 
-    /* Light theme background - lighter variant */
     [data-theme="lofi"][data-brightness="lighter"] body {
         background: linear-gradient(135deg, #ffffff 0%, #fcfcfd 100%);
     }
 
-    /* Ashen Typography */
+    /* ==========================================================================
+       TYPOGRAPHY
+       ========================================================================== */
+
+    /* Headings */
     h1 {
         @apply text-4xl font-extrabold mb-8 mt-12 text-transparent bg-clip-text;
         background-image: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
@@ -206,7 +218,10 @@
         font-size: 16px;
     }
 
-    /* Ashen List Styling */
+    /* ==========================================================================
+       LISTS
+       ========================================================================== */
+
     main ul {
         @apply list-none mb-8;
         padding-left: 0;
@@ -250,7 +265,10 @@
         min-height: 2rem;
     }
 
-    /* Modern Link Styling */
+    /* ==========================================================================
+       LINKS
+       ========================================================================== */
+
     a {
         @apply text-primary font-medium;
         @apply transition-all duration-200;
@@ -269,7 +287,10 @@
         opacity: 1;
     }
 
-    /* Ashen Image Styling */
+    /* ==========================================================================
+       IMAGES
+       ========================================================================== */
+
     img {
         @apply w-full h-auto rounded-lg;
         transition: transform 0.3s ease;
@@ -304,7 +325,10 @@
         filter: grayscale(10%) brightness(1.3);
     }
 
-    /* Ashen Code Blocks */
+    /* ==========================================================================
+       CODE BLOCKS
+       ========================================================================== */
+
     pre {
         @apply overflow-x-auto p-6 rounded-lg my-6;
         background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
@@ -426,18 +450,26 @@
         border: 1px solid rgba(100, 116, 139, 0.15);
     }
 
-    /* Ashen Blockquotes */
+    /* ==========================================================================
+       BLOCKQUOTES
+       ========================================================================== */
+
     blockquote {
         @apply text-base-content/90 italic;
-        @apply border-l-4 pl-6 py-4 my-8;
-        border-left-color: #9ca3af;
+        position: relative;
+        padding: 30px 30px 30px 40px;
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: 400;
+        margin: 30px 0;
+        border-left: 4px solid #9ca3af;
+        border-radius: 12px;
         background: linear-gradient(
             135deg,
-            rgba(100, 116, 139, 0.08) 0%,
-            rgba(148, 163, 184, 0.08) 100%
+            rgba(100, 116, 139, 0.1) 0%,
+            rgba(148, 163, 184, 0.1) 100%
         );
-        border-radius: 0 8px 8px 0;
-        position: relative;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
     /* Blockquote brightness variants - Dark theme */
@@ -492,7 +524,18 @@
         margin: 0;
     }
 
-    /* Ashen Tables */
+    @media only screen and (max-width: 768px) {
+        blockquote {
+            padding: 20px 20px 20px 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    }
+
+    /* ==========================================================================
+       TABLES
+       ========================================================================== */
+
     table {
         @apply table w-full my-8;
         @apply bg-base-200/30 rounded-lg overflow-hidden;
@@ -525,14 +568,18 @@
     }
 }
 
-/* Navigation Menu Styles - Neutral Colors */
+/* ==========================================================================
+   NAVIGATION COMPONENTS
+   ========================================================================== */
+
+/* Navigation Menu Styles */
 .nav-menu {
     @apply text-base-content/90 hover:text-base-content transition-all duration-300 no-underline hover:no-underline;
     @apply relative px-3 py-2 rounded;
     @apply hover:bg-base-content/10 hover:shadow-sm;
 }
 
-/* Sidebar Menu Neutral Styling */
+/* Sidebar Menu Styling */
 .menu a {
     @apply text-base-content/80 hover:text-base-content;
     @apply transition-colors duration-200;
