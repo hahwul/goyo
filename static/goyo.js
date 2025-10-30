@@ -1,4 +1,15 @@
 /**
+ * Escapes HTML special characters to prevent XSS attacks.
+ * @param {string} text - The text to escape
+ * @returns {string} The escaped text safe for HTML insertion
+ */
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+/**
  * Creates a debounced version of a function that delays execution
  * until after wait milliseconds have elapsed since the last call.
  * @param {Function} func - The function to debounce
@@ -235,12 +246,12 @@ function initSearch() {
       const results = fuse.search(term).filter(r => r.item.body !== "");
 
       if (results.length === 0) {
-        $searchResultsHeader.innerHTML = `<span class="text-base-content/60">No results found for <strong class="text-base-content">"${term}"</strong></span>`;
+        $searchResultsHeader.innerHTML = `<span class="text-base-content/60">No results found for <strong class="text-base-content">"${escapeHtml(term)}"</strong></span>`;
         return;
       }
 
       currentTerm = term;
-      $searchResultsHeader.innerHTML = `<span class="text-base-content/60">${results.length} result${results.length === 1 ? "" : "s"} for <strong class="text-base-content">"${term}"</strong></span>`;
+      $searchResultsHeader.innerHTML = `<span class="text-base-content/60">${results.length} result${results.length === 1 ? "" : "s"} for <strong class="text-base-content">"${escapeHtml(term)}"</strong></span>`;
       
       for (let i = 0; i < Math.min(results.length, MAX_ITEMS); i++) {
         if (!results[i].item.body) {
