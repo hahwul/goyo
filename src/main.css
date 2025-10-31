@@ -1552,6 +1552,34 @@ h6:hover .copy-heading-link-button {
     @apply hidden;
 }
 
+/* Drawer sidebar positioning fix for smooth responsive behavior */
+.drawer-side {
+    position: fixed;
+    top: 4rem;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* On small screens, sidebar is off-screen by default */
+@media (max-width: 1023px) {
+    .drawer-side {
+        transform: translateX(-100%);
+    }
+    
+    /* When drawer is toggled open, slide in the sidebar */
+    .drawer-toggle:checked ~ .drawer-content ~ .drawer-side {
+        transform: translateX(0);
+    }
+}
+
+/* On large screens (lg and above), sidebar is always visible */
+@media (min-width: 1024px) {
+    .drawer.lg\:drawer-open .drawer-side {
+        transform: translateX(0);
+    }
+}
+
 /* Pretty Link Card Styling */
 .pretty-link-card {
     @apply w-full rounded-xl overflow-hidden;
