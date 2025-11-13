@@ -19,7 +19,7 @@
 <body>
     {{ macros_search::search(config=config) }}
 
-    <div class="drawer lg:drawer-open">
+    <div class="drawer xl:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col pt-16">
             {{ macros_header::header(config=config, lang=lang) }}
@@ -29,7 +29,7 @@
             <div class="w-full">
                 <main class="prose w-full mx-auto">
             {% else %}
-            <div class="p-8 w-auto max-w-7xl mx-auto lg:grid lg:grid-cols-[1fr_250px] lg:gap-8">
+            <div class="p-8 w-auto max-w-7xl mx-auto xl:grid xl:grid-cols-[1fr_250px] xl:gap-8">
                 <main class="prose w-full max-w-7xl mx-auto">
             {% endif %}
                     {% block content %}{% endblock content %}
