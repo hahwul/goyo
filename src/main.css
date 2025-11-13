@@ -327,6 +327,7 @@
         white-space: pre;
         position: relative;
         max-width: 65ch;
+        min-width: 50ch;
     }
 
     /* Code block brightness variants - Dark theme */
@@ -1779,6 +1780,7 @@ main .mockup-browser,
 main .carousel,
 main .collapse {
     max-width: 65ch;
+    min-width: 50ch;
 }
 
 /* Responsive adjustments */
