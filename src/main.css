@@ -1913,9 +1913,19 @@ h6:hover .copy-heading-link-button {
 
 /* Hover 3D Effect */
 .hover-3d {
+    display: inline-block;
     transition: all 0.3s ease;
     transform-style: preserve-3d;
     cursor: pointer;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.hover-3d img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
 }
 
 .hover-3d:hover {
