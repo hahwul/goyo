@@ -1,0 +1,5 @@
+<ul class="steps">
+  {% for step in steps %}
+  <li class="step{% if loop.index <= completed | default(value=0) %} step-primary{% endif %}"{% if data_content and data_content[loop.index0] %} data-content="{{ data_content[loop.index0] }}"{% endif %}>{{ step }}</li>
+  {% endfor %}
+</ul>
