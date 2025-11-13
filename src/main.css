@@ -326,6 +326,7 @@
         word-break: break-all;
         white-space: pre;
         position: relative;
+        max-width: 65ch;
     }
 
     /* Code block brightness variants - Dark theme */
@@ -1770,6 +1771,14 @@ h6:hover .copy-heading-link-button {
 
 [data-theme="lofi"] .pretty-link-card:hover .pretty-link-icon {
     color: #6366f1;
+}
+
+/* Content width consistency for shortcode elements */
+main .alert,
+main .mockup-browser,
+main .carousel,
+main .collapse {
+    max-width: 65ch;
 }
 
 /* Responsive adjustments */
