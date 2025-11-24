@@ -286,19 +286,6 @@
         opacity: 1;
     }
 
-    /* Achromatic link colors for darker brightness variant */
-    [data-theme="night"][data-brightness="darker"] a {
-        color: rgb(160, 160, 160);
-    }
-
-    [data-theme="night"][data-brightness="darker"] main a {
-        color: rgb(160, 160, 160);
-    }
-
-    [data-theme="night"][data-brightness="darker"] main a:hover {
-        color: rgb(192, 192, 192);
-    }
-
     /* Ashen Image Styling */
     img {
         @apply w-full h-auto rounded-lg;

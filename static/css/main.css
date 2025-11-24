@@ -4242,15 +4242,6 @@
     border-bottom-color: currentColor;
     opacity: 1;
   }
-  [data-theme="night"][data-brightness="darker"] a {
-    color: rgb(160, 160, 160);
-  }
-  [data-theme="night"][data-brightness="darker"] main a {
-    color: rgb(160, 160, 160);
-  }
-  [data-theme="night"][data-brightness="darker"] main a:hover {
-    color: rgb(192, 192, 192);
-  }
   img {
     height: auto;
     width: 100%;
