@@ -4013,6 +4013,10 @@
   --neutral-focus: 0 0 0;
   --primary-content: 10 10 15;
   --accent-content: 5 8 12;
+  --primary: 160 160 160;
+  --primary-focus: 128 128 128;
+  --accent: 144 144 144;
+  --accent-focus: 112 112 112;
 }
 [data-theme="night"][data-brightness="lighter"] {
   --base-100: 30 41 59;
@@ -4238,6 +4242,15 @@
     border-bottom-color: currentColor;
     opacity: 1;
   }
+  [data-theme="night"][data-brightness="darker"] a {
+    color: rgb(160, 160, 160);
+  }
+  [data-theme="night"][data-brightness="darker"] main a {
+    color: rgb(160, 160, 160);
+  }
+  [data-theme="night"][data-brightness="darker"] main a:hover {
+    color: rgb(192, 192, 192);
+  }
   img {
     height: auto;
     width: 100%;
@@ -4372,6 +4385,11 @@
     background: rgba(100, 116, 139, 0.05);
     color: #64748b;
     border: 1px solid rgba(100, 116, 139, 0.15);
+  }
+  [data-theme="night"][data-brightness="darker"] .kbd {
+    background-color: rgb(32, 32, 32);
+    color: rgb(160, 160, 160);
+    border-color: rgb(64, 64, 64);
   }
   blockquote {
     color: var(--color-base-content);
