@@ -56,10 +56,10 @@
     --neutral-focus: 0 0 0;
     --primary-content: 10 10 15;
     --accent-content: 5 8 12;
-    --primary: 160 160 160;
-    --primary-focus: 128 128 128;
-    --accent: 144 144 144;
-    --accent-focus: 112 112 112;
+    --color-primary: oklch(67% 0 0);
+    --color-primary-focus: oklch(56% 0 0);
+    --color-accent: oklch(61% 0 0);
+    --color-accent-focus: oklch(50% 0 0);
 }
 
 /* Dark theme with lighter brightness variant */
@@ -265,25 +265,6 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         min-width: 2rem;
         min-height: 2rem;
-    }
-
-    /* Modern Link Styling */
-    a {
-        @apply text-primary font-medium;
-        @apply transition-all duration-200;
-        text-decoration: none;
-        position: relative;
-    }
-
-    main a {
-        @apply text-primary;
-        border-bottom: 1px solid transparent;
-        transition: border-color 0.2s ease;
-    }
-
-    main a:hover {
-        border-bottom-color: currentColor;
-        opacity: 1;
     }
 
     /* Ashen Image Styling */
@@ -547,6 +528,26 @@
         @apply text-primary;
         font-style: italic;
     }
+}
+
+/* Modern Link Styling - Outside layer to override TailwindCSS reset */
+a {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+    transition: all 0.2s;
+    text-decoration: none;
+    position: relative;
+}
+
+main a {
+    color: var(--color-primary);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+main a:hover {
+    border-bottom-color: currentColor;
+    opacity: 1;
 }
 
 /* Navigation Menu Styles - Neutral Colors */
