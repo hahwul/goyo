@@ -46,27 +46,12 @@
             </p>
         </div>
     {% else %}
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="flex flex-wrap gap-3">
             {% for term in terms %}
-                <div class="p-6 bg-base-100 border border-gray-500/15 rounded-lg">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h2 class="text-lg font-semibold">
-                            <a href="{{ term.permalink }}" class="hover:text-primary transition-colors">
-                                {{ term.name }}
-                            </a>
-                        </h2>
-                    </div>
-                    <div class="flex items-center gap-2 text-sm text-base-content/60">
-                        <span>
-                            {{ term.pages | length }}
-                            {% if term.pages | length == 1 %}
-                                document
-                            {% else %}
-                                documents
-                            {% endif %}
-                        </span>
-                    </div>
-                </div>
+                <a href="{{ term.permalink }}" class="badge badge-lg badge-outline gap-2 hover:badge-primary transition-colors px-4 py-3">
+                    <span class="font-semibold">{{ term.name }}</span>
+                    <span class="badge badge-sm">{{ term.pages | length }}</span>
+                </a>
             {% endfor %}
         </div>
     {% endif %}
