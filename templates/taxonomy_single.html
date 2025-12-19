@@ -38,49 +38,67 @@
     </div>
 
     {% if term.pages | length > 0 %}
-        <div class="space-y-5">
+        <div class="space-y-6">
             {% for page in term.pages %}
-                <article class="group border border-gray-500/15 rounded-lg p-5 hover:border-gray-500/40 hover:shadow-md transition-all duration-200">
-                    <h2 class="text-xl font-semibold mb-2">
-                        <a href="{{ page.permalink | safe }}" class="group-hover:text-primary transition-colors flex items-center gap-2">
-                            {{ page.title }}
-                            <svg class="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </h2>
-
-                    {% if page.description %}
-                        <p class="text-sm text-base-content/70 mb-3">
-                            {{ page.description }}
-                        </p>
-                    {% endif %}
-
-                    <div class="flex flex-wrap items-center gap-3 text-xs text-base-content/60">
-                        {% if page.date %}
-                            <div class="flex items-center gap-1.5">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                {% set page_index = loop.index0 %}
+                {% set gradient_colors = [
+                    "from-blue-500/5 via-purple-500/5 to-transparent",
+                    "from-green-500/5 via-teal-500/5 to-transparent",
+                    "from-orange-500/5 via-red-500/5 to-transparent",
+                    "from-pink-500/5 via-rose-500/5 to-transparent"
+                ] %}
+                {% set accent_colors = ["border-blue-500/30", "border-green-500/30", "border-orange-500/30", "border-pink-500/30"] %}
+                {% set color_idx = page_index % 4 %}
+                
+                <article class="group relative border-l-4 {{ accent_colors[color_idx] }} border-r border-t border-b border-gray-500/15 rounded-r-xl p-6 bg-gradient-to-r {{ gradient_colors[color_idx] }} hover:border-gray-500/30 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
+                    {# Hover gradient overlay #}
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-r-xl"></div>
+                    
+                    {# Content #}
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-3">
+                            <a href="{{ page.permalink | safe }}" class="group-hover:text-primary transition-colors flex items-center gap-2">
+                                {{ page.title }}
+                                <svg class="w-6 h-6 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                                 </svg>
-                                <span>{{ page.date | date(format="%Y-%m-%d") }}</span>
-                            </div>
+                            </a>
+                        </h2>
+
+                        {% if page.description %}
+                            <p class="text-base text-base-content/70 mb-4 leading-relaxed">
+                                {{ page.description }}
+                            </p>
                         {% endif %}
 
-                        {% if page.taxonomies and page.taxonomies.tags %}
-                            <span class="h-4 w-px bg-gray-400/40"></span>
-                            <div class="flex flex-wrap items-center gap-1.5">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                </svg>
-                                {% for tag in page.taxonomies.tags %}
-                                    <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}"
-                                       class="inline-flex items-center px-2 py-0.5 rounded-full bg-base-200 border border-gray-500/30 text-[11px] hover:border-primary hover:text-primary transition-colors">
-                                        {{ tag }}
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
+                        <div class="flex flex-wrap items-center gap-3 text-sm">
+                            {% if page.date %}
+                                <div class="flex items-center gap-2 px-3 py-1.5 bg-base-100/80 backdrop-blur-sm rounded-lg border border-gray-500/20 text-base-content/70">
+                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <span class="font-medium">{{ page.date | date(format="%Y-%m-%d") }}</span>
+                                </div>
+                            {% endif %}
+
+                            {% if page.taxonomies and page.taxonomies.tags %}
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                    </svg>
+                                    {% for tag in page.taxonomies.tags %}
+                                        <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}"
+                                           class="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-xs font-medium hover:border-primary hover:bg-primary/20 hover:scale-105 transition-all duration-200">
+                                            {{ tag }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
+                    
+                    {# Decorative corner element #}
+                    <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl {{ gradient_colors[color_idx] }} opacity-50 blur-2xl group-hover:opacity-70 transition-opacity duration-300"></div>
                 </article>
             {% endfor %}
         </div>

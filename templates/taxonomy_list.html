@@ -51,28 +51,69 @@
     {% else %}
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {% for term in terms %}
-                <a href="{{ term.permalink }}" class="group block p-6 bg-base-100 border border-gray-500/15 rounded-lg hover:border-gray-500/40 hover:shadow-lg transition-all duration-200">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h2 class="text-lg font-semibold group-hover:text-primary transition-colors">
-                            {{ term.name }}
-                        </h2>
-                        <svg class="w-5 h-5 text-base-content/30 group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
+                {% set term_index = loop.index0 %}
+                {% set gradient_colors = [
+                    "from-blue-500/10 to-purple-500/10",
+                    "from-green-500/10 to-teal-500/10",
+                    "from-orange-500/10 to-red-500/10",
+                    "from-pink-500/10 to-rose-500/10",
+                    "from-cyan-500/10 to-blue-500/10",
+                    "from-violet-500/10 to-purple-500/10"
+                ] %}
+                {% set gradient_hover_colors = [
+                    "from-blue-500/20 to-purple-500/20",
+                    "from-green-500/20 to-teal-500/20",
+                    "from-orange-500/20 to-red-500/20",
+                    "from-pink-500/20 to-rose-500/20",
+                    "from-cyan-500/20 to-blue-500/20",
+                    "from-violet-500/20 to-purple-500/20"
+                ] %}
+                {% set icon_colors = ["text-blue-500", "text-green-500", "text-orange-500", "text-pink-500", "text-cyan-500", "text-violet-500"] %}
+                {% set color_idx = term_index % 6 %}
+                
+                <a href="{{ term.permalink }}" class="group relative block p-6 bg-gradient-to-br {{ gradient_colors[color_idx] }} border border-gray-500/20 rounded-xl hover:border-gray-500/40 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden">
+                    {# Animated background gradient #}
+                    <div class="absolute inset-0 bg-gradient-to-br {{ gradient_hover_colors[color_idx] }} opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {# Content #}
+                    <div class="relative z-10">
+                        <div class="flex items-start justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-3">
+                                {# Tag icon with color variation #}
+                                <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-base-100/50 backdrop-blur-sm border border-gray-500/20 group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-5 h-5 {{ icon_colors[color_idx] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                    </svg>
+                                </div>
+                                <h2 class="text-xl font-bold group-hover:text-primary transition-colors duration-200">
+                                    {{ term.name }}
+                                </h2>
+                            </div>
+                            <svg class="w-6 h-6 text-base-content/30 group-hover:text-primary group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                        
+                        {# Document count with enhanced styling #}
+                        <div class="flex items-center gap-2 text-sm text-base-content/70 font-medium">
+                            <div class="flex items-center gap-1.5 px-3 py-1.5 bg-base-100/50 backdrop-blur-sm rounded-full border border-gray-500/20">
+                                <svg class="w-4 h-4 {{ icon_colors[color_idx] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span>
+                                    {{ term.pages | length }}
+                                    {% if term.pages | length == 1 %}
+                                        document
+                                    {% else %}
+                                        documents
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 text-sm text-base-content/60">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <span>
-                            {{ term.pages | length }}
-                            {% if term.pages | length == 1 %}
-                                document
-                            {% else %}
-                                documents
-                            {% endif %}
-                        </span>
-                    </div>
+                    
+                    {# Decorative corner accent #}
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br {{ gradient_colors[color_idx] }} opacity-50 blur-3xl group-hover:opacity-70 transition-opacity duration-300 -z-0"></div>
                 </a>
             {% endfor %}
         </div>
