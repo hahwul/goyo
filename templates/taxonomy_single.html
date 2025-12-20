@@ -3,8 +3,12 @@
 {#
   Template: taxonomy_single.html
   Purpose: Render all pages that belong to a specific taxonomy term
-  Context: Zola provides `taxonomy` and `term` objects here.
+  Context: Zola provides `taxonomy`, `term`, and `lang` objects here.
 #}
+
+{% block header %}
+    {{ macros_header::header(config=config, lang=lang) }}
+{% endblock header %}
 
 {% block content %}
     <div class="mb-12 pb-6 border-b border-gray-500/15">
@@ -19,17 +23,25 @@
 
         {% if term.pages | length > 0 %}
             <p class="text-base text-base-content/70 mt-2">
-                {{ term.pages | length }}
-                {% if term.pages | length == 1 %}
-                    document
+                {% if lang == "ko" %}
+                    "{{ term.name }}"로 태그된 {{ term.pages | length }}개의 문서
                 {% else %}
-                    documents
+                    {{ term.pages | length }}
+                    {% if term.pages | length == 1 %}
+                        document
+                    {% else %}
+                        documents
+                    {% endif %}
+                    tagged with "{{ term.name }}"
                 {% endif %}
-                tagged with "{{ term.name }}"
             </p>
         {% else %}
             <p class="text-base text-base-content/70 mt-2">
-                No documents found for this term.
+                {% if lang == "ko" %}
+                    이 항목에 대한 문서를 찾을 수 없습니다.
+                {% else %}
+                    No documents found for this term.
+                {% endif %}
             </p>
         {% endif %}
     </div>
@@ -41,7 +53,7 @@
                     <a href="{{ page.permalink | safe }}" class="group block p-5">
                         <div class="nav-button-content">
                             <div class="nav-button-direction">
-                                <span class="nav-button-label">Read</span>
+                                <span class="nav-button-label">{% if lang == "ko" %}읽기{% else %}Read{% endif %}</span>
                                 <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
@@ -64,7 +76,7 @@
                             <span class="h-4 w-px bg-gray-400/40"></span>
                             <div class="flex flex-wrap items-center gap-1.5">
                                 {% for tag in page.taxonomies.tags %}
-                                    <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}"
+                                    <a href="{{ get_taxonomy_url(kind="tags", name=tag, lang=lang) | safe }}"
                                        class="inline-flex items-center badge badge-dash text-xs border-gray-500/30 hover:border-gray-500/70 transition-colors">
                                         {{ tag }}
                                     </a>

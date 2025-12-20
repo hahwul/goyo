@@ -6,18 +6,23 @@
   - Context provided by Zola:
     - taxonomy: information about the taxonomy (name, slug, config, etc.)
     - terms: list of all terms for this taxonomy
+    - lang: current language code
 #}
 
 {% block title %}
     {{ taxonomy.name | capitalize }} - {{ config.title }}
 {% endblock title %}
 
+{% block header %}
+    {{ macros_header::header(config=config, lang=lang) }}
+{% endblock header %}
+
 {% block content %}
     <div class="mb-12 pb-6 border-b border-gray-500/15">
         <h1 class="flex items-center gap-3 mb-3">
             {{ taxonomy.config.title | default(value=taxonomy.name | capitalize) }}
             <span class="text-xs font-medium px-2.5 py-1 border border-gray-500/30 rounded uppercase tracking-wide">
-                Taxonomy
+                {% if lang == "ko" %}분류{% else %}Taxonomy{% endif %}
             </span>
         </h1>
 
@@ -27,12 +32,22 @@
             </p>
         {% else %}
             <p class="text-base text-base-content/70">
-                Browse all {{ taxonomy.name }} used in this documentation.
+                {% if lang == "ko" %}
+                    이 문서에서 사용된 모든 {{ taxonomy.name }}를 탐색하세요.
+                {% else %}
+                    Browse all {{ taxonomy.name }} used in this documentation.
+                {% endif %}
             </p>
         {% endif %}
 
         <div class="mt-4 flex items-center gap-2 text-sm text-base-content/60">
-            <span>{{ terms | length }} {{ taxonomy.name }} available</span>
+            <span>
+                {% if lang == "ko" %}
+                    {{ terms | length }}개의 {{ taxonomy.name }}
+                {% else %}
+                    {{ terms | length }} {{ taxonomy.name }} available
+                {% endif %}
+            </span>
         </div>
     </div>
 
@@ -42,7 +57,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
             </svg>
             <p class="text-base-content/60">
-                No terms defined for this taxonomy yet.
+                {% if lang == "ko" %}
+                    이 분류에 대해 아직 정의된 항목이 없습니다.
+                {% else %}
+                    No terms defined for this taxonomy yet.
+                {% endif %}
             </p>
         </div>
     {% else %}
@@ -52,14 +71,18 @@
                     <a href="{{ term.permalink | safe }}" class="nav-button nav-button-next group block p-5">
                         <div class="nav-button-content">
                             <div class="nav-button-direction">
-                                <span class="nav-button-label">View</span>
+                                <span class="nav-button-label">{% if lang == "ko" %}보기{% else %}View{% endif %}</span>
                                 <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
                             </div>
                             <div class="nav-button-title">{{ term.name }}</div>
                             <div class="text-xs text-base-content/60">
-                                {{ term.pages | length }} {% if term.pages | length == 1 %}document{% else %}documents{% endif %}
+                                {% if lang == "ko" %}
+                                    {{ term.pages | length }}개 문서
+                                {% else %}
+                                    {{ term.pages | length }} {% if term.pages | length == 1 %}document{% else %}documents{% endif %}
+                                {% endif %}
                             </div>
                         </div>
                     </a>
