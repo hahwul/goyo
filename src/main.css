@@ -1066,6 +1066,8 @@ h6:hover .copy-heading-link-button {
 .nav-button-title {
     @apply text-xl font-bold leading-tight;
     @apply text-base-content;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Next button alignment */
