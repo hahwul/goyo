@@ -2551,3 +2551,297 @@ footer.footer .social-icon:hover {
     background-color: transparent !important;
     border-color: rgba(80, 80, 90, 0.3) !important;
 }
+
+/* Members Shortcode Styling */
+.members-container {
+    @apply my-8;
+}
+
+/* Member Card - Glass Effect with Theme Colors */
+.member-card {
+    background: rgba(30, 41, 59, 0.3);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.member-card:hover {
+    border-color: rgba(100, 116, 139, 0.5);
+    background: rgba(51, 65, 85, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark theme - darker variant */
+[data-theme="night"][data-brightness="darker"] .member-card {
+    background: rgba(10, 10, 15, 0.4);
+    border: 1px solid rgba(80, 80, 90, 0.35);
+}
+
+[data-theme="night"][data-brightness="darker"] .member-card:hover {
+    border-color: rgba(80, 80, 90, 0.5);
+    background: rgba(20, 25, 30, 0.4);
+}
+
+/* Dark theme - lighter variant */
+[data-theme="night"][data-brightness="lighter"] .member-card {
+    background: rgba(45, 55, 72, 0.3);
+    border: 1px solid rgba(120, 130, 150, 0.3);
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-card:hover {
+    border-color: rgba(120, 130, 150, 0.5);
+    background: rgba(71, 85, 105, 0.3);
+}
+
+/* Light theme */
+[data-theme="lofi"] .member-card {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(203, 213, 225, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="lofi"] .member-card:hover {
+    border-color: rgba(148, 163, 184, 0.4);
+    background: rgba(241, 245, 249, 0.9);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Light theme - darker variant */
+[data-theme="lofi"][data-brightness="darker"] .member-card {
+    background: rgba(203, 213, 225, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.5);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-card:hover {
+    border-color: rgba(100, 116, 139, 0.5);
+    background: rgba(186, 198, 215, 0.9);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Light theme - lighter variant */
+[data-theme="lofi"][data-brightness="lighter"] .member-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-card:hover {
+    border-color: rgba(203, 213, 225, 0.4);
+    background: rgba(252, 253, 254, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* Member Photo Wrapper - Gradient Border */
+.member-photo-wrapper {
+    @apply p-1 rounded-full;
+    background: linear-gradient(135deg, #64748b, #9ca3af);
+}
+
+[data-theme="night"][data-brightness="darker"] .member-photo-wrapper {
+    background: linear-gradient(135deg, #505058, #808088);
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-photo-wrapper {
+    background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+}
+
+[data-theme="lofi"] .member-photo-wrapper {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-photo-wrapper {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-photo-wrapper {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+}
+
+/* Member Photo */
+.member-photo {
+    @apply border-4 border-base-100;
+}
+
+/* Member Photo Placeholder */
+.member-photo-placeholder {
+    @apply border-4 border-base-100;
+    background: linear-gradient(135deg, rgba(100, 116, 139, 0.2), rgba(148, 163, 184, 0.2));
+    color: #64748b;
+}
+
+[data-theme="night"][data-brightness="darker"] .member-photo-placeholder {
+    background: linear-gradient(135deg, rgba(80, 80, 90, 0.25), rgba(100, 100, 110, 0.25));
+    color: #808088;
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-photo-placeholder {
+    background: linear-gradient(135deg, rgba(120, 130, 150, 0.2), rgba(148, 163, 184, 0.2));
+    color: #94a3b8;
+}
+
+[data-theme="lofi"] .member-photo-placeholder {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.1));
+    color: #3b82f6;
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-photo-placeholder {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(79, 70, 229, 0.15));
+    color: #2563eb;
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-photo-placeholder {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.08), rgba(147, 139, 250, 0.08));
+    color: #60a5fa;
+}
+
+/* Member Name */
+.member-name {
+    color: #e5e7eb;
+}
+
+[data-theme="night"][data-brightness="darker"] .member-name {
+    color: #d0d0d0;
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-name {
+    color: #f0f0f5;
+}
+
+[data-theme="lofi"] .member-name {
+    color: #1e293b;
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-name {
+    color: #0f172a;
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-name {
+    color: #334155;
+}
+
+/* Member Role */
+.member-role {
+    color: #9ca3af;
+}
+
+[data-theme="night"][data-brightness="darker"] .member-role {
+    color: #808088;
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-role {
+    color: #b8c0d0;
+}
+
+[data-theme="lofi"] .member-role {
+    color: #64748b;
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-role {
+    color: #475569;
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-role {
+    color: #94a3b8;
+}
+
+/* Member Description */
+.member-description {
+    color: #9ca3af;
+}
+
+[data-theme="night"][data-brightness="darker"] .member-description {
+    color: #808088;
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-description {
+    color: #b8c0d0;
+}
+
+[data-theme="lofi"] .member-description {
+    color: #475569;
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-description {
+    color: #475569;
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-description {
+    color: #94a3b8;
+}
+
+/* Member Social Links */
+.member-social-link {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300;
+    background: linear-gradient(135deg, rgba(100, 116, 139, 0.2), rgba(148, 163, 184, 0.2));
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    color: #64748b;
+    text-decoration: none;
+}
+
+.member-social-link:hover {
+    background: linear-gradient(135deg, rgba(100, 116, 139, 0.3), rgba(148, 163, 184, 0.3));
+    border-color: rgba(100, 116, 139, 0.5);
+    color: #9ca3af;
+    transform: translateY(-2px);
+}
+
+[data-theme="night"][data-brightness="darker"] .member-social-link {
+    background: linear-gradient(135deg, rgba(80, 80, 90, 0.25), rgba(100, 100, 110, 0.25));
+    border: 1px solid rgba(80, 80, 90, 0.35);
+    color: #808088;
+}
+
+[data-theme="night"][data-brightness="darker"] .member-social-link:hover {
+    background: linear-gradient(135deg, rgba(80, 80, 90, 0.35), rgba(100, 100, 110, 0.35));
+    border-color: rgba(80, 80, 90, 0.5);
+    color: #a0a0a8;
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-social-link {
+    background: linear-gradient(135deg, rgba(120, 130, 150, 0.2), rgba(148, 163, 184, 0.2));
+    border: 1px solid rgba(120, 130, 150, 0.3);
+    color: #94a3b8;
+}
+
+[data-theme="night"][data-brightness="lighter"] .member-social-link:hover {
+    background: linear-gradient(135deg, rgba(120, 130, 150, 0.3), rgba(148, 163, 184, 0.3));
+    border-color: rgba(120, 130, 150, 0.5);
+    color: #b8c0d0;
+}
+
+[data-theme="lofi"] .member-social-link {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.1));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+[data-theme="lofi"] .member-social-link:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #2563eb;
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-social-link {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(79, 70, 229, 0.15));
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    color: #2563eb;
+}
+
+[data-theme="lofi"][data-brightness="darker"] .member-social-link:hover {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(79, 70, 229, 0.25));
+    border-color: rgba(37, 99, 235, 0.35);
+    color: #1d4ed8;
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-social-link {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.08), rgba(147, 139, 250, 0.08));
+    border: 1px solid rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+}
+
+[data-theme="lofi"][data-brightness="lighter"] .member-social-link:hover {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(147, 139, 250, 0.15));
+    border-color: rgba(96, 165, 250, 0.25);
+    color: #3b82f6;
+}
