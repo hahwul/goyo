@@ -31,7 +31,7 @@ email = "carol@example.com"
 linkedin = "https://linkedin.com"
 +++
 
-The `members` shortcode creates a beautiful display of team members with their photos, descriptions, and social links. It supports both grid and horizontal layouts.
+The `members` shortcode creates a beautiful display of team members with their photos, descriptions, and social links. It supports both grid and line layouts.
 
 ## Usage
 
@@ -71,7 +71,7 @@ website = "https://bob.design"
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `layout` | string | "grid" | Layout style: "grid" or "horizontal" |
+| `layout` | string | "grid" | Layout style: "grid" or "line" |
 
 ## Member Data Structure
 
@@ -104,15 +104,15 @@ The grid layout arranges members in a responsive grid that adapts to different s
 
 {{ members() }}
 
-### Horizontal Layout
+### Line Layout
 
-The horizontal layout displays members in a scrollable row, perfect for team sections with many members.
+The line layout displays members in a scrollable row, perfect for team sections with many members.
 
 ```markdown
-{{/* members(layout="horizontal") */}}
+{{/* members(layout="line") */}}
 ```
 
-{{ members(layout="horizontal") }}
+{{ members(layout="line") }}
 
 ### Complete Example
 
@@ -163,9 +163,10 @@ We're a passionate team of professionals dedicated to building amazing products.
 ## Features
 
 - **Responsive Grid**: Automatically adjusts to screen size (1/2/3 columns)
-- **Horizontal Scroll**: Alternative layout for showcasing many members
+- **Line Scroll**: Alternative layout for showcasing many members
 - **Social Links**: Support for GitHub, Twitter, LinkedIn, Email, and Website
 - **Hover Effects**: Smooth animations and scaling on hover
+- **Hidden Social Icons**: Icons appear only on card hover for a clean look
 - **Theme Integration**: Adapts to dark/light themes and brightness variants
 - **Glass Effect**: Modern glassmorphism design with backdrop blur
 - **Gradient Borders**: Beautiful gradient borders on member photos
@@ -185,8 +186,9 @@ The shortcode supports the following social platforms with Font Awesome icons:
 
 - Font Awesome is required for social icons. Make sure it's included in your site.
 - All social links open in a new tab (except email)
+- Social icons are hidden by default and appear on card hover
 - The `photo` field is optional - members without photos get a placeholder icon
 - Social links are optional - only provided social networks will be displayed
-- The horizontal layout is scrollable on smaller screens
+- The line layout is scrollable on smaller screens
 - Member cards automatically scale on hover for better interactivity
 - Member data must be defined in the page's front matter (TOML section at the top)

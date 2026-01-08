@@ -27,9 +27,9 @@
   <p class="member-description text-sm leading-relaxed mb-4">{{ member.description }}</p>
   {% endif %}
   
-  {# Social Links #}
+  {# Social Links - Hidden by default, shown on card hover #}
   {% if member.social %}
-  <div class="member-social flex justify-center gap-3 mt-4">
+  <div class="member-social flex justify-center gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
     {% if member.social.github %}
     <a href="{{ member.social.github }}" target="_blank" rel="noopener noreferrer" class="member-social-link">
       <i class="fab fa-github text-lg"></i>
@@ -61,8 +61,8 @@
 {% endmacro render_member %}
 
 <div class="members-container my-8">
-  {% if layout_mode == "horizontal" %}
-  {# Horizontal Layout - Single row with scroll #}
+  {% if layout_mode == "line" %}
+  {# Line Layout - Single row with scroll #}
   <div class="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
     {% for member in members_data %}
     <div class="member-card-wrapper member-card-horizontal flex-shrink-0">
