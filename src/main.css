@@ -2557,6 +2557,11 @@ footer.footer .social-icon:hover {
     @apply my-8;
 }
 
+/* Member Card Wrapper - Horizontal Layout */
+.member-card-horizontal {
+    width: 300px;
+}
+
 /* Member Card - Glass Effect with Theme Colors */
 .member-card {
     background: rgba(30, 41, 59, 0.3);
