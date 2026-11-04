@@ -1,4 +1,4 @@
-{% component header(config, lang) %}
+{% component header(config, lang, page, section) %}
 {# Resolve logo configuration with backward compatibility #}
 {# Priority: logo.* (new) > logo_* (legacy) #}
 
@@ -68,7 +68,7 @@
     </div>
     <!-- Desktop Menu -->
     <div class="flex-none hidden lg:flex">
-        {{< menu config={config} lang={lang} />}}
+        {{< menu config={config} lang={lang} page={page} section={section} />}}
     </div>
 </div>
 {% endcomponent %}

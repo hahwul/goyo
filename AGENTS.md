@@ -13,7 +13,7 @@ Install required tools in this exact order:
 # Install Zola (static site generator)
 cd /tmp
 wget https://github.com/getzola/zola/releases/download/v0.23.6/zola-v0.23.6-x86_64-unknown-linux-gnu.tar.gz
-tar -xzf zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz
+tar -xzf zola-v0.23.6-x86_64-unknown-linux-gnu.tar.gz
 sudo mv zola /usr/local/bin/
 zola --version  # Should show: zola 0.23.6
 
@@ -131,7 +131,7 @@ After making any changes to the theme or content:
 │   ├── 404.html             # Error page template
 │   ├── taxonomy_list.html   # Taxonomy list template
 │   ├── taxonomy_single.html # Single taxonomy template
-│   ├── macros/              # Reusable template macros (head, header, footer, sidebar, toc, search, comments)
+│   ├── components/          # Reusable template components (head, header, footer, sidebar, toc, search, comments)
 │   └── shortcodes/          # Custom shortcodes (24 shortcodes: alert, badge, carousel, gallery, mermaid, youtube, etc.)
 ├── src/                     # Source files and build tools
 │   ├── main.css             # TailwindCSS source (includes DaisyUI plugins)
@@ -247,10 +247,10 @@ The project requires these exact versions:
 
 All dependencies are downloaded and managed locally in the `src/` directory.
 
-## Template Macros (templates/macros/)
+## Components (templates/components/)
 
 Reusable template components:
-- `head.html` - HTML head section with meta tags, favicon, fonts
+- `head.html` - HTML head component with meta tags, favicon, fonts, theme bootstrap
 - `header.html` - Site header with navigation and theme toggle
 - `footer.html` - Site footer
 - `sidebar.html` - Documentation sidebar navigation

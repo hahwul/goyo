@@ -23,7 +23,7 @@ math 숏코드는 LaTeX 수식을 담은 `content` 매개변수를 받습니다:
 {{< math content="a \\ne 0" />}}일 때, {{< math content="ax^2 + bx + c = 0" />}}의 해는 두 개입니다.
 
 ```jinja2
-{# math(content="a \\ne 0") #}일 때, {# math(content="ax^2 + bx + c = 0") #}의 해는 두 개입니다.
+{% raw %}{{< math content="a \\ne 0" />}}일 때, {{< math content="ax^2 + bx + c = 0" />}}의 해는 두 개입니다.{% endraw %}
 ```
 
 ## 복잡한 수식

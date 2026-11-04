@@ -23,11 +23,7 @@ taxonomies = { tags = ["shortcodes", "chat", "ui"], categories = ["shortcodes"] 
 {{< chat_bubble img="/writing/shortcodes/gallery/images/image1.jpeg" author="앨리스" msg="카드의 모든 섹터를 읽지 못한 경우 어떻게 하나요? 카드나 리더에서 nonce를 추출하여 읽지 못한 섹터의 키를 검색한 다음 누락된 키를 계산할 수 있습니다. [더 알아보기](#)." />}}
 
 ```jinja
-#{ chat_bubble(
-  img="/writing/shortcodes/gallery/images/image1.jpeg",
-  author="앨리스",
-  msg="카드의 모든 섹터를 읽지 못한 경우 어떻게 하나요? 카드나 리더에서 nonce를 추출하여..."
-) }#
+{% raw %}{{< chat_bubble img="/writing/shortcodes/gallery/images/image1.jpeg" author="앨리스" msg="카드의 모든 섹터를 읽지 못한 경우 어떻게 하나요? 카드나 리더에서 nonce를 추출하여..." />}}{% endraw %}
 ```
 
 ## 기능

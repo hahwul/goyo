@@ -23,7 +23,7 @@ Use the math shortcode to add inline mathematical expressions:
 When {{< math content="a \\ne 0" />}}, there are two solutions to {{< math content="ax^2 + bx + c = 0" />}}.
 
 ```jinja2
-When {# math(content="a \\ne 0") #}, there are two solutions to {# math(content="ax^2 + bx + c = 0") #}.
+{% raw %}When {{< math content="a \\ne 0" />}}, there are two solutions to {{< math content="ax^2 + bx + c = 0" />}}.{% endraw %}
 ```
 
 ## Complex Formulas

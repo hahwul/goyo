@@ -1,4 +1,4 @@
-{% component menu(config, lang) %}
+{% component menu(config, lang, page, section) %}
 <ul class="menu w-full justify-end lg:menu-horizontal px-1">
     {% set current_nav = config.extra.nav %}
     {% if lang and lang != config.default_language %}
@@ -62,7 +62,7 @@
             <ul tabindex="0" class="dropdown-content menu bg-base-100 border border-gray-500/15 rounded-box z-1 p-2 shadow-lg min-w-max whitespace-nowrap">
                 {% for lang_code, lang_config in config.languages %}
                 {% if lang_code != lang %}
-                {% if page is defined and page.translations %}
+                {% if page and page.translations %}
                 {% set_global translation = false %}
                 {% for t in page.translations %}{% if t.lang == lang_code %}{% set_global translation = t %}{% endif %}{% endfor %}
                 {% if translation %}
@@ -70,7 +70,7 @@
                 {% else %}
                 <li><a href="{{ get_url(path="/", lang=lang_code) | safe }}">{% if lang_aliases and lang_aliases[lang_code] %}{{ lang_aliases[lang_code] }}{% else %}{{ lang_config.name | default(value=lang_code) }}{% endif %}</a></li>
                 {% endif %}
-                {% elif section is defined and section.translations %}
+                {% elif section and section.translations %}
                 {% set_global translation = false %}
                 {% for t in section.translations %}{% if t.lang == lang_code %}{% set_global translation = t %}{% endif %}{% endfor %}
                 {% if translation %}

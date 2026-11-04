@@ -5,7 +5,7 @@
 {%- if asset is matching(pat="(?i)[.](jpg|jpeg|png|gif|webp)$") -%}
 {% set image = resize_image(path=asset, width=480, height=360, op="fill") %}
 {% set filename = asset | split(pat="/") | last %}
-{% set name = filename | regex_replace(pattern=`.[^.]*$`, rep="") %}
+{% set name = filename | regex_replace(pattern="\\.[^.]*$", rep="") %}
 <div class="gallery-item w-full text-center">
 <a href="{{ get_url(path=asset) }}" target="_blank" class="block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
 <img 

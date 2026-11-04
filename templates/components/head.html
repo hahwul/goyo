@@ -1,4 +1,4 @@
-{% component head(config, page, section, current_url, config_file) %}
+{% component head(config, page, section, current_url, config_file, lang) %}
     {# current_url이 정의되어 있지 않으면 기본값으로 설정 #}
     {% if current_url is not defined or current_url == "" %}
         {% set current_url = config.base_url %}

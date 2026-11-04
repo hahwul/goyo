@@ -10,11 +10,11 @@
 {{< html_tag config={config} lang={lang} />}}
 <head>
     {% if page is defined %}
-        {{< head config={config} page={page} section={false} current_url={config.base_url} config_file={config_file} />}}
+        {{< head config={config} page={page} section={false} current_url={config.base_url} config_file={config_file} lang={lang} />}}
     {% elif section is defined %}
-        {{< head config={config} page={false} section={section} current_url={config.base_url} config_file={config_file} />}}
+        {{< head config={config} page={false} section={section} current_url={config.base_url} config_file={config_file} lang={lang} />}}
     {% else %}
-        {{< head config={config} page={false} section={false} current_url={config.base_url} config_file={config_file} />}}
+        {{< head config={config} page={false} section={false} current_url={config.base_url} config_file={config_file} lang={lang} />}}
     {% endif %}
     {% block extra_head %}{% endblock extra_head %}
 </head>
@@ -24,7 +24,13 @@
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col pt-16">
-            {{< header config={config} lang={lang} />}}
+            {% if page is defined %}
+            {{< header config={config} lang={lang} page={page} section={false} />}}
+            {% elif section is defined %}
+            {{< header config={config} lang={lang} page={false} section={section} />}}
+            {% else %}
+            {{< header config={config} lang={lang} page={false} section={false} />}}
+            {% endif %}
 
             {% set lang_root_path = "/" ~ lang ~ "/" %}
             {# Sidebar configuration with backward compatibility #}
@@ -147,10 +153,12 @@
             {% set sidebar_classes = sidebar_classes ~ " lg:hidden" %}
         {% endif %}
         <div id="sidebar" class="{{ sidebar_classes }}">
-            {% if section is defined %}
-                {{< sidebar config={config} lang={lang} current_path={current_path} section={section} config_file={config_file} />}}
+            {% if page is defined %}
+                {{< sidebar config={config} lang={lang} current_path={current_path} section={false} config_file={config_file} page={page} />}}
+            {% elif section is defined %}
+                {{< sidebar config={config} lang={lang} current_path={current_path} section={section} config_file={config_file} page={false} />}}
             {% else %}
-                {{< sidebar config={config} lang={lang} current_path={current_path} section={false} config_file={config_file} />}}
+                {{< sidebar config={config} lang={lang} current_path={current_path} section={false} config_file={config_file} page={false} />}}
             {% endif %}
         </div>
     </div>

@@ -186,6 +186,15 @@ zola serve
 # and open http://localhost:1111 in your browser.
 ```
 
+## Upgrading from Zola 0.22 or older
+
+Zola 0.23 moved templating from Tera v1 to Tera v2. This theme requires 0.23.6 or newer, and the upgrade changes things a downstream site may depend on:
+
+- Template macros became components under `templates/components/`; every `{% import %}` is gone. Sites overriding theme templates must migrate their own files the same way.
+- Shortcodes are components now: inline calls use `{{< name args />}}` and paired calls use `{% <name args> %}body{% </name> %}`. The old `{{ name(args) }}` forms no longer parse.
+- Component bodies must stay flush-left: shortcode output flows through markdown in 0.23, and indented output turns into code blocks.
+- Components cannot see template globals (page, section, lang, config_file) unless declared; sites with custom components must pass them explicitly.
+
 ## Contributing
 
 Goyo is an open-source project made with ❤️. If you would like to contribute, please check [CONTRIBUTING.md](CONTRIBUTING.md) and submit a Pull Request.

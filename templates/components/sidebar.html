@@ -1,4 +1,4 @@
-{% component sidebar(config, lang, current_path, section, config_file) %}
+{% component sidebar(config, lang, current_path, section, config_file, page) %}
 {# Sidebar configuration with backward compatibility #}
 {# Priority: sidebar.* (new) > sidebar_expand_depth (legacy) #}
 {% if config.extra.sidebar is defined %}
@@ -125,7 +125,7 @@
     {% set display_desktop_menu = config.extra.sidebar.enable_desktop_menu | default(value=false) %}
     {% if display_desktop_menu %}
     <div class="flex w-full px-5 lg:hidden">
-        {{< menu config={config} lang={lang} />}}
+        {{< menu config={config} lang={lang} page={page} section={section} />}}
     </div>
     {% endif %}
 
