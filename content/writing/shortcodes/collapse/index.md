@@ -12,15 +12,15 @@ taxonomies = { tags = ["shortcodes", "collapse", "ui"], categories = ["shortcode
   - `body`: The content inside the collapsible section.
 
 ```jinja
-{%/* collapse(title="How do I create an account?") */%}
+{% raw %}{% <collapse title="How do I create an account?"> %}{% endraw %}
 Click the **'Sign Up'** button in the top right corner and follow the registration process.
 \
 You can also use `markdown` syntax.
-{%/* end */%}
+{% raw %}{% </collapse> %}{% endraw %}
 ```
 
-{% collapse(title="How do I create an account?") %}
+{% <collapse title="How do I create an account?"> %}
 Click the **'Sign Up'** button in the top right corner and follow the registration process.
 \
 You can also use `markdown` syntax.
-{% end %}
+{% </collapse> %}

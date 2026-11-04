@@ -1,4 +1,4 @@
-{% macro trans_or_default(key, default, lang, config, config_file=false) -%}
+{% component trans_or_default(key, default, lang, config, config_file) -%}
     {%- set effective_lang = lang | default(value=config.default_language | default(value="en")) -%}
 
     {# Load config data to safely check if translation keys exist before calling trans() #}
@@ -29,4 +29,4 @@
     {%- else -%}
         {{ default }}
     {%- endif -%}
-{%- endmacro %}
+{% endcomponent %}

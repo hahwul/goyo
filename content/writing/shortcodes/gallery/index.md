@@ -6,14 +6,14 @@ taxonomies = { tags = ["shortcodes", "gallery", "images"], categories = ["shortc
 
 The `gallery` shortcode creates a responsive image gallery from all image assets in the current page directory. It automatically detects and displays JPG, JPEG, PNG, GIF, and WebP images.
 
-{{ gallery() }}
+{{< gallery />}}
 
 ## Usage
 
 Place image files (`.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`) in the same directory as your page's `index.md` file, then use the shortcode:
 
 ```jinja
-{{/* gallery() */}}
+{% raw %}{{< gallery />}}{% endraw %}
 ```
 
 ## Parameters
@@ -28,34 +28,34 @@ Place image files (`.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`) in the same directo
 ### Basic Usage
 
 ```jinja
-{{/* gallery() */}}
+{% raw %}{{< gallery />}}{% endraw %}
 ```
 
-{{ gallery() }}
+{{< gallery />}}
 
 ### Custom Columns
 
 ```jinja
-{{/* gallery(cols=4) */}}
+{% raw %}{{< gallery cols={4} />}}{% endraw %}
 ```
 
-{{ gallery(cols=4) }}
+{{< gallery cols={4} />}}
 
 ### Hide Image Names
 
 ```jinja
-{{/* gallery(show_name=false) */}}
+{% raw %}{{< gallery show_name={false} />}}{% endraw %}
 ```
 
-{{ gallery(show_name=false) }}
+{{< gallery show_name={false} />}}
 
 ### Combine Options
 
 ```jinja
-{{/* gallery(cols=2, show_name=false) */}}
+{% raw %}{{< gallery cols={2} show_name={false} />}}{% endraw %}
 ```
 
-{{ gallery(cols=2, show_name=false) }}
+{{< gallery cols={2} show_name={false} />}}
 
 ## Features
 

@@ -12,10 +12,10 @@ Install required tools in this exact order:
 ```bash
 # Install Zola (static site generator)
 cd /tmp
-wget https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz
+wget https://github.com/getzola/zola/releases/download/v0.23.6/zola-v0.23.6-x86_64-unknown-linux-gnu.tar.gz
 tar -xzf zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz
 sudo mv zola /usr/local/bin/
-zola --version  # Should show: zola 0.21.0
+zola --version  # Should show: zola 0.23.6
 
 # Install Just (task runner)
 wget https://github.com/casey/just/releases/download/1.42.4/just-1.42.4-x86_64-unknown-linux-musl.tar.gz
@@ -240,7 +240,7 @@ Key configuration sections:
 ## Build Dependencies
 
 The project requires these exact versions:
-- **Zola**: v0.21.0 (static site generator)
+- **Zola**: v0.23.6+ (static site generator, Tera 2)
 - **Just**: v1.42.4+ (task runner) 
 - **TailwindCSS**: v4.x (downloaded binary, architecture-specific)
 - **DaisyUI**: v5.x (JavaScript libraries)

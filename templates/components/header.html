@@ -1,7 +1,4 @@
-{% import "macros/desktopMenu.html" as macros_desktopMenu %}
-
-
-{% macro header(config, lang) %}
+{% component header(config, lang) %}
 {# Resolve logo configuration with backward compatibility #}
 {# Priority: logo.* (new) > logo_* (legacy) #}
 
@@ -71,7 +68,7 @@
     </div>
     <!-- Desktop Menu -->
     <div class="flex-none hidden lg:flex">
-        {{ macros_desktopMenu::menu(config=config, lang=lang) }}
+        {{< menu config={config} lang={lang} />}}
     </div>
 </div>
-{% endmacro header %}
+{% endcomponent %}

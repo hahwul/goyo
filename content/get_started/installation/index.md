@@ -99,23 +99,33 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+{% raw %}
           token: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}
 
       - name: Update Goyo submodule
         id: update
         run: |
+{% raw %}
           git config user.name "${{ env.GIT_USER_NAME }}"
           git config user.email "${{ env.GIT_USER_EMAIL }}"
+{% endraw %}
 
           # Get current commit hash
+{% raw %}
           OLD_COMMIT=$(git rev-parse HEAD:${{ env.THEME_PATH }})
+{% endraw %}
 
           # Update submodule to latest
+{% raw %}
           git submodule update --remote ${{ env.THEME_PATH }}
           git add ${{ env.THEME_PATH }}
+{% endraw %}
 
           # Get new commit hash
+{% raw %}
           NEW_COMMIT=$(git --git-dir=${{ env.THEME_PATH }}/.git rev-parse HEAD)
+{% endraw %}
 
           # Check if there are changes
           if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
@@ -130,13 +140,17 @@ jobs:
         if: steps.update.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
+{% raw %}
           token: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}
           commit-message: "Update Goyo theme to latest version"
           title: "Update Goyo theme"
           body: |
             This PR updates the Goyo theme to the latest version.
 
+{% raw %}
             **Changes:** ${{ steps.update.outputs.old_commit }} → ${{ steps.update.outputs.new_commit }}
+{% endraw %}
 
             Please review the [Goyo changelog](https://github.com/hahwul/goyo/releases) for details on what's new.
 

@@ -9,84 +9,84 @@ Add badges to your content to indicate status, category, or highlight keywords. 
 
 ## Info
 
-{% badge_info() %}
+{% <badge_info> %}
   Info badge
-{% end %}
+{% </badge_info> %}
 
 ```jinja2
-{%/* badge_info() */%}
+{% raw %}{% <badge_info> %}{% endraw %}
   Info badge
-{%/* end */%}
+{% raw %}{% </badge_info> %}{% endraw %}
 ```
 
 ## Success
 
-{% badge_success() %}
+{% <badge_success> %}
   Success badge
-{% end %}
+{% </badge_success> %}
 
 ```jinja2
-{%/* badge_success() */%}
+{% raw %}{% <badge_success> %}{% endraw %}
   Success badge
-{%/* end */%}
+{% raw %}{% </badge_success> %}{% endraw %}
 ```
 
 ## Warning
 
-{% badge_warning() %}
+{% <badge_warning> %}
   Warning badge
-{% end %}
+{% </badge_warning> %}
 
 ```jinja2
-{%/* badge_warning() */%}
+{% raw %}{% <badge_warning> %}{% endraw %}
   Warning badge
-{%/* end */%}
+{% raw %}{% </badge_warning> %}{% endraw %}
 ```
 
 ## Error
 
-{% badge_error() %}
+{% <badge_error> %}
   Error badge
-{% end %}
+{% </badge_error> %}
 
 ```jinja2
-{%/* badge_error() */%}
+{% raw %}{% <badge_error> %}{% endraw %}
   Error badge
-{%/* end */%}
+{% raw %}{% </badge_error> %}{% endraw %}
 ```
 
 ## Accent
 
-{% badge_accent() %}
+{% <badge_accent> %}
   Accent badge
-{% end %}
+{% </badge_accent> %}
 
 ```jinja2
-{%/* badge_accent() */%}
+{% raw %}{% <badge_accent> %}{% endraw %}
   Accent badge
-{%/* end */%}
+{% raw %}{% </badge_accent> %}{% endraw %}
 ```
 
 ## Primary
 
-{% badge_primary() %}
+{% <badge_primary> %}
   Primary badge
-{% end %}
+{% </badge_primary> %}
 
 ```jinja2
-{%/* badge_primary() */%}
+{% raw %}{% <badge_primary> %}{% endraw %}
   Primary badge
-{%/* end */%}
+{% raw %}{% </badge_primary> %}{% endraw %}
 ```
 
 ## Secondary
 
-{% badge_secondary() %}
+{% <badge_secondary> %}
   Secondary badge
-{% end %}
+{% </badge_secondary> %}
 
 ```jinja2
-{%/* badge_secondary() */%}
+{% raw %}{% <badge_secondary> %}{% endraw %}
   Secondary badge
-{%/* end */%}
+{% raw %}{% </badge_secondary> %}{% endraw %}
 ```

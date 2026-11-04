@@ -9,7 +9,7 @@ The `image_diff` shortcode allows you to visually compare two images side by sid
 ## Usage
 
 ```
-{{/* image_diff(src1="URL_TO_ORIGINAL_IMAGE" src2="URL_TO_CHANGED_IMAGE" alt="Description of image") */}}
+{% raw %}{{< image_diff src1="URL_TO_ORIGINAL_IMAGE" src2="URL_TO_CHANGED_IMAGE" alt="Description of image" />}}{% endraw %}
 ```
 
 - `src1`: URL of the original image (required)
@@ -18,10 +18,6 @@ The `image_diff` shortcode allows you to visually compare two images side by sid
 
 ## Example
 
-{{ image_diff(
-    src1="/images/dark.jpg",
-    src2="/images/light.jpg",
-    alt="goyo"
-) }}
+{{< image_diff src1="/images/dark.jpg" src2="/images/light.jpg" alt="goyo" />}}
 
 This will render a draggable image diff viewer for the two provided images.

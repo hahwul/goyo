@@ -49,10 +49,11 @@ To implement this, create or override `templates/sitemap.xml` with the following
 **File:** `templates/sitemap.xml`
 
 ```xml
+{% raw %}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {%- for sitemap_entry in entries -%}
-    {%- if sitemap_entry.permalink is not containing("/tags/") -%}
+    {%- if sitemap_entry.permalink is not containing(pat="/tags/") -%}
     <url>
         <loc>{{ sitemap_entry.permalink | escape_xml | safe }}</loc>
         {%- if sitemap_entry.updated -%}
@@ -63,6 +64,7 @@ To implement this, create or override `templates/sitemap.xml` with the following
 
     {%- endfor -%}
 </urlset>
+{% endraw %}
 ```
 
 ## 2. Enabling UI Elements

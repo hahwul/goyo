@@ -1,3 +1,5 @@
+{%- component codepen(user, pen_id, default_tab = "result") -%}
 <div class="codepen-container border border-gray-500/15">
-    <iframe class="w-full h-96" src="https://codepen.io/{{ user }}/embed/{{ pen_id }}?default-tab={% if default_tab %}{{ default_tab }}{% else %}result{% endif %}" title="CodePen embed by {{ user }}" frameborder="0" loading="lazy" allowtransparency="true" allowfullscreen></iframe>
+<iframe class="w-full h-96" src="https://codepen.io/{{ user }}/embed/{{ pen_id }}?default-tab={% if default_tab %}{{ default_tab }}{% else %}result{% endif %}" title="CodePen embed by {{ user }}" frameborder="0" loading="lazy" allowtransparency="true" allowfullscreen></iframe>
 </div>
+{%- endcomponent codepen -%}

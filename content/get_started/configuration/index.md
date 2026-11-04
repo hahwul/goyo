@@ -148,9 +148,9 @@ default_theme_light = "goyo-light" # Default light theme (e.g., "goyo-light", "c
 
 **Per-theme brightness:** You can set `dark_brightness` and `light_brightness` to use different brightness levels for each theme. If not specified, the common `brightness` value will be used for both themes.
 
-{{ image_diff(src1="images/dark.png" src2="images/light.png" alt="Dark and Light") }}
+{{< image_diff src1="images/dark.png" src2="images/light.png" alt="Dark and Light" />}}
 
-{{ carousel(images=["images/darker.png", "images/normal.png", "images/lighter.png"]) }}
+{{< carousel images={["images/darker.png", "images/normal.png", "images/lighter.png"]} />}}
 
 **Legacy format (still supported):**
 ```toml
@@ -200,7 +200,7 @@ disable_root_hide = false # Show sidebar on landing page
 enable_desktop_menu = false # integrate the navigation into the sidebar
 ```
 
-{{ image_diff(src1="/images/side-home.jpg", src2="/images/wide-home.jpg", alt="goyo") }}
+{{< image_diff src1="/images/side-home.jpg" src2="/images/wide-home.jpg" alt="goyo" />}}
 
 **Legacy format (still supported):**
 ```toml

@@ -8,7 +8,7 @@ taxonomies = { tags = ["shortcodes", "mermaid", "diagram"], categories = ["short
 
 ## Example
 
-{% mermaid() %}
+{% <mermaid> %}
 quadrantChart
     title Reach and engagement of campaigns
     x-axis Low Reach --> High Reach
@@ -23,10 +23,10 @@ quadrantChart
     Campaign D: [0.78, 0.34]
     Campaign E: [0.40, 0.34]
     Campaign F: [0.35, 0.78]
-{% end %}
+{% </mermaid> %}
 
 ```jinja2
-{%/* mermaid() */%}
+{% raw %}{% <mermaid> %}{% endraw %}
 quadrantChart
     title Reach and engagement of campaigns
     x-axis Low Reach --> High Reach
@@ -41,5 +41,5 @@ quadrantChart
     Campaign D: [0.78, 0.34]
     Campaign E: [0.40, 0.34]
     Campaign F: [0.35, 0.78]
-{%/* end */%}
+{% raw %}{% </mermaid> %}{% endraw %}
 ```

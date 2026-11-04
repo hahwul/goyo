@@ -99,23 +99,33 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+{% raw %}
           token: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}
 
       - name: Update Goyo submodule
         id: update
         run: |
+{% raw %}
           git config user.name "${{ env.GIT_USER_NAME }}"
           git config user.email "${{ env.GIT_USER_EMAIL }}"
+{% endraw %}
 
           # 현재 커밋 해시 가져오기
+{% raw %}
           OLD_COMMIT=$(git rev-parse HEAD:${{ env.THEME_PATH }})
+{% endraw %}
 
           # submodule을 최신 버전으로 업데이트
+{% raw %}
           git submodule update --remote ${{ env.THEME_PATH }}
           git add ${{ env.THEME_PATH }}
+{% endraw %}
 
           # 새 커밋 해시 가져오기
+{% raw %}
           NEW_COMMIT=$(git --git-dir=${{ env.THEME_PATH }}/.git rev-parse HEAD)
+{% endraw %}
 
           # 변경 사항 확인
           if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
@@ -130,13 +140,17 @@ jobs:
         if: steps.update.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
+{% raw %}
           token: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}
           commit-message: "Update Goyo theme to latest version"
           title: "Goyo 테마 업데이트"
           body: |
             이 PR은 Goyo 테마를 최신 버전으로 업데이트합니다.
 
+{% raw %}
             **변경 사항:** ${{ steps.update.outputs.old_commit }} → ${{ steps.update.outputs.new_commit }}
+{% endraw %}
 
             새로운 기능에 대한 자세한 내용은 [Goyo 변경 로그](https://github.com/hahwul/goyo/releases)를 참조하세요.
 

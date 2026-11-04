@@ -1,0 +1,29 @@
+{% component get_theme_color(config) %}
+{# Theme configuration with backward compatibility #}
+{# Priority: theme.dark_brightness/light_brightness (new per-theme) > theme.brightness (common) > brightness (legacy) #}
+{% if config.extra.theme is defined %}
+    {%- set colorset = config.extra.theme.colorset | default(value=config.extra.default_colorset | default(value='dark')) -%}
+    {%- set common_brightness = config.extra.theme.brightness | default(value=config.extra.brightness | default(value='normal')) -%}
+    {%- set dark_brightness = config.extra.theme.dark_brightness | default(value=common_brightness) -%}
+    {%- set light_brightness = config.extra.theme.light_brightness | default(value=common_brightness) -%}
+{% else %}
+    {%- set colorset = config.extra.default_colorset | default(value='dark') -%}
+    {%- set dark_brightness = config.extra.brightness | default(value='normal') -%}
+    {%- set light_brightness = config.extra.brightness | default(value='normal') -%}
+{% endif %}
+{%- if colorset == "dark" and dark_brightness == "darker" -%}
+#000000
+{%- elif colorset == "dark" and dark_brightness == "lighter" -%}
+#1e293b
+{%- elif colorset == "dark" -%}
+#0f172a
+{%- elif colorset == "light" and light_brightness == "darker" -%}
+#e2e8f0
+{%- elif colorset == "light" and light_brightness == "lighter" -%}
+#ffffff
+{%- elif colorset == "light" -%}
+#ffffff
+{%- else -%}
+#0f172a
+{%- endif -%}
+{% endcomponent %}

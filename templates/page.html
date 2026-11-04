@@ -1,17 +1,4 @@
 {% extends "index.html" %}
-{% import "macros/utils.html" as utils %}
-
-{% set config_file = load_data(path="/config.toml", format="toml", required=false) %}
-{% if not config_file %}
-    {% set config_file = load_data(path="/config.yaml", format="yaml", required=false) %}
-{% endif %}
-{% if not config_file %}
-    {% set config_file = load_data(path="/config.yml", format="yaml", required=false) %}
-{% endif %}
-
-{% block header %}
-    {{ macros_header::header(config=config, lang=lang, page=page) }}
-{% endblock header %}
 
 {% block content %}
     <div class="mb-12 pb-4 border-b border-gray-500/15">
@@ -33,7 +20,7 @@
 
     <div class="errata mt-12 pt-6">
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-            <span class="text-warning">⚠</span> {{ utils::trans_or_default(key="errata_section", default="Errata & Updates", lang=lang, config=config, config_file=config_file) }}
+            <span class="text-warning">⚠</span> {{< trans_or_default key="errata_section" default="Errata & Updates" lang={lang} config={config} config_file={config_file} />}}
         </h2>
 
         <div class="flex flex-col gap-4">
@@ -142,7 +129,7 @@
                                 data-issue-and-typo-alert-light="{{ alert_light }}"
                                 data-issue-and-typo-alert-dark="{{ alert_dark }}"
                         >
-                            {{ utils::trans_or_default(key="found_error_alert", default="Found an error or it needs a clarification?", lang=lang, config=config, config_file=config_file) }}
+                            {{< trans_or_default key="found_error_alert" default="Found an error or it needs a clarification?" lang={lang} config={config} config_file={config_file} />}}
                         </span>
                         <a href="{{ config.extra.issue_url }}"
                         target="_blank"
@@ -151,12 +138,12 @@
                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                         </svg>
-                            {{ utils::trans_or_default(key="open_issue", default="Open an issue on GitHub.", lang=lang, config=config, config_file=config_file) }}
+                            {{< trans_or_default key="open_issue" default="Open an issue on GitHub." lang={lang} config={config} config_file={config_file} />}}
                         </a>
                     </div>
 
                     <div class="text-sm text-base-content/60 italic mb-4 text-center">
-                        {{ utils::trans_or_default(key="attribution", default="Substantiated corrections will be incorporated with attribution.", lang=lang, config=config, config_file=config_file) }}
+                        {{< trans_or_default key="attribution" default="Substantiated corrections will be incorporated with attribution." lang={lang} config={config} config_file={config_file} />}}
                     </div>
                 </div>
 
@@ -167,7 +154,7 @@
                             data-issue-and-typo-alert-light="{{ alert_light }}"
                             data-issue-and-typo-alert-dark="{{ alert_dark }}"
                     >
-                        {{ utils::trans_or_default(key="found_typo_alert", default="Found a typo?", lang=lang, config=config, config_file=config_file) }}
+                        {{< trans_or_default key="found_typo_alert" default="Found a typo?" lang={lang} config={config} config_file={config_file} />}}
                     </span>
 
                     <a href="{{ config.extra.edit_url }}/content/{{ page.relative_path }}"
@@ -178,7 +165,7 @@
                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                         </svg>
-                        {{ utils::trans_or_default(key="fork_and_pr", default="Fork, modify and open a PR.", lang=lang, config=config, config_file=config_file) }}
+                        {{< trans_or_default key="fork_and_pr" default="Fork, modify and open a PR." lang={lang} config={config} config_file={config_file} />}}
                     </a>
                 </div>
             </div>
@@ -190,7 +177,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                     </svg>
-                    <span>{{ utils::trans_or_default(key="edit_page", default="Edit this page", lang=lang, config=config, config_file=config_file) }}</span>
+                    <span>{{< trans_or_default key="edit_page" default="Edit this page" lang={lang} config={config} config_file={config_file} />}}</span>
                 </a>
             </div>
         </div>
@@ -213,7 +200,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                 </svg>
-                <span>{{ utils::trans_or_default(key="copy_url_msg", default="Copy URL", lang=lang, config=config, config_file=config_file) }}</span>
+                <span>{{< trans_or_default key="copy_url_msg" default="Copy URL" lang={lang} config={config} config_file={config_file} />}}</span>
             </button>
             {% endif %}
             {% if enable_share_x and page.permalink and page.title %}
@@ -221,7 +208,7 @@
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                 </svg>
-                <span>{{ utils::trans_or_default(key="share_on_x", default="Share on X", lang=lang, config=config, config_file=config_file) }}</span>
+                <span>{{< trans_or_default key="share_on_x" default="Share on X" lang={lang} config={config} config_file={config_file} />}}</span>
             </a>
             {% endif %}
         </div>
@@ -239,7 +226,7 @@
                     <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
-                    <span class="nav-button-label">{{ utils::trans_or_default(key="back_to", default="Back to", lang=lang, config=config, config_file=config_file) }}</span>
+                    <span class="nav-button-label">{{< trans_or_default key="back_to" default="Back to" lang={lang} config={config} config_file={config_file} />}}</span>
                 </div>
                 <div class="nav-button-title">{{ page.smaller.title }}</div>
             </div>
@@ -252,7 +239,7 @@
                     <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
-                    <span class="nav-button-label">{{ utils::trans_or_default(key="back_to", default="Back to", lang=lang, config=config, config_file=config_file) }}</span>
+                    <span class="nav-button-label">{{< trans_or_default key="back_to" default="Back to" lang={lang} config={config} config_file={config_file} />}}</span>
                 </div>
                 <div class="nav-button-title">{{ parent.title }}</div>
             </div>
@@ -268,7 +255,7 @@
                     <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
-                    <span class="nav-button-label">{{ utils::trans_or_default(key="next", default="Next", lang=lang, config=config, config_file=config_file) }}</span>
+                    <span class="nav-button-label">{{< trans_or_default key="next" default="Next" lang={lang} config={config} config_file={config_file} />}}</span>
                 </div>
                 <div class="nav-button-title">{{ page.higher.title }}</div>
             </div>
@@ -285,7 +272,7 @@
                             <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
-                            <span class="nav-button-label">{{ utils::trans_or_default(key="next", default="Next", lang=lang, config=config, config_file=config_file) }}</span>
+                            <span class="nav-button-label">{{< trans_or_default key="next" default="Next" lang={lang} config={config} config_file={config_file} />}}</span>
                         </div>
                         <div class="nav-button-title">{{ subsection.title }}</div>
                     </div>

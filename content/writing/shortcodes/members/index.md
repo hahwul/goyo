@@ -9,11 +9,11 @@ The `members` shortcode displays team members or contributors in a visually appe
 ## Usage
 
 ```jinja
-{%/* members() */%}
+{% raw %}{% <members> %}{% endraw %}
 Name | Role | Image Path | Description
 Alice Johnson | Frontend Developer | ./member1.svg | Passionate about **responsive** web apps
 Bob Wilson | Backend Engineer | ./member2.svg | Expert in *scalable* architecture
-{%/* end */%}
+{% raw %}{% </members> %}{% endraw %}
 ```
 
 ## Parameters
@@ -43,88 +43,88 @@ Name | Role | Image Path | Description
 Display members in a 3-column grid with cards:
 
 ```jinja
-{%/* members() */%}
+{% raw %}{% <members> %}{% endraw %}
 Alice Johnson | Frontend Developer | ./member1.svg | Passionate about creating **responsive** and accessible web applications.
 Bob Wilson | Backend Engineer | ./member2.svg | Specializes in *scalable* microservices architecture.
 Carol Davis | DevOps Lead | ./member3.svg | Automates everything with CI/CD pipelines.
-{%/* end */%}
+{% raw %}{% </members> %}{% endraw %}
 ```
 
-{% members() %}
+{% <members> %}
 Alice Johnson | Frontend Developer | ./member1.svg | Passionate about creating **responsive** and accessible web applications.
 Bob Wilson | Backend Engineer | ./member2.svg | Specializes in *scalable* microservices architecture.
 Carol Davis | DevOps Lead | ./member3.svg | Automates everything with CI/CD pipelines.
-{% end %}
+{% </members> %}
 
 ### Two Column Grid
 
 Display members in a 2-column layout:
 
 ```jinja
-{%/* members(cols=2) */%}
+{% raw %}{% <members cols={2}> %}{% endraw %}
 Alice Johnson | Frontend Developer | ./member1.svg | Passionate about creating **responsive** and accessible web applications.
 Bob Wilson | Backend Engineer | ./member2.svg | Specializes in *scalable* microservices architecture.
-{%/* end */%}
+{% raw %}{% </members> %}{% endraw %}
 ```
 
-{% members(cols=2) %}
+{% <members cols={2}> %}
 Alice Johnson | Frontend Developer | ./member1.svg | Passionate about creating **responsive** and accessible web applications.
 Bob Wilson | Backend Engineer | ./member2.svg | Specializes in *scalable* microservices architecture.
-{% end %}
+{% </members> %}
 
 ### Line Layout
 
 Display members as horizontal cards (one per row):
 
 ```jinja
-{%/* members(layout="line") */%}
+{% raw %}{% <members layout="line"> %}{% endraw %}
 Alice Johnson | Frontend Developer | ./member1.svg | Passionate about creating **responsive** and accessible web applications. With over 5 years of experience, Alice has worked on numerous projects ranging from small startups to large enterprises.
 Bob Wilson | Backend Engineer | ./member2.svg | Specializes in *scalable* microservices architecture. Bob has deep expertise in distributed systems and has built high-performance APIs handling millions of requests.
 Carol Davis | DevOps Lead | ./member3.svg | Automates everything with CI/CD pipelines. Carol ensures smooth deployments and maintains infrastructure across multiple cloud providers.
-{%/* end */%}
+{% raw %}{% </members> %}{% endraw %}
 ```
 
-{% members(layout="line") %}
+{% <members layout="line"> %}
 Alice Johnson | Frontend Developer | ./member1.svg | Passionate about creating **responsive** and accessible web applications. With over 5 years of experience, Alice has worked on numerous projects ranging from small startups to large enterprises.
 Bob Wilson | Backend Engineer | ./member2.svg | Specializes in *scalable* microservices architecture. Bob has deep expertise in distributed systems and has built high-performance APIs handling millions of requests.
 Carol Davis | DevOps Lead | ./member3.svg | Automates everything with CI/CD pipelines. Carol ensures smooth deployments and maintains infrastructure across multiple cloud providers.
-{% end %}
+{% </members> %}
 
 ### Without Images
 
 Members without an image path will display a default avatar placeholder:
 
 ```jinja
-{%/* members() */%}
+{% raw %}{% <members> %}{% endraw %}
 David Lee | Security Specialist | | Ensures application security and compliance.
 Emma Brown | Technical Writer | | Creates clear and comprehensive documentation.
-{%/* end */%}
+{% raw %}{% </members> %}{% endraw %}
 ```
 
-{% members() %}
+{% <members> %}
 David Lee | Security Specialist | | Ensures application security and compliance.
 Emma Brown | Technical Writer | | Creates clear and comprehensive documentation.
-{% end %}
+{% </members> %}
 
 ### Minimal Information
 
 You can display members with just names:
 
 ```jinja
-{%/* members(cols=4) */%}
+{% raw %}{% <members cols={4}> %}{% endraw %}
 Alex Thompson
 Sarah Miller
 Michael Chen
 Jessica Garcia
-{%/* end */%}
+{% raw %}{% </members> %}{% endraw %}
 ```
 
-{% members(cols=4) %}
+{% <members cols={4}> %}
 Alex Thompson
 Sarah Miller
 Michael Chen
 Jessica Garcia
-{% end %}
+{% </members> %}
 
 ## Design Features
 
