@@ -216,7 +216,7 @@ Key configuration sections:
 
 ### GitHub Actions
 - Automatic deployment configured in `.github/workflows/zola.yml`
-- Uses `shalzz/zola-deploy-action@v0.22.0` for deployment
+- Uses `shalzz/zola-deploy-action@v0.23.6` for deployment (bundles Zola 0.23.6)
 - Adds CNAME file for custom domain: goyo.hahwul.com
 - Builds and deploys to GitHub Pages on push to main branch
 - Target site: https://goyo.hahwul.com

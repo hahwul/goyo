@@ -193,7 +193,7 @@ Zola 0.23 moved templating from Tera v1 to Tera v2. This theme requires 0.23.6 o
 - Template macros became components under `templates/components/`; every `{% import %}` is gone. Sites overriding theme templates must migrate their own files the same way.
 - Shortcodes are components now: inline calls use `{{< name args />}}` and paired calls use `{% <name args> %}body{% </name> %}`. The old `{{ name(args) }}` forms no longer parse.
 - Component bodies must stay flush-left: shortcode output flows through markdown in 0.23, and indented output turns into code blocks.
-- Components cannot see template globals (page, section, lang, config_file) unless declared; sites with custom components must pass them explicitly.
+- Components cannot see template globals (page, section, lang, config_file) unless declared; sites with custom components must pass them explicitly. The theme's `head`, `header`, `menu`, and `sidebar` components now take these as required params, so a custom `index.html` must pass them at every call site or rendering fails.
 
 ## Contributing
 

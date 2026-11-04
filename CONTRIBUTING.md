@@ -18,7 +18,7 @@ There are many ways you can contribute to Goyo:
 
 Before you start contributing, make sure you have the following installed:
 
-- **Zola**: v0.21.0 or later ([Installation Guide](https://www.getzola.org/documentation/getting-started/installation/))
+- **Zola**: v0.23.6 or later (Tera 2) ([Installation Guide](https://www.getzola.org/documentation/getting-started/installation/))
 - **Just**: Task runner for build automation ([Installation Guide](https://github.com/casey/just))
 - **Git**: For version control
 
