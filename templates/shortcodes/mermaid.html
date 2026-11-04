@@ -1,3 +1,5 @@
+{%- component mermaid() -%}
 <pre class="mermaid border border-gray-500/15">
- {{ body }}
+{{ body | escape }}
 </pre>
+{%- endcomponent mermaid -%}

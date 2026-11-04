@@ -1,4 +1,4 @@
-{% macro search(config) %}
+{% component search(config) %}
 {% if config.build_search_index %}
 <!-- Search Modal -->
 <input type="checkbox" id="search-modal" class="modal-toggle" aria-hidden="true" tabindex="-1"/>
@@ -40,4 +40,4 @@
     </div>
 </div>
 {% endif %}
-{% endmacro search %}
+{% endcomponent %}

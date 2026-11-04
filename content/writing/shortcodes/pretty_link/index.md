@@ -8,34 +8,34 @@ Create beautiful link cards that display URLs with titles, descriptions, and opt
 
 ## Basic Usage
 
-{{ pretty_link(url="https://github.com/hahwul/goyo") }}
+{{< pretty_link url="https://github.com/hahwul/goyo" />}}
 
 ```jinja2
-{{/* pretty_link(url="https://github.com/hahwul/goyo") */}}
+{% raw %}{{< pretty_link url="https://github.com/hahwul/goyo" />}}{% endraw %}
 ```
 
 ## With Title
 
-{{ pretty_link(url="https://github.com/hahwul/goyo", title="Goyo Theme") }}
+{{< pretty_link url="https://github.com/hahwul/goyo" title="Goyo Theme" />}}
 
 ```jinja2
-{{/* pretty_link(url="https://github.com/hahwul/goyo", title="Goyo Theme") */}}
+{% raw %}{{< pretty_link url="https://github.com/hahwul/goyo" title="Goyo Theme" />}}{% endraw %}
 ```
 
 ## With Title and Description
 
-{{ pretty_link(url="https://github.com/hahwul/goyo", title="Goyo Theme", description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene.") }}
+{{< pretty_link url="https://github.com/hahwul/goyo" title="Goyo Theme" description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene." />}}
 
 ```jinja2
-{{/* pretty_link(url="https://github.com/hahwul/goyo", title="Goyo Theme", description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene.") */}}
+{% raw %}{{< pretty_link url="https://github.com/hahwul/goyo" title="Goyo Theme" description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene." />}}{% endraw %}
 ```
 
 ## With Image
 
-{{ pretty_link(url="https://github.com/hahwul/goyo", title="Goyo Theme", description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene.", image="/images/goyo.png") }}
+{{< pretty_link url="https://github.com/hahwul/goyo" title="Goyo Theme" description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene." image="/images/goyo.png" />}}
 
 ```jinja2
-{{/* pretty_link(url="https://github.com/hahwul/goyo", title="Goyo Theme", description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene.", image="/images/goyo.png") */}}
+{% raw %}{{< pretty_link url="https://github.com/hahwul/goyo" title="Goyo Theme" description="A clean and minimalist Zola theme inspired by the Korean word for calm and serene." image="/images/goyo.png" />}}{% endraw %}
 ```
 
 ## Parameters

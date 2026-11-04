@@ -1,7 +1,4 @@
-{% import "macros/footer.html" as macros_footer %}
-{% import "macros/desktopMenu.html" as macros_desktopMenu %}
-{% import "macros/utils.html" as utils %}
-{% macro sidebar(config, lang, current_path, section, config_file=false) %}
+{% component sidebar(config, lang, current_path, section, config_file, page) %}
 {# Sidebar configuration with backward compatibility #}
 {# Priority: sidebar.* (new) > sidebar_expand_depth (legacy) #}
 {% if config.extra.sidebar is defined %}
@@ -10,7 +7,7 @@
     {% if config.extra.sidebar_expand_depth is defined %}{% set sidebar_expand_depth = config.extra.sidebar_expand_depth | int %}{% else %}{% set sidebar_expand_depth = 0 %}{% endif %}
 {% endif %}
 {# Normalize current_path for comparison by removing language prefix #}
-{% if lang != config.default_language and current_path is starting_with("/" ~ lang ~ "/") %}
+{% if lang != config.default_language and current_path is starting_with(pat="/" ~ lang ~ "/") %}
     {% set normalized_current_path = current_path | replace(from="/" ~ lang, to="", count=1) %}
 {% else %}
     {% set normalized_current_path = current_path %}
@@ -43,7 +40,7 @@
             <li {% if normalized_current_path == page.path %}class="rounded bg-gray-500/15"{% endif %}><a class="hover:no-underline" href="{{ get_url(path=page.path, lang=lang) | safe }}">{{ page.title }}</a></li>
         {% endfor %}
         {% for s1_path in index.subsections %}
-            {% set s1 = get_section(path=s1_path) %}{% set is_active1 = normalized_current_path is starting_with(s1.path) %}
+            {% set s1 = get_section(path=s1_path) %}{% set is_active1 = normalized_current_path is starting_with(pat=s1.path) %}
             <li>
                 {% if s1.subsections or s1.pages %}
                     <details {% if is_active1 or sidebar_expand_depth >= 1 %}open{% endif %}>
@@ -54,7 +51,7 @@
                                 <li {% if normalized_current_path == page.path %}class="rounded bg-gray-500/15"{% endif %}><a class="hover:no-underline" href="{{ get_url(path=page.path, lang=lang) | safe }}">{{ page.title }}</a></li>
                             {% endfor %}
                             {% for s2_path in s1.subsections %}
-                                {% set s2 = get_section(path=s2_path) %}{% set is_active2 = normalized_current_path is starting_with(s2.path) %}
+                                {% set s2 = get_section(path=s2_path) %}{% set is_active2 = normalized_current_path is starting_with(pat=s2.path) %}
                                 <li>
                                     {% if s2.subsections or s2.pages %}
                                         <details {% if is_active2 or sidebar_expand_depth >= 2 %}open{% endif %}>
@@ -65,7 +62,7 @@
                                                     <li {% if normalized_current_path == page.path %}class="rounded bg-gray-500/15"{% endif %}><a class="hover:no-underline" href="{{ get_url(path=page.path, lang=lang) | safe }}">{{ page.title }}</a></li>
                                                 {% endfor %}
                                                 {% for s3_path in s2.subsections %}
-                                                    {% set s3 = get_section(path=s3_path) %}{% set is_active3 = normalized_current_path is starting_with(s3.path) %}
+                                                    {% set s3 = get_section(path=s3_path) %}{% set is_active3 = normalized_current_path is starting_with(pat=s3.path) %}
                                                     <li>
                                                         {% if s3.subsections or s3.pages %}
                                                             <details {% if is_active3 or sidebar_expand_depth >= 3 %}open{% endif %}>
@@ -76,7 +73,7 @@
                                                                         <li {% if normalized_current_path == page.path %}class="rounded bg-gray-500/15"{% endif %}><a class="hover:no-underline" href="{{ get_url(path=page.path, lang=lang) | safe }}">{{ page.title }}</a></li>
                                                                     {% endfor %}
                                                                     {% for s4_path in s3.subsections %}
-                                                                        {% set s4 = get_section(path=s4_path) %}{% set is_active4 = normalized_current_path is starting_with(s4.path) %}
+                                                                        {% set s4 = get_section(path=s4_path) %}{% set is_active4 = normalized_current_path is starting_with(pat=s4.path) %}
                                                                         <li>
                                                                             {% if s4.subsections or s4.pages %}
                                                                                 <details {% if is_active4 or sidebar_expand_depth >= 4 %}open{% endif %}>
@@ -118,7 +115,7 @@
                href="{{ get_url(path='feeds/', lang=lang) | safe }}">
                 {# Optional Icon: RSS Symbol #}
                 <svg class="inline-block w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                {{ utils::trans_or_default(key="sidebar_feeds", default="Feeds", lang=lang, config=config, config_file=config_file) }}
+                {{< trans_or_default key="sidebar_feeds" default="Feeds" lang={lang} config={config} config_file={config_file} />}}
             </a>
         </li>
         {% endif %}
@@ -128,10 +125,10 @@
     {% set display_desktop_menu = config.extra.sidebar.enable_desktop_menu | default(value=false) %}
     {% if display_desktop_menu %}
     <div class="flex w-full px-5 lg:hidden">
-        {{ macros_desktopMenu::menu(config=config, lang=lang) }}
+        {{< menu config={config} lang={lang} page={page} section={section} />}}
     </div>
     {% endif %}
 
-    {{ macros_footer::footer(config=config) }}
+    {{< footer config={config} />}}
 </div>
-{% endmacro sidebar %}
+{% endcomponent %}

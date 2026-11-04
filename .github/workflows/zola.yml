@@ -17,6 +17,6 @@ jobs:
         run: echo "goyo.hahwul.com" > static/CNAME
 
       - name: Build and deploy
-        uses: shalzz/zola-deploy-action@v0.22.0
+        uses: shalzz/zola-deploy-action@v0.23.6
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

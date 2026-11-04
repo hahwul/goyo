@@ -1,61 +1,4 @@
-{% import "macros/utils.html" as utils %}
-{% macro get_theme_color(config) %}
-{# Theme configuration with backward compatibility #}
-{# Priority: theme.dark_brightness/light_brightness (new per-theme) > theme.brightness (common) > brightness (legacy) #}
-{% if config.extra.theme is defined %}
-    {%- set colorset = config.extra.theme.colorset | default(value=config.extra.default_colorset | default(value='dark')) -%}
-    {%- set common_brightness = config.extra.theme.brightness | default(value=config.extra.brightness | default(value='normal')) -%}
-    {%- set dark_brightness = config.extra.theme.dark_brightness | default(value=common_brightness) -%}
-    {%- set light_brightness = config.extra.theme.light_brightness | default(value=common_brightness) -%}
-{% else %}
-    {%- set colorset = config.extra.default_colorset | default(value='dark') -%}
-    {%- set dark_brightness = config.extra.brightness | default(value='normal') -%}
-    {%- set light_brightness = config.extra.brightness | default(value='normal') -%}
-{% endif %}
-{%- if colorset == "dark" and dark_brightness == "darker" -%}
-#000000
-{%- elif colorset == "dark" and dark_brightness == "lighter" -%}
-#1e293b
-{%- elif colorset == "dark" -%}
-#0f172a
-{%- elif colorset == "light" and light_brightness == "darker" -%}
-#e2e8f0
-{%- elif colorset == "light" and light_brightness == "lighter" -%}
-#ffffff
-{%- elif colorset == "light" -%}
-#ffffff
-{%- else -%}
-#0f172a
-{%- endif -%}
-{% endmacro get_theme_color %}
-
-{% macro html_tag(config, lang) %}
-{%- set theme_color = self::get_theme_color(config=config) | trim -%}
-{%- set is_rtl = false -%}
-{%- if config.extra.lang is defined and config.extra.lang.rtl is defined -%}
-    {%- if lang in config.extra.lang.rtl -%}
-        {%- set is_rtl = true -%}
-    {%- endif -%}
-{%- endif -%}
-{# Determine default theme based on colorset and configured theme names #}
-{%- if config.extra.theme is defined -%}
-    {%- set colorset = config.extra.theme.colorset | default(value='dark') -%}
-    {%- set default_theme_dark = config.extra.theme.default_theme_dark | default(value='goyo-dark') -%}
-    {%- set default_theme_light = config.extra.theme.default_theme_light | default(value='goyo-light') -%}
-{%- else -%}
-    {%- set colorset = config.extra.default_colorset | default(value='dark') -%}
-    {%- set default_theme_dark = 'goyo-dark' -%}
-    {%- set default_theme_light = 'goyo-light' -%}
-{%- endif -%}
-{%- if colorset == "dark" -%}
-    {%- set default_theme = default_theme_dark -%}
-{%- else -%}
-    {%- set default_theme = default_theme_light -%}
-{%- endif -%}
-<html lang="{{ lang | default(value='en') }}"{% if is_rtl %} dir="rtl"{% endif %} data-theme="{{ default_theme }}" style="background-color: {{ theme_color }};">
-{% endmacro html_tag %}
-
-{% macro head(config, page, section, current_url, config_file=false) %}
+{% component head(config, page, section, current_url, config_file, lang) %}
     {# current_url이 정의되어 있지 않으면 기본값으로 설정 #}
     {% if current_url is not defined or current_url == "" %}
         {% set current_url = config.base_url %}
@@ -150,7 +93,7 @@
         {% endif %}
         {% if font_enabled and font_path != '' %}
             {# Custom font configuration #}
-            {% if font_path is starting_with("http://") or font_path is starting_with("https://") %}
+            {% if font_path is starting_with(pat="http://") or font_path is starting_with(pat="https://") %}
                 {# Remote font URL - use @import #}
                 @import url('{{ font_path | safe }}');
             {% else %}
@@ -239,7 +182,7 @@
       " />
       <meta property="og:url" content="{{ current_url | safe }}" />
       <meta property="og:type" content="website" />
-      {% if page.extra.thumbnail %}
+      {% if page and page.extra.thumbnail %}
       <meta property="og:image" content="{{ get_url(path=page.extra.thumbnail) | safe }}" />
       {% elif config.extra.default_thumbnail %}
       <meta property="og:image" content="{{ get_url(path=config.extra.default_thumbnail) | safe }}" />
@@ -271,14 +214,14 @@
       {% if twitter_creator != "" %}
       <meta name="twitter:creator" content="{{ twitter_creator }}" />
       {% endif %}
-      {% if page.extra.thumbnail %}
+      {% if page and page.extra.thumbnail %}
       <meta name="twitter:image" content="{{ get_url(path=page.extra.thumbnail) | safe }}" />
       {% elif config.extra.default_thumbnail %}
       <meta name="twitter:image" content="{{ get_url(path=config.extra.default_thumbnail) | safe }}" />
       {% endif %}
 
       <!-- Browser address bar color -->
-      <meta name="theme-color" content="{{ self::get_theme_color(config=config) | trim }}">
+      <meta name="theme-color" content="{{< get_theme_color config={config} /> | trim}}">
 
       <!-- Favicon -->
       {# Favicon configuration #}
@@ -320,9 +263,9 @@
             defaultThemeDark: "{{ config.extra.theme.default_theme_dark | default(value="goyo-dark") }}",
             defaultThemeLight: "{{ config.extra.theme.default_theme_light | default(value="goyo-light") }}",
             i18n: {
-                copy: {{ utils::trans_or_default(key="copy", default="Copy", lang=lang, config=config, config_file=config_file) | json_encode | safe }},
-                copied: {{ utils::trans_or_default(key="copied", default="Copied!", lang=lang, config=config, config_file=config_file) | json_encode | safe }},
-                failed_to_copy: {{ utils::trans_or_default(key="failed_to_copy", default="Failed to copy!", lang=lang, config=config, config_file=config_file) | json_encode | safe }},
+                copy: {{< trans_or_default key="copy" default="Copy" lang={lang} config={config} config_file={config_file} /> | json_encode | safe}},
+                copied: {{< trans_or_default key="copied" default="Copied!" lang={lang} config={config} config_file={config_file} /> | json_encode | safe}},
+                failed_to_copy: {{< trans_or_default key="failed_to_copy" default="Failed to copy!" lang={lang} config={config} config_file={config_file} /> | json_encode | safe}},
             },
         };
     </script>
@@ -396,4 +339,4 @@
             }
         });
     </script>
-{% endmacro head %}
+{% endcomponent %}

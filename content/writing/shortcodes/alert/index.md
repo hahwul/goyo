@@ -8,50 +8,50 @@ Display different types of alert messages to highlight important information, st
 
 ## Info
 
-{% alert_info() %}
+{% <alert_info> %}
   Info alert
-{% end %}
+{% </alert_info> %}
 
 ```jinja2
-{%/* alert_info() */%}
+{% raw %}{% <alert_info> %}{% endraw %}
   Info alert
-{%/* end */%}
+{% raw %}{% </alert_info> %}{% endraw %}
 ```
 
 ## Success
 
-{% alert_success() %}
+{% <alert_success> %}
   Success alert
-{% end %}
+{% </alert_success> %}
 
 ```jinja2
-{%/* alert_success() */%}
+{% raw %}{% <alert_success> %}{% endraw %}
   Success alert
-{%/* end */%}
+{% raw %}{% </alert_success> %}{% endraw %}
 ```
 
 ## Warning
 
-{% alert_warning() %}
+{% <alert_warning> %}
   Warning alert
-{% end %}
+{% </alert_warning> %}
 
 ```jinja2
-{%/* alert_warning() */%}
+{% raw %}{% <alert_warning> %}{% endraw %}
   Warning alert
-{%/* end */%}
+{% raw %}{% </alert_warning> %}{% endraw %}
 ```
 
 ## Error
 
-{% alert_error() %}
+{% <alert_error> %}
   Error alert
-{% end %}
+{% </alert_error> %}
 
 ```jinja2
-{%/* alert_error() */%}
+{% raw %}{% <alert_error> %}{% endraw %}
   Error alert
-{%/* end */%}
+{% raw %}{% </alert_error> %}{% endraw %}
 ```
 
 ## Styles
@@ -63,60 +63,60 @@ You can customize the alert style using the `style` parameter. Available styles 
 
 ### Soft (default)
 
-{% alert_info(style="soft") %}
+{% <alert_info style="soft"> %}
   Info alert with soft style
-{% end %}
+{% </alert_info> %}
 
 ```jinja2
-{%/* alert_info(style="soft") */%}
+{% raw %}{% <alert_info style="soft"> %}{% endraw %}
   Info alert with soft style
-{%/* end */%}
+{% raw %}{% </alert_info> %}{% endraw %}
 ```
 
 ### Outline
 
-{% alert_info(style="outline") %}
+{% <alert_info style="outline"> %}
   Info alert with outline style
-{% end %}
+{% </alert_info> %}
 
-{% alert_success(style="outline") %}
+{% <alert_success style="outline"> %}
   Success alert with outline style
-{% end %}
+{% </alert_success> %}
 
-{% alert_warning(style="outline") %}
+{% <alert_warning style="outline"> %}
   Warning alert with outline style
-{% end %}
+{% </alert_warning> %}
 
-{% alert_error(style="outline") %}
+{% <alert_error style="outline"> %}
   Error alert with outline style
-{% end %}
+{% </alert_error> %}
 
 ```jinja2
-{%/* alert_info(style="outline") */%}
+{% raw %}{% <alert_info style="outline"> %}{% endraw %}
   Info alert with outline style
-{%/* end */%}
+{% raw %}{% </alert_info> %}{% endraw %}
 ```
 
 ### Dash
 
-{% alert_info(style="dash") %}
+{% <alert_info style="dash"> %}
   Info alert with dash style
-{% end %}
+{% </alert_info> %}
 
-{% alert_success(style="dash") %}
+{% <alert_success style="dash"> %}
   Success alert with dash style
-{% end %}
+{% </alert_success> %}
 
-{% alert_warning(style="dash") %}
+{% <alert_warning style="dash"> %}
   Warning alert with dash style
-{% end %}
+{% </alert_warning> %}
 
-{% alert_error(style="dash") %}
+{% <alert_error style="dash"> %}
   Error alert with dash style
-{% end %}
+{% </alert_error> %}
 
 ```jinja2
-{%/* alert_info(style="dash") */%}
+{% raw %}{% <alert_info style="dash"> %}{% endraw %}
   Info alert with dash style
-{%/* end */%}
+{% raw %}{% </alert_info> %}{% endraw %}
 ```

@@ -6,14 +6,14 @@ taxonomies = { tags = ["shortcodes", "gallery", "images"], categories = ["shortc
 
 `gallery` 숏코드는 현재 페이지 디렉토리의 모든 이미지 자산으로부터 반응형 이미지 갤러리를 생성합니다. JPG, JPEG, PNG, GIF, WebP 이미지를 자동으로 감지하고 표시합니다.
 
-{{ gallery() }}
+{{< gallery />}}
 
 ## 사용법
 
 페이지의 `index.md` 파일과 같은 디렉토리에 이미지 파일(`.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`)을 배치한 후 숏코드를 사용합니다:
 
 ```jinja
-{{/* gallery() */}}
+{% raw %}{{< gallery />}}{% endraw %}
 ```
 
 ## 파라미터
@@ -28,34 +28,34 @@ taxonomies = { tags = ["shortcodes", "gallery", "images"], categories = ["shortc
 ### 기본 사용법
 
 ```jinja
-{{/* gallery() */}}
+{% raw %}{{< gallery />}}{% endraw %}
 ```
 
-{{ gallery() }}
+{{< gallery />}}
 
 ### 커스텀 열 수
 
 ```jinja
-{{/* gallery(cols=4) */}}
+{% raw %}{{< gallery cols={4} />}}{% endraw %}
 ```
 
-{{ gallery(cols=4) }}
+{{< gallery cols={4} />}}
 
 ### 이미지 이름 숨기기
 
 ```jinja
-{{/* gallery(show_name=false) */}}
+{% raw %}{{< gallery show_name={false} />}}{% endraw %}
 ```
 
-{{ gallery(show_name=false) }}
+{{< gallery show_name={false} />}}
 
 ### 옵션 조합
 
 ```jinja
-{{/* gallery(cols=2, show_name=false) */}}
+{% raw %}{{< gallery cols={2} show_name={false} />}}{% endraw %}
 ```
 
-{{ gallery(cols=2, show_name=false) }}
+{{< gallery cols={2} show_name={false} />}}
 
 ## 기능
 

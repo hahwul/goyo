@@ -9,7 +9,7 @@ taxonomies = { tags = ["shortcodes", "asciinema", "terminal"], categories = ["sh
 - `asciinema`: Embeds an Asciinema recording. It takes `id` and optionally `cols` as parameters.
 
 ```jinja
-{{/* asciinema(id="393708") */}}
+{% raw %}{{< asciinema id="393708" />}}{% endraw %}
 ```
 
-{{ asciinema(id="393708") }}
+{{< asciinema id="393708" />}}

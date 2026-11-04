@@ -1,3 +1,5 @@
+{%- component alert_info(style = "soft") -%}
 <div role="alert" class="alert alert-info alert-{{ style | default(value="soft") }}">
-  <span>{{ body | safe }}</span>
+<span>{{ body | safe }}</span>
 </div>
+{%- endcomponent alert_info -%}
