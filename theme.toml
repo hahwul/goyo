@@ -4,7 +4,7 @@ tags = ["documentation", "Multilingual", "Responsive", "minimal"]
 license = "MIT"
 homepage = "https://github.com/hahwul/goyo"
 # The minimum version of Zola required
-min_version = "0.17.0"
+min_version = "0.23.6"
 # An optional live demo URL
 demo = "https://goyo.hahwul.com"
 

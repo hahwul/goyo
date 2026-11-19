@@ -1,0 +1,25 @@
+{% component html_tag(config, lang) %}
+{%- set theme_color %}{{< get_theme_color config={config} />}}{%- endset -%}
+{%- set is_rtl = false -%}
+{%- if config.extra.lang is defined and config.extra.lang.rtl is defined -%}
+    {%- if lang in config.extra.lang.rtl -%}
+        {%- set is_rtl = true -%}
+    {%- endif -%}
+{%- endif -%}
+{# Determine default theme based on colorset and configured theme names #}
+{%- if config.extra.theme is defined -%}
+    {%- set colorset = config.extra.theme.colorset | default(value='dark') -%}
+    {%- set default_theme_dark = config.extra.theme.default_theme_dark | default(value='goyo-dark') -%}
+    {%- set default_theme_light = config.extra.theme.default_theme_light | default(value='goyo-light') -%}
+{%- else -%}
+    {%- set colorset = config.extra.default_colorset | default(value='dark') -%}
+    {%- set default_theme_dark = 'goyo-dark' -%}
+    {%- set default_theme_light = 'goyo-light' -%}
+{%- endif -%}
+{%- if colorset == "dark" -%}
+    {%- set default_theme = default_theme_dark -%}
+{%- else -%}
+    {%- set default_theme = default_theme_light -%}
+{%- endif -%}
+<html lang="{{ lang | default(value='en') }}"{% if is_rtl %} dir="rtl"{% endif %} data-theme="{{ default_theme }}" style="background-color: {{ theme_color | trim }};">
+{% endcomponent %}

@@ -28,9 +28,13 @@ jobs:
           # Target branch
           PAGES_BRANCH: gh-pages
           # Provide personal access token
+{% raw %}
           TOKEN: ${{ secrets.TOKEN }}
+{% endraw %}
           # Or if publishing to the same repo, use the automatic token
+{% raw %}
           #TOKEN: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}
 ```
 
 PAT가 필요한 경우 **설정 > 개발자 설정 > 개인 액세스 토큰**에서 발급 후 저장소 Secret에 `TOKEN`으로 추가합니다.

@@ -12,9 +12,9 @@ taxonomies = { tags = ["shortcodes", "browser", "ui"], categories = ["shortcodes
   - `content`: 브라우저 내부에 표시될 내용
 
 ```jinja
-{{/* browser(url="https://example.com", content="예제로 오신 것을 환영합니다!") */}}
+{% raw %}{{< browser url="https://example.com" content="예제로 오신 것을 환영합니다!" />}}{% endraw %}
 ```
 
-{{ browser(url="https://example.com", content="예제로 오신 것을 환영합니다!") }}
+{{< browser url="https://example.com" content="예제로 오신 것을 환영합니다!" />}}
 
 

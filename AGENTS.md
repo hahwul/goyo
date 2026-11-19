@@ -12,10 +12,10 @@ Install required tools in this exact order:
 ```bash
 # Install Zola (static site generator)
 cd /tmp
-wget https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz
-tar -xzf zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz
+wget https://github.com/getzola/zola/releases/download/v0.23.6/zola-v0.23.6-x86_64-unknown-linux-gnu.tar.gz
+tar -xzf zola-v0.23.6-x86_64-unknown-linux-gnu.tar.gz
 sudo mv zola /usr/local/bin/
-zola --version  # Should show: zola 0.21.0
+zola --version  # Should show: zola 0.23.6
 
 # Install Just (task runner)
 wget https://github.com/casey/just/releases/download/1.42.4/just-1.42.4-x86_64-unknown-linux-musl.tar.gz
@@ -131,7 +131,7 @@ After making any changes to the theme or content:
 │   ├── 404.html             # Error page template
 │   ├── taxonomy_list.html   # Taxonomy list template
 │   ├── taxonomy_single.html # Single taxonomy template
-│   ├── macros/              # Reusable template macros (head, header, footer, sidebar, toc, search, comments)
+│   ├── components/          # Reusable template components (head, header, footer, sidebar, toc, search, comments)
 │   └── shortcodes/          # Custom shortcodes (24 shortcodes: alert, badge, carousel, gallery, mermaid, youtube, etc.)
 ├── src/                     # Source files and build tools
 │   ├── main.css             # TailwindCSS source (includes DaisyUI plugins)
@@ -216,7 +216,7 @@ Key configuration sections:
 
 ### GitHub Actions
 - Automatic deployment configured in `.github/workflows/zola.yml`
-- Uses `shalzz/zola-deploy-action@v0.22.0` for deployment
+- Uses `shalzz/zola-deploy-action@v0.23.6` for deployment (bundles Zola 0.23.6)
 - Adds CNAME file for custom domain: goyo.hahwul.com
 - Builds and deploys to GitHub Pages on push to main branch
 - Target site: https://goyo.hahwul.com
@@ -240,17 +240,17 @@ Key configuration sections:
 ## Build Dependencies
 
 The project requires these exact versions:
-- **Zola**: v0.21.0 (static site generator)
+- **Zola**: v0.23.6+ (static site generator, Tera 2)
 - **Just**: v1.42.4+ (task runner) 
 - **TailwindCSS**: v4.x (downloaded binary, architecture-specific)
 - **DaisyUI**: v5.x (JavaScript libraries)
 
 All dependencies are downloaded and managed locally in the `src/` directory.
 
-## Template Macros (templates/macros/)
+## Components (templates/components/)
 
 Reusable template components:
-- `head.html` - HTML head section with meta tags, favicon, fonts
+- `head.html` - HTML head component with meta tags, favicon, fonts, theme bootstrap
 - `header.html` - Site header with navigation and theme toggle
 - `footer.html` - Site footer
 - `sidebar.html` - Documentation sidebar navigation

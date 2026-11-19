@@ -1,15 +1,17 @@
+{%- component chat_bubble(author = "", img = "", msg = "") -%}
 <div class="chat chat-start">
-  <div class="chat-image avatar">
-    <div class="w-16 rounded-full">
-      <img alt="{{ author | default(value='Author') }}" src="{{ img | default(value='/static/images/avatar-placeholder.png') }}" />
-    </div>
-  </div>
-  {% if author %}
-  <div class="chat-footer opacity-50">
-    {{ author }}
-  </div>
-  {% endif %}
-  <div class="chat-bubble">
-    {{ msg | markdown | safe }}
-  </div>
+<div class="chat-image avatar">
+<div class="w-16 rounded-full">
+<img alt="{{ author | default(value='Author') }}" src="{{ img | default(value='/static/images/avatar-placeholder.png') }}" />
 </div>
+</div>
+{% if author %}
+<div class="chat-footer opacity-50">
+{{ author }}
+</div>
+{% endif %}
+<div class="chat-bubble">
+{{ msg | markdown | safe }}
+</div>
+</div>
+{%- endcomponent chat_bubble -%}

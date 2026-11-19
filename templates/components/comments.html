@@ -1,4 +1,4 @@
-{% macro comments(config) %}
+{% component comments(config) %}
 {% if config.extra.comments and config.extra.comments.enabled %}
     <div id="comments" class="mt-12">
         {% if config.extra.comments.system == "giscus" %}
@@ -28,4 +28,4 @@
         {% endif %}
     </div>
 {% endif %}
-{% endmacro comments %}
+{% endcomponent %}

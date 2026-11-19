@@ -1,99 +1,101 @@
+{%- component members(layout = "grid", cols = 3, parts = "") -%}
 {% set layout = layout | default(value="grid") %}
 {% set cols = cols | default(value=3) %}
 
 {% if layout == "line" %}
 <!-- Line layout (horizontal cards) -->
 <div class="members-container my-8 space-y-4">
-  {% set member_lines = body | trim | split(pat="\n") %}
-  {% for line in member_lines %}
-    {% if line | trim %}
-      {% set parts = line | trim | split(pat="|") %}
-      {% if parts | length >= 1 %}
-  <div class="member-card-line group">
-    <div class="flex gap-6 p-6 rounded-xl transition-all duration-300 hover:shadow-xl" 
-         style="background: rgba(30, 41, 59, 0.3); backdrop-filter: blur(12px); border: 1px solid rgba(100, 116, 139, 0.3);">
-      <!-- Avatar -->
-      <div class="flex-shrink-0">
-        <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-500/30 group-hover:border-gray-400/50 transition-all duration-300">
-          {% if parts | length >= 3 and parts[2] | trim %}
-          <img src="{{ parts[2] | trim }}" alt="{{ parts[0] | trim }}" class="w-full h-full object-cover" />
-          {% else %}
-          <div class="w-full h-full bg-gradient-to-br from-gray-500/20 to-gray-600/20 flex items-center justify-center">
-            <svg class="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-            </svg>
-          </div>
-          {% endif %}
-        </div>
-      </div>
-      
-      <!-- Content -->
-      <div class="flex-1 min-w-0">
-        <h3 class="text-xl font-bold text-base-content mb-1 group-hover:text-primary transition-colors duration-300">
-          {{ parts[0] | trim }}
-        </h3>
-        {% if parts | length >= 2 and parts[1] | trim %}
-        <p class="text-sm text-base-content/60 mb-3">{{ parts[1] | trim }}</p>
-        {% endif %}
-        {% if parts | length >= 4 and parts[3] | trim %}
-        <div class="text-sm text-base-content/80 leading-relaxed prose prose-sm max-w-none">
-          {{ parts[3] | trim | markdown | safe }}
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
+{% set member_lines = body | trim | split(pat="\n") %}
+{% for line in member_lines %}
+{% if line | trim %}
+{% set parts = line | trim | split(pat="|") %}
+{% if parts | length >= 1 %}
+<div class="member-card-line group">
+<div class="flex gap-6 p-6 rounded-xl transition-all duration-300 hover:shadow-xl" 
+style="background: rgba(30, 41, 59, 0.3); backdrop-filter: blur(12px); border: 1px solid rgba(100, 116, 139, 0.3);">
+<!-- Avatar -->
+<div class="flex-shrink-0">
+<div class="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-500/30 group-hover:border-gray-400/50 transition-all duration-300">
+{% if parts | length >= 3 and parts[2] | trim %}
+<img src="{{ parts[2] | trim }}" alt="{{ parts[0] | trim }}" class="w-full h-full object-cover" />
+{% else %}
+<div class="w-full h-full bg-gradient-to-br from-gray-500/20 to-gray-600/20 flex items-center justify-center">
+<svg class="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+</div>
+{% endif %}
+</div>
+</div>
+
+<!-- Content -->
+<div class="flex-1 min-w-0">
+<h3 class="text-xl font-bold text-base-content mb-1 group-hover:text-primary transition-colors duration-300">
+{{ parts[0] | trim }}
+</h3>
+{% if parts | length >= 2 and parts[1] | trim %}
+<p class="text-sm text-base-content/60 mb-3">{{ parts[1] | trim }}</p>
+{% endif %}
+{% if parts | length >= 4 and parts[3] | trim %}
+<div class="text-sm text-base-content/80 leading-relaxed prose prose-sm max-w-none">
+{{ parts[3] | trim | markdown | safe }}
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
 </div>
 
 {% else %}
 <!-- Grid layout (card view) -->
 <div class="members-container my-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ cols }} gap-6">
-    {% set member_lines = body | trim | split(pat="\n") %}
-    {% for line in member_lines %}
-      {% if line | trim %}
-        {% set parts = line | trim | split(pat="|") %}
-        {% if parts | length >= 1 %}
-    <div class="member-card group">
-      <div class="h-full flex flex-col p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1" 
-           style="background: rgba(30, 41, 59, 0.3); backdrop-filter: blur(12px); border: 1px solid rgba(100, 116, 139, 0.3);">
-        <!-- Avatar -->
-        <div class="flex justify-center mb-4">
-          <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-500/30 group-hover:border-gray-400/50 transition-all duration-300 group-hover:scale-105">
-            {% if parts | length >= 3 and parts[2] | trim %}
-            <img src="{{ parts[2] | trim }}" alt="{{ parts[0] | trim }}" class="w-full h-full object-cover" />
-            {% else %}
-            <div class="w-full h-full bg-gradient-to-br from-gray-500/20 to-gray-600/20 flex items-center justify-center">
-              <svg class="w-16 h-16 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            {% endif %}
-          </div>
-        </div>
-        
-        <!-- Content -->
-        <div class="text-center flex-1 flex flex-col">
-          <h3 class="text-xl font-bold text-base-content mb-1 group-hover:text-primary transition-colors duration-300">
-            {{ parts[0] | trim }}
-          </h3>
-          {% if parts | length >= 2 and parts[1] | trim %}
-          <p class="text-sm text-base-content/60 mb-3">{{ parts[1] | trim }}</p>
-          {% endif %}
-          {% if parts | length >= 4 and parts[3] | trim %}
-          <div class="text-sm text-base-content/80 leading-relaxed prose prose-sm max-w-none mt-2">
-            {{ parts[3] | trim | markdown | safe }}
-          </div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-  </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ cols }} gap-6">
+{% set member_lines = body | trim | split(pat="\n") %}
+{% for line in member_lines %}
+{% if line | trim %}
+{% set parts = line | trim | split(pat="|") %}
+{% if parts | length >= 1 %}
+<div class="member-card group">
+<div class="h-full flex flex-col p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1" 
+style="background: rgba(30, 41, 59, 0.3); backdrop-filter: blur(12px); border: 1px solid rgba(100, 116, 139, 0.3);">
+<!-- Avatar -->
+<div class="flex justify-center mb-4">
+<div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-500/30 group-hover:border-gray-400/50 transition-all duration-300 group-hover:scale-105">
+{% if parts | length >= 3 and parts[2] | trim %}
+<img src="{{ parts[2] | trim }}" alt="{{ parts[0] | trim }}" class="w-full h-full object-cover" />
+{% else %}
+<div class="w-full h-full bg-gradient-to-br from-gray-500/20 to-gray-600/20 flex items-center justify-center">
+<svg class="w-16 h-16 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
 </div>
 {% endif %}
+</div>
+</div>
+
+<!-- Content -->
+<div class="text-center flex-1 flex flex-col">
+<h3 class="text-xl font-bold text-base-content mb-1 group-hover:text-primary transition-colors duration-300">
+{{ parts[0] | trim }}
+</h3>
+{% if parts | length >= 2 and parts[1] | trim %}
+<p class="text-sm text-base-content/60 mb-3">{{ parts[1] | trim }}</p>
+{% endif %}
+{% if parts | length >= 4 and parts[3] | trim %}
+<div class="text-sm text-base-content/80 leading-relaxed prose prose-sm max-w-none mt-2">
+{{ parts[3] | trim | markdown | safe }}
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{%- endcomponent members -%}

@@ -146,9 +146,9 @@ disable_toggle = false      # 다크/라이트 모드 토글 숨김
 
 **테마별 밝기:** `dark_brightness`와 `light_brightness`를 설정하여 각 테마에 서로 다른 밝기 레벨을 사용할 수 있습니다. 지정하지 않으면 공통 `brightness` 값이 두 테마 모두에 사용됩니다.
 
-{{ image_diff(src1="images/dark.png" src2="images/light.png" alt="Dark and Light") }}
+{{< image_diff src1="images/dark.png" src2="images/light.png" alt="Dark and Light" />}}
 
-{{ carousel(images=["images/darker.png", "images/normal.png", "images/lighter.png"]) }}
+{{< carousel images={["images/darker.png", "images/normal.png", "images/lighter.png"]} />}}
 
 **레거시 형식 (하위 호환성 지원):**
 ```toml
@@ -197,7 +197,7 @@ expand_depth = 2         # 1-5, 기본 확장 깊이
 disable_root_hide = false # 랜딩 페이지에서 사이드바 표시
 ```
 
-{{ image_diff(src1="/images/side-home.jpg", src2="/images/wide-home.jpg", alt="goyo") }}
+{{< image_diff src1="/images/side-home.jpg" src2="/images/wide-home.jpg" alt="goyo" />}}
 
 **레거시 형식 (하위 호환성 지원):**
 ```toml

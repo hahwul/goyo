@@ -9,17 +9,17 @@ The `carousel` shortcode creates an interactive image carousel with navigation c
 ## Usage
 
 ```jinja
-{{/* carousel(images=["image1.png", "image2.png", "image3.png"]) */}}
+{% raw %}{{< carousel images={["image1.png", "image2.png", "image3.png"]} />}}{% endraw %}
 ```
 
 - `images`: Array of image URLs to display in the carousel (required)
 
 ## Example
 
-{{ carousel(images=["images/darker.png", "images/normal.png", "images/lighter.png"]) }}
+{{< carousel images={["images/darker.png", "images/normal.png", "images/lighter.png"]} />}}
 
 ```jinja
-{{/* carousel(images=["images/darker.png", "images/normal.png", "images/lighter.png"]) */}}
+{% raw %}{{< carousel images={["images/darker.png", "images/normal.png", "images/lighter.png"]} />}}{% endraw %}
 ```
 
 ## Features

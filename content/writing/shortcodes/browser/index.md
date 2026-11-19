@@ -12,8 +12,8 @@ taxonomies = { tags = ["shortcodes", "browser", "ui"], categories = ["shortcodes
   - `content`: The content to display inside the browser window.
 
 ```jinja
-{{/* browser(url="https://example.com", content="Welcome to Example!") */}}
+{% raw %}{{< browser url="https://example.com" content="Welcome to Example!" />}}{% endraw %}
 ```
 
-{{ browser(url="https://example.com", content="Welcome to Example!") }}
+{{< browser url="https://example.com" content="Welcome to Example!" />}}
 

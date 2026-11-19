@@ -1,32 +1,34 @@
+{%- component pretty_link(url, image = "", title = "", description = "") -%}
 <div class="pretty-link-card group">
-  <a href="{{ url }}" target="_blank" rel="noopener noreferrer" class="block">
-    <div class="flex items-start gap-4 p-5">
-      {% if image %}
-      <div class="flex-shrink-0 pretty-link-image-wrapper">
-        <img src="{{ image }}" alt="{{ title | default(value=url) }}" class="pretty-link-image" />
-      </div>
-      {% endif %}
-      <div class="flex-1 min-w-0">
-        <div class="flex items-start justify-between gap-2 mb-2">
-          <h3 class="pretty-link-title">
-            {% if title %}{{ title }}{% else %}{{ url | safe }}{% endif %}
-          </h3>
-          <div class="pretty-link-icon-wrapper">
-            <svg class="pretty-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-            </svg>
-          </div>
-        </div>
-        {% if description %}
-        <p class="pretty-link-description">{{ description }}</p>
-        {% endif %}
-        <div class="pretty-link-url">
-          <svg class="w-3.5 h-3.5 mr-1.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-          </svg>
-          {{ url | replace(from="https://", to="") | replace(from="http://", to="") | truncate(length=60) }}
-        </div>
-      </div>
-    </div>
-  </a>
+<a href="{{ url }}" target="_blank" rel="noopener noreferrer" class="block">
+<div class="flex items-start gap-4 p-5">
+{% if image %}
+<div class="flex-shrink-0 pretty-link-image-wrapper">
+<img src="{{ image }}" alt="{{ title | default(value=url) }}" class="pretty-link-image" />
 </div>
+{% endif %}
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between gap-2 mb-2">
+<h3 class="pretty-link-title">
+{% if title %}{{ title }}{% else %}{{ url | safe }}{% endif %}
+</h3>
+<div class="pretty-link-icon-wrapper">
+<svg class="pretty-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+</svg>
+</div>
+</div>
+{% if description %}
+<p class="pretty-link-description">{{ description }}</p>
+{% endif %}
+<div class="pretty-link-url">
+<svg class="w-3.5 h-3.5 mr-1.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+</svg>
+{{ url | replace(from="https://", to="") | replace(from="http://", to="") | truncate(length=60) }}
+</div>
+</div>
+</div>
+</a>
+</div>
+{%- endcomponent pretty_link -%}

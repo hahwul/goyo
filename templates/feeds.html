@@ -1,15 +1,6 @@
 {% extends "index.html" %}
-{% import "macros/utils.html" as utils %}
-
 {% block content %}
 {% set feed_filename = config.feed_filenames | first | default(value="atom.xml") %}
-{% set config_file = load_data(path="/config.toml", format="toml", required=false) %}
-{% if not config_file %}
-    {% set config_file = load_data(path="/config.yaml", format="yaml", required=false) %}
-{% endif %}
-{% if not config_file %}
-    {% set config_file = load_data(path="/config.yml", format="yaml", required=false) %}
-{% endif %}
 
 <div class="prose">
     <h1 class="mb-6 text-3xl font-bold">{{ page.title }}</h1>
@@ -17,12 +8,12 @@
         {{ page.extra.description }}
     </p>
 
-    <h3 class="text-xl font-bold mt-8 mb-4">{{ utils::trans_or_default(key="global_feed", default="Global Feed", lang=lang, config=config, config_file=config_file) }}</h3>
+    <h3 class="text-xl font-bold mt-8 mb-4">{{< trans_or_default key="global_feed" default="Global Feed" lang={lang} config={config} config_file={config_file} />}}</h3>
     <div class="card-taxonomies overflow-hidden w-full">
-            <span class="font-bold min-w-[100px]">{{ utils::trans_or_default(key="all_posts", default="All Posts", lang=lang, config=config, config_file=config_file) }}</span>
+            <span class="font-bold min-w-[100px]">{{< trans_or_default key="all_posts" default="All Posts" lang={lang} config={config} config_file={config_file} />}}</span>
             <button onclick="copyToClipboard('{{ get_url(path=feed_filename, lang=lang) }}', this)"
             class="btn btn-sm btn-outline btn-primary">
-            {{ utils::trans_or_default(key="copy", default="Copy", lang=lang, config=config, config_file=config_file) }}
+            {{< trans_or_default key="copy" default="Copy" lang={lang} config={config} config_file={config_file} />}}
             </button>
     </div>
 
@@ -33,7 +24,7 @@
         {% endif %}
     {% endfor %}
     {% if has_categories_taxonomy %}
-    <h3 class="text-xl font-bold mt-8 mb-4">{{ utils::trans_or_default(key="category_feeds", default="Category Feeds", lang=lang, config=config, config_file=config_file) }}</h3>
+    <h3 class="text-xl font-bold mt-8 mb-4">{{< trans_or_default key="category_feeds" default="Category Feeds" lang={lang} config={config} config_file={config_file} />}}</h3>
     <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
         {% set categories = get_taxonomy(kind="categories", lang=lang) %}
         {% for term in categories.items %}
@@ -42,7 +33,7 @@
                 <div class="nav-button-title">{{ term.name }}</div>
                 <button onclick="copyToClipboard('{{ feed_url }}', this)"
                         class="btn btn-sm btn-outline btn-primary">
-                    {{ utils::trans_or_default(key="copy", default="Copy", lang=lang, config=config, config_file=config_file) }}
+                    {{< trans_or_default key="copy" default="Copy" lang={lang} config={config} config_file={config_file} />}}
                 </button>
             </div>
         {% endfor %}

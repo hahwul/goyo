@@ -8,28 +8,18 @@
     - terms: list of all terms for this taxonomy
 #}
 
-{% block title %}
-    {{ taxonomy.name | capitalize }} - {{ config.title }}
-{% endblock title %}
-
 {% block content %}
     <div class="mb-12 pb-6 border-b border-gray-500/15">
         <h1 class="flex items-center gap-3 mb-3">
-            {{ taxonomy.config.title | default(value=taxonomy.name | capitalize) }}
+            {{ taxonomy.name | capitalize }}
             <span class="text-xs font-medium px-2.5 py-1 border border-gray-500/30 rounded uppercase tracking-wide">
                 Taxonomy
             </span>
         </h1>
 
-        {% if taxonomy.config.description %}
-            <p class="text-base text-base-content/70">
-                {{ taxonomy.config.description }}
-            </p>
-        {% else %}
-            <p class="text-base text-base-content/70">
-                Browse all {{ taxonomy.name }} used in this documentation.
-            </p>
-        {% endif %}
+        <p class="text-base text-base-content/70">
+            Browse all {{ taxonomy.name }} used in this documentation.
+        </p>
 
         <div class="mt-4 flex items-center gap-2 text-sm text-base-content/60">
             <span>{{ terms | length }} {{ taxonomy.name }} available</span>

@@ -28,9 +28,13 @@ jobs:
           # Target branch
           PAGES_BRANCH: gh-pages
           # Provide personal access token
+{% raw %}
           TOKEN: ${{ secrets.TOKEN }}
+{% endraw %}
           # Or if publishing to the same repo, use the automatic token
+{% raw %}
           #TOKEN: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}
 ```
 
 Generate a PAT at **Settings > Developer settings > Personal access tokens** if needed, then add it as a repository secret named `TOKEN`.

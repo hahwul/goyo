@@ -12,7 +12,7 @@ taxonomies = { tags = ["shortcodes", "map", "openstreetmap"], categories = ["sho
   - `marker`: 마커 위치 (위도,경도)
 
 ```jinja
-{{/* openstreetmap(bbox="-122.613,37.431,-122.382,37.559", layer="mapnik", marker="37.495,-122.497") */}}
+{% raw %}{{< openstreetmap bbox="-122.613,37.431,-122.382,37.559" layer="mapnik" marker="37.495,-122.497" />}}{% endraw %}
 ```
 
-{{ openstreetmap(bbox="-122.613,37.431,-122.382,37.559", layer="mapnik", marker="37.495,-122.497") }}
+{{< openstreetmap bbox="-122.613,37.431,-122.382,37.559" layer="mapnik" marker="37.495,-122.497" />}}

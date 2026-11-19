@@ -9,17 +9,17 @@ taxonomies = { tags = ["shortcodes", "carousel", "gallery"], categories = ["shor
 ## 사용법
 
 ```jinja
-{{/* carousel(images=["image1.png", "image2.png", "image3.png"]) */}}
+{% raw %}{{< carousel images={["image1.png", "image2.png", "image3.png"]} />}}{% endraw %}
 ```
 
 - `images`: 캐러셀에 표시할 이미지 URL 배열 (필수)
 
 ## 예시
 
-{{ carousel(images=["images/darker.png", "images/normal.png", "images/lighter.png"]) }}
+{{< carousel images={["images/darker.png", "images/normal.png", "images/lighter.png"]} />}}
 
 ```jinja
-{{/* carousel(images=["images/darker.png", "images/normal.png", "images/lighter.png"]) */}}
+{% raw %}{{< carousel images={["images/darker.png", "images/normal.png", "images/lighter.png"]} />}}{% endraw %}
 ```
 
 ## 기능

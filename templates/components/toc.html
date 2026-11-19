@@ -1,9 +1,8 @@
-{% import "macros/utils.html" as utils %}
-{% macro toc(page, lang, config, config_file=false) %}
+{% component toc(page, lang, config, config_file) %}
 {% if page.toc %}
 <div class="hidden lg:block" {% if page.extra.toc_expand %}data-toc-expand="true"{% endif %}>
     <div class="sticky top-20 px-4 py-2 border-l border-gray-500/15">
-        <h4 class="text-lg font-bold mb-1">{{ utils::trans_or_default(key="toc_title", default="ON THIS PAGE", lang=lang, config=config, config_file=config_file) }}</h4>
+        <h4 class="text-lg font-bold mb-1">{{< trans_or_default key="toc_title" default="ON THIS PAGE" lang={lang} config={config} config_file={config_file} />}}</h4>
             <ul class="menu menu-sm toc-menu">
             {% for h1 in page.toc %}
                 <li>
@@ -29,4 +28,4 @@
     </div>
 </div>
 {% endif %}
-{% endmacro toc %}
+{% endcomponent %}

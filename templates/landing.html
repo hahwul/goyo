@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {# Define macros for each section #}
-{% macro render_hero(section) %}
+{% component render_hero(section) %}
     {# Hero Section - Ashen Minimalist Style #}
     {% if section.extra.hero %}
         <div class="relative min-h-[calc(100vh-theme(spacing.16))] flex items-center justify-center text-center overflow-hidden">
@@ -53,7 +53,7 @@
                 {% if section.extra.hero.cta_buttons %}
                     <div class="flex justify-center gap-6 flex-wrap">
                         {% for button in section.extra.hero.cta_buttons %}
-                            <a href="{% if button.url is matching('^https?://') %}{{ button.url | safe }}{% else %}{{ get_url(path=button.url) | safe }}{% endif %}"
+                            <a href="{% if button.url is matching(pat='^https?://') %}{{ button.url | safe }}{% else %}{{ get_url(path=button.url) | safe }}{% endif %}"
                                class="group relative px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105
                                       {% if button.style == 'primary' %}
                                         hero-cta-primary
@@ -71,9 +71,9 @@
             </div>
         </div>
     {% endif %}
-{% endmacro %}
+{% endcomponent %}
 
-{% macro render_features(section) %}
+{% component render_features(section) %}
     {# Feature Grid - Ashen Minimal Design #}
     {# Support both extra.features_section.features (new) and extra.features (legacy) for backward compatibility #}
     {% set features = false %}
@@ -113,7 +113,7 @@
                                 {% if feature.icon %}
                                     <div class="mb-6">
                                         <div class="inline-flex items-center justify-center w-16 h-16 rounded-lg feature-icon-bg">
-                                            {{ icons::icon(name=feature.icon, class="text-2xl feature-icon") }}
+                                            {{< icon name={feature.icon} class="text-2xl feature-icon" />}}
                                         </div>
                                     </div>
                                 {% endif %}
@@ -126,9 +126,9 @@
             </div>
         </div>
     {% endif %}
-{% endmacro %}
+{% endcomponent %}
 
-{% macro render_trust(section) %}
+{% component render_trust(section) %}
     {# Trust Section - Modern Glass Effect #}
     {% if section.extra.trust_section %}
         <div class="py-20 md:py-40 relative">
@@ -147,9 +147,9 @@
             </div>
         </div>
     {% endif %}
-{% endmacro %}
+{% endcomponent %}
 
-{% macro render_easy_command(section) %}
+{% component render_easy_command(section) %}
     {# Easy Command Section - Tabbed Code Blocks #}
     {% if section.extra.easy_command_section %}
         <div class="py-20 md:py-40 relative">
@@ -173,7 +173,7 @@
                         <div class="tabs tabs-lift max-w-4xl">
                             {% for tab in section.extra.easy_command_section.tabs %}
                                 {% if tab.link %}
-                                    <a href="{{ tab.link | safe }}" class="tab install-tab-link">{{ icons::icon(name="arrow-up-right-from-square", class="text-xs mr-1 text-base-content/50") }}{{ tab.name }}</a>
+                                    <a href="{{ tab.link | safe }}" class="tab install-tab-link">{{< icon name="arrow-up-right-from-square" class="text-xs mr-1 text-base-content/50" />}}{{ tab.name }}</a>
                                 {% else %}
                                     <input type="radio" name="easy_command_tabs" id="easy-command-tab-{{ loop.index0 }}" class="tab" aria-label="{{ tab.name }}" {% if loop.index0 == 0 %}checked="checked"{% endif %} />
                                     <div class="tab-content install-tab-content bg-base-100 border-base-300 p-6 rounded-b-lg" role="tabpanel" aria-labelledby="easy-command-tab-{{ loop.index0 }}">
@@ -189,9 +189,9 @@
             </div>
         </div>
     {% endif %}
-{% endmacro %}
+{% endcomponent %}
 
-{% macro render_showcase(section) %}
+{% component render_showcase(section) %}
     {# Showcase Section - Tabbed Content #}
     {% if section.extra.showcase_section %}
         <div class="py-20 md:py-40 relative">
@@ -242,9 +242,9 @@
             </div>
         </div>
     {% endif %}
-{% endmacro %}
+{% endcomponent %}
 
-{% macro render_social_proof(section) %}
+{% component render_social_proof(section) %}
     {# Social Proof Section - Clean Minimalist Cards #}
     {% if section.extra.social_proof_section %}
         <div class="py-20 md:py-40 relative">
@@ -285,9 +285,9 @@
             </div>
         </div>
     {% endif %}
-{% endmacro %}
+{% endcomponent %}
 
-{% macro render_final_cta(section) %}
+{% component render_final_cta(section) %}
     {# Final CTA Section - Ashen Gradient Design #}
     {% if section.extra.final_cta_section %}
         <div class="py-20 md:py-40 relative overflow-hidden">
@@ -325,7 +325,7 @@
             </div>
         </div>
     {% endif %}
-{% endmacro %}
+{% endcomponent %}
 
 {% block content %}
     {# Define default section order for backward compatibility #}
@@ -337,19 +337,19 @@
     {# Render sections in the specified order. Unknown section names are silently ignored. #}
     {% for section_name in section_order %}
         {% if section_name == "hero" %}
-            {{ self::render_hero(section=section) }}
+            {{< render_hero section={section} />}}
         {% elif section_name == "features" %}
-            {{ self::render_features(section=section) }}
+            {{< render_features section={section} />}}
         {% elif section_name == "trust" %}
-            {{ self::render_trust(section=section) }}
+            {{< render_trust section={section} />}}
         {% elif section_name == "easy_command" %}
-            {{ self::render_easy_command(section=section) }}
+            {{< render_easy_command section={section} />}}
         {% elif section_name == "showcase" %}
-            {{ self::render_showcase(section=section) }}
+            {{< render_showcase section={section} />}}
         {% elif section_name == "social_proof" %}
-            {{ self::render_social_proof(section=section) }}
+            {{< render_social_proof section={section} />}}
         {% elif section_name == "final_cta" %}
-            {{ self::render_final_cta(section=section) }}
+            {{< render_final_cta section={section} />}}
         {% endif %}
     {% endfor %}
 {% endblock content %}

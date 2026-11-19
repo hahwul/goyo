@@ -1,3 +1,5 @@
+{%- component openstreetmap(bbox, layer = "", marker = "") -%}
 <div class="openstreetmap-container border border-gray-500/15">
-    <iframe class="w-full h-96 border-0" src="https://www.openstreetmap.org/export/embed.html?bbox={{ bbox }}{% if layer %}&amp;layer={{ layer }}{% endif %}{% if marker %}&amp;marker={{ marker }}{% endif %}" title="OpenStreetMap" allowfullscreen></iframe>
+<iframe class="w-full h-96 border-0" src="https://www.openstreetmap.org/export/embed.html?bbox={{ bbox }}{% if layer %}&amp;layer={{ layer }}{% endif %}{% if marker %}&amp;marker={{ marker }}{% endif %}" title="OpenStreetMap" allowfullscreen></iframe>
 </div>
+{%- endcomponent openstreetmap -%}

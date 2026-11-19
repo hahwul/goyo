@@ -9,7 +9,7 @@ taxonomies = { tags = ["shortcodes", "image-diff", "comparison"], categories = [
 ## 사용법
 
 ```
-{{/* image_diff(src1="URL_TO_ORIGINAL_IMAGE" src2="URL_TO_CHANGED_IMAGE" alt="Description of image") */}}
+{% raw %}{{< image_diff src1="URL_TO_ORIGINAL_IMAGE" src2="URL_TO_CHANGED_IMAGE" alt="Description of image" />}}{% endraw %}
 ```
 
 - `src1`: 첫 번째(왼쪽) 이미지의 URL (필수)
@@ -18,10 +18,6 @@ taxonomies = { tags = ["shortcodes", "image-diff", "comparison"], categories = [
 
 ## 예시
 
-{{ image_diff(
-    src1="/images/dark.jpg",
-    src2="/images/light.jpg",
-    alt="goyo"
-) }}
+{{< image_diff src1="/images/dark.jpg" src2="/images/light.jpg" alt="goyo" />}}
 
 위와 같이 사용하면 두 이미지를 드래그로 비교할 수 있는 UI가 생성됩니다.
