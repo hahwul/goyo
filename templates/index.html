@@ -18,11 +18,11 @@
 {{ macros_head::html_tag(config=config, lang=lang) }}
 <head>
     {% if page is defined %}
-        {{ macros_head::head(config=config, page=page, section=false, current_url=config.base_url, config_file=config_file) }}
+        {{ macros_head::head(config=config, page=page, section=false, current_url=current_url | default(value=config.base_url), config_file=config_file) }}
     {% elif section is defined %}
-        {{ macros_head::head(config=config, page=false, section=section, current_url=config.base_url, config_file=config_file) }}
+        {{ macros_head::head(config=config, page=false, section=section, current_url=current_url | default(value=config.base_url), config_file=config_file) }}
     {% else %}
-        {{ macros_head::head(config=config, page=false, section=false, current_url=config.base_url, config_file=config_file) }}
+        {{ macros_head::head(config=config, page=false, section=false, current_url=current_url | default(value=config.base_url), config_file=config_file) }}
     {% endif %}
     {% block extra_head %}{% endblock extra_head %}
 </head>

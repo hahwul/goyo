@@ -64,7 +64,7 @@
                             <span class="h-4 w-px bg-gray-400/40"></span>
                             <div class="flex flex-wrap items-center gap-1.5">
                                 {% for tag in page.taxonomies.tags %}
-                                    <a href="{{ get_taxonomy_url(kind="tags", name=tag, required=false) | safe }}"
+                                    <a href="{{ get_taxonomy_url(kind="tags", name=tag, lang=lang, required=false) | safe }}"
                                        class="inline-flex items-center badge badge-dash text-xs border-gray-500/30 hover:border-gray-500/70 transition-colors">
                                         {{ tag }}
                                     </a>

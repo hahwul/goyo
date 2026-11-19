@@ -246,7 +246,7 @@
       {% endif %}
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="{% if page %}{{ page.title }}{% else %}{{ config.title }}{% endif %}" />
+      <meta name="twitter:title" content="{% if page and page.title %}{{ page.title }}{% elif section and section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}" />
       <meta name="twitter:description" content="
         {%- if page and page.description -%}
           {{ page.description }}
