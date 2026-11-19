@@ -13,6 +13,12 @@ function debounce(func, wait) {
   };
 }
 
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, function (c) {
+    return "&#" + c.charCodeAt(0) + ";";
+  });
+}
+
 function makeTeaser(body, terms) {
   var TERM_WEIGHT = 40;
   var NORMAL_WORD_WEIGHT = 2;
@@ -108,8 +114,9 @@ function makeTeaser(body, terms) {
 function formatSearchResultItem(item, terms) {
   var li = document.createElement("li");
   li.className = "search-result-item";
+  // Zola's index stores the body HTML-escaped but the title and URL as raw text
   li.innerHTML = `
-    <a href="${item.item.id}" class="search-result-link block px-4 py-3 rounded-lg hover:bg-base-200/50 transition-colors duration-150 border-gray-500/15">
+    <a href="${escapeHtml(item.item.id)}" class="search-result-link block px-4 py-3 rounded-lg hover:bg-base-200/50 transition-colors duration-150 border-gray-500/15">
       <div class="flex items-start gap-3">
         <div class="search-result-icon flex-shrink-0 mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-base-content/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,7 +124,7 @@ function formatSearchResultItem(item, terms) {
           </svg>
         </div>
         <div class="flex-1 min-w-0">
-          <div class="search-result-title font-semibold text-sm text-base-content mb-1">${item.item.title}</div>
+          <div class="search-result-title font-semibold text-sm text-base-content mb-1">${escapeHtml(item.item.title || "")}</div>
           <div class="search-result-excerpt text-xs text-base-content/60 line-clamp-2">${makeTeaser(item.item.body, terms)}</div>
         </div>
         <div class="search-result-arrow flex-shrink-0 opacity-0 transition-opacity duration-150">
@@ -195,19 +202,20 @@ function initSearch() {
     }
   }
 
+  // "input" also covers paste, IME composition and the clear button, unlike "keyup"
   $searchInput.addEventListener(
-    "keyup",
+    "input",
     debounce(function () {
       var term = $searchInput.value.trim();
       if (term === currentTerm || !fuse) {
         return;
       }
+      currentTerm = term;
       $searchResultsItems.innerHTML = "";
       $searchResultsHeader.innerHTML = "";
       selectedIndex = -1;
 
       if (term === "") {
-        currentTerm = "";
         return;
       }
 
@@ -216,18 +224,17 @@ function initSearch() {
       });
 
       if (results.length === 0) {
-        $searchResultsHeader.innerHTML = `<span class="text-base-content/60">No results found for <strong class="text-base-content">"${term}"</strong></span>`;
+        $searchResultsHeader.innerHTML = `<span class="text-base-content/60">No results found for <strong class="text-base-content">"${escapeHtml(term)}"</strong></span>`;
         return;
       }
 
-      currentTerm = term;
-      $searchResultsHeader.innerHTML = `<span class="text-base-content/60">${results.length} result${results.length === 1 ? "" : "s"} for <strong class="text-base-content">"${term}"</strong></span>`;
+      $searchResultsHeader.innerHTML = `<span class="text-base-content/60">${results.length} result${results.length === 1 ? "" : "s"} for <strong class="text-base-content">"${escapeHtml(term)}"</strong></span>`;
       for (var i = 0; i < Math.min(results.length, MAX_ITEMS); i++) {
         if (!results[i].item.body) {
           continue;
         }
         $searchResultsItems.appendChild(
-          formatSearchResultItem(results[i], term.split(" ")),
+          formatSearchResultItem(results[i], term.split(/\s+/)),
         );
       }
     }, 150),
@@ -254,22 +261,31 @@ function initSearch() {
     });
   }
 
+  // Close through the change event so the handler above also clears the query
+  function closeSearch() {
+    searchModal.checked = false;
+    searchModal.dispatchEvent(new Event("change"));
+  }
+
   // Handle click outside modal to close it
   if (modalBackdrop) {
     modalBackdrop.addEventListener("click", function (e) {
       // Close modal if clicking on the backdrop (not on modal-box)
       if (e.target === modalBackdrop && searchModal.checked) {
-        searchModal.checked = false;
+        closeSearch();
       }
     });
   }
 
   // Handle keyboard navigation
   $searchInput.addEventListener("keydown", function (e) {
+    // Enter/Escape during IME composition belong to the IME, not to the modal
+    if (e.isComposing) return;
+
     var items = $searchResultsItems.querySelectorAll(".search-result-item");
 
     if (e.key === "Escape") {
-      searchModal.checked = false;
+      closeSearch();
       return;
     }
 
@@ -311,25 +327,13 @@ function getBrightnessForTheme(theme, config) {
 }
 
 function initTheme() {
+  // May be empty (toggle disabled); the logo still has to follow the theme
   var themeControllers = document.querySelectorAll(".theme-controller");
-  if (!themeControllers.length) return;
 
   var config = getThemeConfig();
 
-  // Prefer early-computed fallback (from head.html) to avoid FOUC
-  var fallbackTheme = window.fallbackTheme || config.darkTheme;
-
-  var storedTheme = localStorage.getItem("theme");
-  var activeTheme =
-      (storedTheme === config.darkTheme || storedTheme === config.lightTheme)
-          ? storedTheme
-          : fallbackTheme;
-
-  document.documentElement.setAttribute("data-theme", activeTheme);
-  document.documentElement.setAttribute(
-      "data-brightness",
-      getBrightnessForTheme(activeTheme, config),
-  );
+  // head.html already resolved and applied the theme before first paint
+  var activeTheme = document.documentElement.getAttribute("data-theme");
 
   // Sync checkboxes (do NOT set tc.value)
   themeControllers.forEach(tc => {
@@ -354,11 +358,14 @@ function initTheme() {
           getBrightnessForTheme(nextTheme, config),
       );
 
-      localStorage.setItem("theme", nextTheme);
+      // Storage can be blocked; the toggle should still work for this page view
+      try { localStorage.setItem("theme", nextTheme); } catch (e) {}
 
       updateLogoForTheme(nextTheme, config);
       applyErrataBadges();
       applyIssueAndForkAlert();
+      // Re-render diagrams with the new theme (defined in index.html)
+      if (typeof window.initMermaid === "function") window.initMermaid();
     });
   });
 }
@@ -423,13 +430,20 @@ function initToc() {
   }
 
   // Check if TOC should always be expanded
-  const tocContainer = document.querySelector(".hidden.lg\\:block");
-  const tocExpand = tocContainer && tocContainer.getAttribute("data-toc-expand") === "true";
+  const tocExpand = !!document.querySelector('[data-toc-expand="true"]');
 
   let activeId = null;
 
   const activateLink = (id) => {
     if (activeId === id) return; // Already active, no need to update
+
+    // Match links with href ending in #id (handles both relative and absolute URLs)
+    const correspondingLink = document.querySelector(
+      `.toc-link[href$="#${CSS.escape(id)}"]`,
+    );
+
+    // Headings deeper than the ToC lists have no link: keep the current one active
+    if (!correspondingLink) return;
 
     activeId = id;
 
@@ -441,19 +455,12 @@ function initToc() {
       tocDetails.forEach((detail) => (detail.open = false));
     }
 
-    // Match links with href ending in #id (handles both relative and absolute URLs)
-    const correspondingLink = document.querySelector(
-      `.toc-link[href$="#${id}"]`,
-    );
-
     // Add active class to the current link
-    if (correspondingLink) {
-      correspondingLink.classList.add("active");
-      let parentDetails = correspondingLink.closest("details");
-      while (parentDetails) {
-        parentDetails.open = true;
-        parentDetails = parentDetails.parentElement.closest("details");
-      }
+    correspondingLink.classList.add("active");
+    let parentDetails = correspondingLink.closest("details");
+    while (parentDetails) {
+      parentDetails.open = true;
+      parentDetails = parentDetails.parentElement.closest("details");
     }
   };
 
@@ -493,46 +500,10 @@ function initToc() {
   }
 }
 
-function initMath() {
-  // Only render if KaTeX is loaded
-  if (typeof katex === 'undefined') {
-    return;
-  }
-
-  // Render all inline math elements
-  var mathElements = document.querySelectorAll(".katex-inline");
-  mathElements.forEach(function (element) {
-    var formula = element.textContent;
-    try {
-      katex.render(formula, element, {
-        throwOnError: false,
-        displayMode: false,
-      });
-    } catch (e) {
-      console.error("KaTeX rendering error:", e);
-    }
-  });
-
-  // Render all block math elements
-  var blockMathElements = document.querySelectorAll(".katex-block");
-  blockMathElements.forEach(function (element) {
-    var formula = element.textContent;
-    try {
-      katex.render(formula, element, {
-        throwOnError: false,
-        displayMode: true,
-      });
-    } catch (e) {
-      console.error("KaTeX rendering error:", e);
-    }
-  });
-}
-
 document.addEventListener("DOMContentLoaded", function () {
   initSearch();
   initTheme();
   initToc();
-  initMath();
   applyErrataBadges();
   applyIssueAndForkAlert();
 
