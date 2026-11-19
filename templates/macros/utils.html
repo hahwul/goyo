@@ -13,19 +13,19 @@
         {%- endif -%}
     {%- endif -%}
 
-    {# Check if translation key exists in config before calling trans() #}
-    {%- set has_key = false -%}
+    {# Find a language that has the key before calling trans(), which errors on a missing key #}
+    {%- set trans_lang = "" -%}
     {%- if loaded_config -%}
         {%- if effective_lang != config.default_language and loaded_config.languages and loaded_config.languages[effective_lang] and loaded_config.languages[effective_lang].translations and loaded_config.languages[effective_lang].translations[key] -%}
-            {%- set has_key = true -%}
-        {%- endif -%}
-        {%- if not has_key and loaded_config.translations and loaded_config.translations[key] -%}
-            {%- set has_key = true -%}
+            {%- set trans_lang = effective_lang -%}
+        {%- elif loaded_config.translations and loaded_config.translations[key] -%}
+            {# The current language lacks the key: fall back to the default language's text #}
+            {%- set trans_lang = config.default_language -%}
         {%- endif -%}
     {%- endif -%}
 
-    {%- if has_key -%}
-        {{ trans(key=key, lang=effective_lang) }}
+    {%- if trans_lang -%}
+        {{ trans(key=key, lang=trans_lang) }}
     {%- else -%}
         {{ default }}
     {%- endif -%}
