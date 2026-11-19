@@ -62,7 +62,16 @@
             window.fallbackTheme = fallbackTheme;
 
             // Get theme from localStorage, but only use it if it matches configured themes
-            var storedTheme = localStorage.getItem('theme');
+            {# Without a toggle visitors cannot undo a stored choice, so ignore it #}
+            {% if config.extra.theme is defined %}
+                {% set disable_theme_toggle = config.extra.theme.disable_toggle | default(value=config.extra.disable_theme_toggle | default(value=false)) %}
+            {% else %}
+                {% set disable_theme_toggle = config.extra.disable_theme_toggle | default(value=false) %}
+            {% endif %}
+            var storedTheme = null;
+            {% if not disable_theme_toggle %}
+            try { storedTheme = localStorage.getItem('theme'); } catch (e) { /* storage blocked */ }
+            {% endif %}
             var currentTheme;
             if (storedTheme === configuredDarkTheme || storedTheme === configuredLightTheme) {
                 currentTheme = storedTheme;
@@ -189,7 +198,7 @@
       {% endif %}
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="{% if page %}{{ page.title }}{% else %}{{ config.title }}{% endif %}" />
+      <meta name="twitter:title" content="{% if page and page.title %}{{ page.title }}{% elif section and section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}" />
       <meta name="twitter:description" content="
         {%- if page and page.description -%}
           {{ page.description }}

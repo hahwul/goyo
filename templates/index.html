@@ -10,11 +10,11 @@
 {{< html_tag config={config} lang={lang} />}}
 <head>
     {% if page is defined %}
-        {{< head config={config} page={page} section={false} current_url={config.base_url} config_file={config_file} lang={lang} />}}
+        {{< head config={config} page={page} section={false} current_url={current_url | default(value=config.base_url)} config_file={config_file} lang={lang} />}}
     {% elif section is defined %}
-        {{< head config={config} page={false} section={section} current_url={config.base_url} config_file={config_file} lang={lang} />}}
+        {{< head config={config} page={false} section={section} current_url={current_url | default(value=config.base_url)} config_file={config_file} lang={lang} />}}
     {% else %}
-        {{< head config={config} page={false} section={false} current_url={config.base_url} config_file={config_file} lang={lang} />}}
+        {{< head config={config} page={false} section={false} current_url={current_url | default(value=config.base_url)} config_file={config_file} lang={lang} />}}
     {% endif %}
     {% block extra_head %}{% endblock extra_head %}
 </head>
@@ -102,37 +102,51 @@
               };
               window.fallbackTheme = window.themeMap[window.defaultColorset] || (window.themeConfig && window.themeConfig.darkTheme) || "goyo-dark";
 
-              // Theme mapping - maps user-friendly names to actual DaisyUI theme names
-              var themeMapping = { "goyo-dark": "night", "goyo-light": "lofi" };
-              var currentUserTheme = localStorage.getItem('theme') || window.fallbackTheme;
-              var actualTheme = themeMapping[currentUserTheme] || currentUserTheme;
+              // Renders run one at a time: an overlapping run would read the previous run's SVG as diagram source
+              var mermaidQueue = Promise.resolve();
 
-              // Initialize and run Mermaid only when loaded
+              // Initialize and run Mermaid only when loaded; goyo.js calls it again on theme toggle
               window.initMermaid = function() {
-                var mermaidTheme = "dark";
-                if(currentUserTheme == window.themeMap["light"]) {
-                  mermaidTheme = "light";
-                }
-
                 if (typeof mermaid !== 'undefined') {
-                  mermaid.initialize({ startOnLoad: false, theme: mermaidTheme });
-
                   // Function to render mermaid diagrams
                   var renderMermaid = async function() {
-                    const mermaidElements = document.querySelectorAll('.mermaid');
-                    if (mermaidElements.length > 0) {
-                        await mermaid.run({
-                            nodes: mermaidElements
-                        });
+                    // Follow the theme that is actually applied ("default" is Mermaid's light theme)
+                    var mermaidTheme = "dark";
+                    if(document.documentElement.getAttribute('data-theme') == window.themeMap["light"]) {
+                      mermaidTheme = "default";
                     }
+                    mermaid.initialize({ startOnLoad: false, theme: mermaidTheme });
+
+                    const mermaidElements = document.querySelectorAll('.mermaid');
+                    mermaidElements.forEach(function(el) {
+                      // Mermaid replaces the source with the SVG, so keep it for re-renders
+                      if (el.dataset.source === undefined) {
+                        el.dataset.source = el.textContent;
+                      } else {
+                        // Hold the height so the page does not jump while the diagram is redrawn
+                        el.style.minHeight = el.offsetHeight + 'px';
+                        el.textContent = el.dataset.source;
+                        el.removeAttribute('data-processed');
+                      }
+                    });
+                    if (mermaidElements.length > 0) {
+                      try {
+                        await mermaid.run({ nodes: mermaidElements });
+                      } finally {
+                        mermaidElements.forEach(function(el) { el.style.minHeight = ''; });
+                      }
+                    }
+                  };
+                  var queueRender = function() {
+                    mermaidQueue = mermaidQueue.then(renderMermaid).catch(function(e) { console.error(e); });
                   };
 
                   // Check if DOMContentLoaded has already fired
                   if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', renderMermaid);
+                    document.addEventListener('DOMContentLoaded', queueRender);
                   } else {
                     // DOMContentLoaded already fired, run immediately
-                    renderMermaid();
+                    queueRender();
                   }
                 }
               };

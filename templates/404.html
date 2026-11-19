@@ -28,5 +28,7 @@
             {{< sidebar config={config} lang={lang} current_path="/" section={false} config_file={false} page={false} />}}
         </div>
     </div>
+    {# Needed for the theme toggle and theme-specific logos #}
+    <script defer type="text/javascript" src="{{ get_url(path='goyo.js') | safe }}"></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 const translator = (key) => (window.GOYO_CONFIG?.i18n?.[key] ?? key);
 
 document.addEventListener('DOMContentLoaded', () => {
+    // No Clipboard API (e.g. plain HTTP): a copy button could only fail
+    if (!navigator.clipboard) return;
+
     document.querySelectorAll('pre > code').forEach((codeBlock) => {
         const pre = codeBlock.parentNode;
         const button = document.createElement('button');
@@ -31,6 +34,10 @@ function copyToClipboard(text, button) {
         return;
     }
 
+    // Ignore clicks while feedback is showing, or the feedback text gets saved as the original
+    if (button.dataset.busy) return;
+    button.dataset.busy = "1";
+
     navigator.clipboard.writeText(text).then(function () {
         // Visual feedback
         let originalText = button.innerText;
@@ -40,6 +47,7 @@ function copyToClipboard(text, button) {
         setTimeout(() => {
             button.innerText = originalText;
             button.classList.remove("btn-success");
+            delete button.dataset.busy;
         }, 2000);
 
     }).catch(function () {
@@ -47,12 +55,13 @@ function copyToClipboard(text, button) {
         let originalText = button.innerText;
         button.innerText = translator("failed_to_copy");
         button.classList.remove("btn-primary");
-        button.classList.add("btn-error"); // Green color if using daisyUI/Tailwind
+        button.classList.add("btn-error"); // Red color in daisyUI
 
         setTimeout(() => {
             button.innerText = originalText;
             button.classList.remove("btn-error");
             button.classList.add("btn-primary");
+            delete button.dataset.busy;
         }, 2000);
     });
 }
@@ -105,22 +114,31 @@ function copyURL(text, button) {
         return;
     }
 
+    // Ignore clicks while feedback is showing, or the feedback text gets saved as the original
+    if (button.dataset.busy) return;
+    button.dataset.busy = "1";
+
+    // Only swap the text: writing to the button itself would delete its icon
+    const label = button.querySelector("span") || button;
+
     navigator.clipboard.writeText(text).then(function () {
         // Visual feedback
-        let originalText = button.innerText;
-        button.innerText = translator("copied");
+        let originalText = label.innerText;
+        label.innerText = translator("copied");
 
         setTimeout(() => {
-            button.innerText = originalText;
+            label.innerText = originalText;
+            delete button.dataset.busy;
         }, 2000);
 
     }).catch(function () {
         // ERROR STATE (Generic)
-        let originalText = button.innerText;
-        button.innerText = translator("failed_to_copy");
+        let originalText = label.innerText;
+        label.innerText = translator("failed_to_copy");
 
         setTimeout(() => {
-            button.innerText = originalText;
+            label.innerText = originalText;
+            delete button.dataset.busy;
         }, 2000);
     });
 }
